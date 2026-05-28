@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Copilot Corner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ─── COPILOT DESIGN SYSTEM ─────────────────────────────── */
+:root {
+  --cp-cyan:    #22D4F5;
+  --cp-blue:    #2F7DFF;
+  --cp-violet:  #9B59FF;
+  --cp-pink:    #E040FB;
+  --cp-hot:     #FF3CAC;
+  --cp-orange:  #FF6B35;
+  --cp-amber:   #FFAB40;
+
+  --grad:      linear-gradient(135deg, #22D4F5 0%, #2F7DFF 22%, #9B59FF 50%, #E040FB 72%, #FF6B35 100%);
+  --grad-warm: linear-gradient(135deg, #9B59FF 0%, #E040FB 50%, #FF6B35 100%);
+  --grad-cool: linear-gradient(135deg, #22D4F5 0%, #2F7DFF 50%, #9B59FF 100%);
+
+  --bg:    #07070e;
+  --s1:    #0d0d1a;
+  --s2:    #12122099;
+  --s3:    #1a1a2e;
+  --glass:  rgba(255,255,255,0.03);
+  --glass2: rgba(255,255,255,0.06);
+
+  --b1:   rgba(255,255,255,0.06);
+  --b2:   rgba(255,255,255,0.12);
+  --b-cp: rgba(159,89,255,0.3);
+
+  --t1: #FAFAFF;
+  --t2: rgba(250,250,255,0.6);
+  --t3: rgba(250,250,255,0.3);
+  --t4: rgba(250,250,255,0.15);
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body:    'Space Grotesk', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--t1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── BACKGROUND ─────────────────────────────────────────── */
+.bg-noise {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(159,89,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(159,89,255,0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.bg-orb {
+  position: fixed; border-radius: 50%; filter: blur(100px);
+  pointer-events: none; z-index: 0;
+  animation: orb-drift 20s ease-in-out infinite alternate;
+}
+.orb-a { width: 600px; height: 600px; background: radial-gradient(circle, rgba(47,125,255,0.1), rgba(155,89,255,0.07) 60%, transparent); top: -250px; right: -150px; }
+.orb-b { width: 450px; height: 450px; background: radial-gradient(circle, rgba(224,64,251,0.09), rgba(255,107,53,0.06) 60%, transparent); bottom: -100px; left: -120px; animation-delay: -10s; }
+.orb-c { width: 300px; height: 300px; background: radial-gradient(circle, rgba(34,212,245,0.07), transparent); top: 40%; left: 30%; animation-delay: -5s; }
+@keyframes orb-drift { from{transform:translate(0,0) scale(1)} to{transform:translate(40px,50px) scale(1.1)} }
+
+/* ─── LINES ───────────────────────────────────────────────── */
+.cp-line { height: 2px; background: var(--grad); border-radius: 2px; }
+
+/* ─── LAYOUT ──────────────────────────────────────────────── */
+.page { position: relative; z-index: 1; max-width: 940px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.hero-wrap { padding: 3rem 0 2.5rem; margin-bottom: 2.5rem; animation: rise 0.7s cubic-bezier(.16,1,.3,1) both; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--t3); margin-bottom: 1rem;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--grad);
+  box-shadow: 0 0 8px rgba(34,212,245,0.7);
+  animation: pulse-glow 2.5s ease infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-glow { 0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 8px rgba(34,212,245,0.7)} 50%{opacity:0.5;transform:scale(0.7);box-shadow:0 0 4px rgba(34,212,245,0.3)} }
+
+.hero-layout { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; }
+.hero-left { flex: 1; }
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 800; line-height: 1.0; letter-spacing: -0.02em; color: var(--t1);
+}
+.hero-title .cp-word {
+  display: inline-block; background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub { font-size: 15px; color: var(--t2); margin-top: 1rem; max-width: 400px; line-height: 1.7; font-weight: 300; }
+
+/* Copilot logo badge */
+.cp-logo-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 1.25rem;
+  padding: 8px 14px 8px 10px;
+  background: var(--glass2); border: 1px solid var(--b2);
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cp-logo-badge:hover { border-color: var(--b-cp); background: rgba(159,89,255,0.08); }
+.cp-logo-icon {
+  width: 26px; height: 26px;
+  background: var(--grad);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.cp-logo-text { font-size: 12px; font-weight: 600; color: var(--t2); letter-spacing: 0.03em; }
+.cp-logo-text span { display: block; font-size: 10px; font-weight: 400; color: var(--t3); margin-top: 1px; }
+
+.hero-right { flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.next-card { border-radius: var(--r-md); padding: 1px; background: var(--grad); }
+.next-card-inner { background: var(--s1); border-radius: calc(var(--r-md) - 1px); padding: 1rem 1.5rem; text-align: right; }
+.next-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  background: var(--grad-cool); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px;
+}
+.next-date { font-size: 16px; font-weight: 600; color: var(--t1); font-family: var(--font-display); }
+.next-time { font-size: 12px; color: var(--t2); margin-top: 2px; }
+.join-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border: none; border-radius: var(--r-sm);
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  cursor: pointer; text-decoration: none; overflow: hidden;
+  background: var(--grad); color: #fff; letter-spacing: 0.02em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 24px rgba(159,89,255,0.35);
+}
+.join-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 32px rgba(159,89,255,0.55); }
+.join-btn svg { width: 14px; height: 14px; }
+
+/* ─── STATS BAR ────────────────────────────────────────────── */
+.stats-bar {
+  display: flex; gap: 0;
+  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-lg);
+  overflow: hidden; margin-bottom: 3rem;
+  animation: rise 0.7s 0.1s cubic-bezier(.16,1,.3,1) both;
+  backdrop-filter: blur(10px);
+}
+.stat { flex: 1; padding: 1.25rem 1.5rem; border-right: 1px solid var(--b1); }
+.stat:last-child { border-right: none; }
+.stat-n {
+  font-size: 30px; font-weight: 700; font-family: var(--font-display);
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-l { font-size: 11px; color: var(--t3); margin-top: 3px; letter-spacing: 0.05em; }
+
+/* ─── ADOPTION METER ──────────────────────────────────────── */
+.adoption-wrap {
+  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-lg);
+  padding: 1.4rem 1.6rem; margin-bottom: 3rem;
+  animation: rise 0.7s 0.12s cubic-bezier(.16,1,.3,1) both;
+}
+.adp-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; }
+.adp-title { font-size: 13px; font-weight: 600; color: var(--t2); letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-display); }
+.adp-pct {
+  font-size: 26px; font-weight: 700; font-family: var(--font-display);
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.adp-track { height: 8px; background: var(--b1); border-radius: 99px; overflow: hidden; margin-bottom: 1rem; }
+.adp-fill { height: 100%; background: var(--grad); border-radius: 99px; width: 0; transition: width 1.2s cubic-bezier(.16,1,.3,1); }
+.adp-milestones { display: flex; gap: 8px; flex-wrap: wrap; }
+.adp-ms {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px;
+  border: 1px solid var(--b1); color: var(--t3);
+}
+.adp-ms.done { border-color: rgba(34,212,245,0.3); color: var(--cp-cyan); background: rgba(34,212,245,0.07); }
+.adp-ms.next { border-color: var(--b-cp); color: var(--cp-violet); background: rgba(159,89,255,0.08); border-style: dashed; }
+
+/* ─── SECTION ──────────────────────────────────────────────── */
+.section { margin-bottom: 3rem; animation: rise 0.6s 0.15s cubic-bezier(.16,1,.3,1) both; }
+.section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+.section-icon {
+  width: 34px; height: 34px; border-radius: var(--r-sm);
+  background: var(--glass2); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: 1px solid var(--b2);
+}
+.section-icon svg { width: 16px; height: 16px; }
+.icon-grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.section-title { font-size: 13px; font-weight: 600; color: var(--t2); letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--font-display); }
+.section-count { margin-left: auto; font-size: 11px; color: var(--t4); }
+
+/* ─── RECORDINGS ───────────────────────────────────────────── */
+.recordings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+.rec-card {
+  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-md);
+  overflow: hidden; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  cursor: pointer; text-decoration: none; display: block;
+}
+.rec-card:hover { border-color: rgba(159,89,255,0.5); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(159,89,255,0.2); }
+.rec-thumb {
+  height: 124px; background: var(--s3);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.rec-thumb-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(47,125,255,0.15) 0%, rgba(224,64,251,0.1) 50%, rgba(255,107,53,0.12) 100%); }
+.play-ring {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+  transition: transform 0.2s, background 0.2s;
+}
+.rec-card:hover .play-ring { transform: scale(1.12); background: rgba(159,89,255,0.3); }
+.play-ring svg { width: 16px; height: 16px; fill: #fff; margin-left: 2px; }
+.rec-body { padding: 0.9rem 1.1rem; }
+.rec-title-t { font-size: 14px; font-weight: 500; color: var(--t1); line-height: 1.35; }
+.rec-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 7px; }
+.rec-date-t { font-size: 11px; color: var(--t3); }
+.rec-dur-t { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; color: var(--t2); background: var(--s3); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--b1); }
+
+/* ─── RECAPS ───────────────────────────────────────────────── */
+.recap-list { border: 1px solid var(--b1); border-radius: var(--r-lg); overflow: hidden; background: var(--glass); }
+.recap-row {
+  background: transparent; padding: 1.1rem 1.4rem;
+  display: flex; align-items: flex-start; gap: 1rem;
+  cursor: pointer; transition: background 0.15s;
+  border-bottom: 1px solid var(--b1);
+}
+.recap-row:last-of-type { border-bottom: none; }
+.recap-row:hover { background: var(--glass2); }
+.recap-pip { width: 8px; height: 8px; border-radius: 50%; background: var(--grad); flex-shrink: 0; margin-top: 7px; box-shadow: 0 0 8px rgba(159,89,255,0.6); }
+.recap-content { flex: 1; min-width: 0; }
+.recap-title-t { font-size: 14px; font-weight: 500; color: var(--t1); }
+.recap-preview-t { font-size: 13px; color: var(--t2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 300; }
+.recap-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.recap-date-t { font-size: 11px; color: var(--t3); }
+.read-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.recap-expand {
+  padding: 0 1.4rem 1.1rem; background: var(--glass);
+  font-size: 13px; color: var(--t2); line-height: 1.8; font-weight: 300;
+  display: none; white-space: pre-wrap; border-bottom: 1px solid var(--b1);
+}
+.recap-expand.open { display: block; }
+
+/* ─── XP CHALLENGE TRACKER ─────────────────────────────────── */
+.xp-layout { display: grid; grid-template-columns: 1fr 300px; gap: 14px; }
+@media (max-width: 700px) { .xp-layout { grid-template-columns: 1fr; } }
+
+.challenges-list { display: flex; flex-direction: column; gap: 10px; }
+
+.challenge-card {
+  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-md);
+  padding: 1.1rem 1.2rem; display: flex; align-items: center; gap: 14px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.challenge-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--grad); border-radius: 2px 0 0 2px;
+  opacity: 0; transition: opacity 0.25s;
+}
+.challenge-card:hover { border-color: var(--b-cp); box-shadow: 0 0 20px rgba(159,89,255,0.1); }
+.challenge-card:hover::before { opacity: 1; }
+.challenge-card.is-done { opacity: 0.55; }
+.challenge-card.is-done::before { opacity: 1; background: linear-gradient(135deg, #22D4F5, #2F7DFF); }
+
+.ch-icon-wrap {
+  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; border: 1px solid var(--b2);
+}
+.ch-icon-wrap.blue   { background: rgba(47,125,255,0.12); }
+.ch-icon-wrap.teal   { background: rgba(34,212,245,0.1); }
+.ch-icon-wrap.purple { background: rgba(155,89,255,0.12); }
+.ch-icon-wrap.orange { background: rgba(255,107,53,0.1); }
+
+.ch-body { flex: 1; min-width: 0; }
+.ch-label { font-size: 13px; font-weight: 500; color: var(--t1); line-height: 1.3; }
+.ch-desc  { font-size: 12px; color: var(--t3); margin-top: 3px; font-weight: 300; }
+
+.ch-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+.xp-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-family: var(--font-display);
+}
+.ch-btn {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--b-cp); background: transparent; color: var(--t2);
+  font-family: var(--font-body); transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.ch-btn:hover:not(:disabled) { background: rgba(159,89,255,0.15); color: var(--t1); }
+.ch-btn:disabled { cursor: default; }
+.ch-btn.done { border-color: rgba(34,212,245,0.4); color: var(--cp-cyan); background: rgba(34,212,245,0.07); }
+
+/* ─── LEADERBOARD ───────────────────────────────────────────── */
+.leaderboard-card {
+  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-lg);
+  overflow: hidden; height: fit-content; position: sticky; top: 1.5rem;
+}
+.lb-header {
+  padding: 1rem 1.2rem; border-bottom: 1px solid var(--b1);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lb-title { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t2); font-family: var(--font-display); }
+.lb-week { font-size: 10px; color: var(--t4); }
+.lb-body { padding: 0.75rem 1rem; }
+.lb-row { display: flex; align-items: center; gap: 10px; padding: 7px 4px; }
+.lb-rank { font-size: 13px; width: 22px; text-align: center; flex-shrink: 0; }
+.lb-avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  background: var(--grad); display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: #fff; font-family: var(--font-display);
+}
+.lb-info { flex: 1; min-width: 0; }
+.lb-name { font-size: 12px; font-weight: 500; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lb-bar-wrap { height: 3px; background: var(--b1); border-radius: 2px; margin-top: 4px; }
+.lb-bar-fill { height: 100%; border-radius: 2px; background: var(--grad); transition: width 0.8s cubic-bezier(.16,1,.3,1); }
+.lb-xp { font-size: 11px; font-weight: 600; color: var(--t3); white-space: nowrap; font-family: var(--font-display); }
+
+/* ─── Q&A ───────────────────────────────────────────────────── */
+.qa-wrap { border: 1px solid var(--b1); border-radius: var(--r-lg); overflow: hidden; background: var(--glass); backdrop-filter: blur(10px); }
+.qa-msgs { padding: 1.4rem; height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+.qa-msgs::-webkit-scrollbar { width: 3px; }
+.qa-msgs::-webkit-scrollbar-thumb { background: var(--b-cp); border-radius: 4px; }
+.qa-msg-item { display: flex; flex-direction: column; gap: 4px; }
+.qa-author-name { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.qa-author-name.host { color: var(--cp-cyan); }
+.qa-author-name.user { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.qa-bubble-item {
+  display: inline-block; padding: 9px 14px;
+  border-radius: 12px; border-top-left-radius: 2px;
+  background: var(--glass2); border: 1px solid var(--b1);
+  font-size: 13px; color: var(--t1); line-height: 1.55; max-width: 85%; font-weight: 300;
+}
+.qa-ts { font-size: 10px; color: var(--t4); }
+.qa-input-zone { border-top: 1px solid var(--b1); padding: 1rem 1.2rem; background: rgba(0,0,0,0.2); }
+.qa-row { display: flex; gap: 8px; margin-bottom: 8px; }
+.qa-row:last-of-type { margin-bottom: 0; }
+.qa-field {
+  flex: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--b2);
+  border-radius: var(--r-sm); padding: 9px 13px;
+  color: var(--t1); font-family: var(--font-body); font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s; outline: none; font-weight: 300;
+}
+.qa-field:focus { border-color: rgba(159,89,255,0.6); box-shadow: 0 0 0 3px rgba(159,89,255,0.1); }
+.qa-field.name { max-width: 190px; }
+.qa-post-btn {
+  background: var(--grad); color: #fff; border: none;
+  border-radius: var(--r-sm); padding: 9px 18px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: transform 0.15s, box-shadow 0.2s;
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0; letter-spacing: 0.02em;
+}
+.qa-post-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 18px rgba(159,89,255,0.4); }
+.qa-post-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.qa-post-btn svg { width: 13px; height: 13px; }
+.qa-status-msg { font-size: 11px; color: var(--t3); margin-top: 7px; min-height: 16px; }
+
+/* ─── RESOURCES ─────────────────────────────────────────────── */
+.res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 10px; }
+.res-tile {
+  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-md);
+  padding: 1.1rem; display: flex; align-items: center; gap: 12px;
+  text-decoration: none; transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.res-tile:hover { border-color: rgba(159,89,255,0.4); background: var(--glass2); transform: translateY(-2px); }
+.res-tile-icon { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--glass2); border: 1px solid var(--b1); }
+.res-tile-icon svg { width: 18px; height: 18px; }
+.res-tile-label { font-size: 13px; font-weight: 500; color: var(--t1); }
+.res-tile-sub   { font-size: 11px; color: var(--t3); margin-top: 2px; font-weight: 300; }
+
+/* ─── NOTICE ────────────────────────────────────────────────── */
+.notice {
+  background: rgba(34,212,245,0.05); border: 1px solid rgba(34,212,245,0.2);
+  border-radius: var(--r-md); padding: 1rem 1.25rem; margin-bottom: 2rem;
+  font-size: 13px; color: rgba(34,212,245,0.85); line-height: 1.65;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.notice svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+.notice code { background: rgba(34,212,245,0.12); padding: 1px 5px; border-radius: 3px; font-size: 11px; letter-spacing: 0.04em; }
+
+/* ─── SKELETON / EMPTY ──────────────────────────────────────── */
+.skeleton { background: var(--s3); border-radius: 6px; animation: shimmer 1.5s infinite; }
+@keyframes shimmer { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
+.empty { text-align: center; padding: 2.5rem; color: var(--t4); font-size: 13px; font-weight: 300; }
+
+/* ─── XP TOASTS + FLOAT POP ─────────────────────────────────── */
+#xp-toasts {
+  position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.xp-toast {
+  padding: 11px 18px; border-radius: 12px; font-size: 13px; font-weight: 500;
+  color: #fff; font-family: var(--font-body); max-width: 300px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  animation: toast-in 0.25s cubic-bezier(.16,1,.3,1);
+}
+.xp-toast.success { background: linear-gradient(135deg, #2F7DFF, #9B59FF); }
+.xp-toast.info    { background: linear-gradient(135deg, #22D4F5, #2F7DFF); }
+.xp-toast.error   { background: linear-gradient(135deg, #FF3CAC, #FF6B35); }
+@keyframes toast-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+.xp-float-pop {
+  position: absolute; top: 50%; right: 16px; transform: translateY(-50%);
+  font-size: 12px; font-weight: 700;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: float-up 1.8s ease forwards;
+  pointer-events: none; font-family: var(--font-display);
+}
+@keyframes float-up { 0%{opacity:1;transform:translateY(-50%)} 100%{opacity:0;transform:translateY(-130%)} }
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────── */
+@keyframes rise { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero-layout { flex-direction: column; }
+  .hero-right { align-items: flex-start; width: 100%; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--b1); }
+  .stat:nth-child(odd) { border-right: 1px solid var(--b1); }
+  .stat:last-child, .stat:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-noise"></div>
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+<div class="bg-orb orb-c"></div>
+<div id="xp-toasts"></div>
+
+<div class="cp-line"></div>
+<div class="page">
+
+  <!-- ── SETUP NOTICE — delete after configuring ── -->
+  <div class="notice" style="margin-top:1.5rem">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+    <div>
+      <strong>One-time setup:</strong> Set <code>siteUrl</code> in the CONFIG block below, update <code>nextSessionDate</code> and your Teams link. Create four SharePoint lists: <code>Recordings</code>, <code>SessionRecaps</code>, <code>CopilotCornerQA</code>, <code>CopilotXP</code> — column names are in the comments. Then delete this notice.
+    </div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <div class="hero-wrap">
+    <div class="hero-eyebrow"><span class="live-dot"></span>HR · Biweekly Office Hours</div>
+    <div class="hero-layout">
+      <div class="hero-left">
+        <h1 class="hero-title">Copilot<br><span class="cp-word">Corner</span></h1>
+        <p class="hero-sub">Your living hub for Microsoft Copilot — recordings, session recaps, community Q&amp;A, and weekly XP challenges for the HR team.</p>
+        <a class="cp-logo-badge" href="https://m365.cloud.microsoft/chat" target="_blank" rel="noopener" title="Open Microsoft Copilot">
+          <div class="cp-logo-icon">✦</div>
+          <div class="cp-logo-text">
+            Microsoft Copilot
+            <span>Open Copilot →</span>
+          </div>
+        </a>
+      </div>
+      <div class="hero-right">
+        <div class="next-card">
+          <div class="next-card-inner">
+            <div class="next-label">Next session</div>
+            <div class="next-date" id="next-date">—</div>
+            <div class="next-time" id="next-time"></div>
+          </div>
+        </div>
+        <a href="#" class="join-btn" id="join-btn" target="_blank">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0013.5 6.75h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+          Join in Teams
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STATS ── -->
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-n" id="stat-sessions">—</div><div class="stat-l">Sessions hosted</div></div>
+    <div class="stat"><div class="stat-n" id="stat-recordings">—</div><div class="stat-l">Recordings</div></div>
+    <div class="stat"><div class="stat-n" id="stat-recaps">—</div><div class="stat-l">Recaps published</div></div>
+    <div class="stat"><div class="stat-n" id="stat-questions">—</div><div class="stat-l">Questions answered</div></div>
+    <div class="stat"><div class="stat-n" id="stat-xp">—</div><div class="stat-l">XP earned this week</div></div>
+  </div>
+
+  <!-- ── ADOPTION METER ── -->
+  <div class="adoption-wrap">
+    <div class="adp-header">
+      <span class="adp-title">HR team adoption</span>
+      <span class="adp-pct" id="adp-pct">68%</span>
+    </div>
+    <div class="adp-track"><div class="adp-fill" id="adp-fill"></div></div>
+    <div class="adp-milestones">
+      <span class="adp-ms done">✓ 25% Early adopters</span>
+      <span class="adp-ms done">✓ 50% Majority</span>
+      <span class="adp-ms next">⚡ 75% Next goal</span>
+      <span class="adp-ms">🔒 100% All-in</span>
+    </div>
+  </div>
+
+  <!-- ── RECORDINGS ── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0013.5 6.75h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+      </div>
+      <span class="section-title">Recordings</span>
+      <span class="section-count" id="rec-count"></span>
+    </div>
+    <div class="recordings-grid" id="recordings-grid">
+      <div style="grid-column:1/-1"><div class="skeleton" style="height:160px;border-radius:14px;"></div></div>
+    </div>
+  </div>
+
+  <!-- ── RECAPS ── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+      </div>
+      <span class="section-title">Session recaps</span>
+      <span class="section-count" id="recap-count"></span>
+    </div>
+    <div class="recap-list" id="recap-list">
+      <div class="recap-row"><div class="skeleton" style="height:44px;flex:1;border-radius:6px;"></div></div>
+    </div>
+  </div>
+
+  <!-- ── XP CHALLENGE TRACKER ── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+      </div>
+      <span class="section-title">Weekly XP Challenges</span>
+      <span class="section-count" id="xp-week-label"></span>
+    </div>
+    <div class="xp-layout">
+      <div class="challenges-list" id="challenge-container">
+        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
+        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
+        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
+        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
+      </div>
+      <div class="leaderboard-card">
+        <div class="lb-header">
+          <span class="lb-title">⚡ Leaderboard</span>
+          <span class="lb-week">This week</span>
+        </div>
+        <div class="lb-body" id="xp-leaderboard">
+          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
+          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
+          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
+          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q&A ── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+      </div>
+      <span class="section-title">Community Q&amp;A</span>
+      <span class="section-count" id="qa-count"></span>
+    </div>
+    <div class="qa-wrap">
+      <div class="qa-msgs" id="qa-messages">
+        <div class="qa-msg-item">
+          <span class="qa-author-name host">Copilot Corner</span>
+          <span class="qa-bubble-item">Welcome! Drop your Copilot questions here — everything stays visible for the whole HR team. 👋</span>
+        </div>
+      </div>
+      <div class="qa-input-zone">
+        <div class="qa-row">
+          <input class="qa-field name" id="qa-name" type="text" placeholder="Your name" maxlength="60" />
+        </div>
+        <div class="qa-row">
+          <input class="qa-field" id="qa-msg-input" type="text" placeholder="Ask a Copilot question…" maxlength="500" />
+          <button class="qa-post-btn" id="qa-send" onclick="postQAMessage()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.269 20.876L5.999 12zm0 0h7.5"/></svg>
+            Post
+          </button>
+        </div>
+        <div class="qa-status-msg" id="qa-status"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RESOURCES ── -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon">
+        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+      </div>
+      <span class="section-title">Quick resources</span>
+    </div>
+    <div class="res-grid">
+      <a class="res-tile" href="https://adoption.microsoft.com/en-us/copilot/" target="_blank">
+        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-blue)"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
+        <div><div class="res-tile-label">Microsoft Adoption</div><div class="res-tile-sub">Official Copilot guides</div></div>
+      </a>
+      <a class="res-tile" href="https://learn.microsoft.com/en-us/copilot/microsoft-365/" target="_blank">
+        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-violet)"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg></div>
+        <div><div class="res-tile-label">Microsoft Learn</div><div class="res-tile-sub">Copilot documentation</div></div>
+      </a>
+      <a class="res-tile" href="#" id="cal-link" target="_blank">
+        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-cyan)"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg></div>
+        <div><div class="res-tile-label">Add to calendar</div><div class="res-tile-sub">Never miss a session</div></div>
+      </a>
+      <a class="res-tile" href="#" id="prompt-lib-link" target="_blank">
+        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-pink)"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg></div>
+        <div><div class="res-tile-label">HR prompt library</div><div class="res-tile-sub">Curated Copilot prompts</div></div>
+      </a>
+      <a class="res-tile" href="https://techcommunity.microsoft.com/t5/microsoft-365-copilot/ct-p/Microsoft365Copilot" target="_blank">
+        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-orange)"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg></div>
+        <div><div class="res-tile-label">Tech community</div><div class="res-tile-sub">M365 Copilot forums</div></div>
+      </a>
+      <a class="res-tile" href="https://aka.ms/CopilotScenarioLibrary" target="_blank">
+        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-amber)"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div>
+        <div><div class="res-tile-label">Scenario library</div><div class="res-tile-sub">Real-world use cases</div></div>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /page -->
+<div class="cp-line"></div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════
+//  ✏️  CONFIG
+// ═══════════════════════════════════════════════════════════════
+const CONFIG = {
+  nextSessionDate: 'Thu, Jun 5',
+  nextSessionTime: '12:00 PM – 1:00 PM',
+  teamsJoinLink:   'https://teams.microsoft.com/l/meetup-join/PASTE_LINK',
+  calendarLink:    '',
+  promptLibLink:   '',
+  totalSessions:   24,
+  adoptionPct:     68,
+};
+
+const CHALLENGES = [
+  { id: 'outlook-draft', label: 'Draft an email with Copilot in Outlook',  desc: 'Use the "Draft with Copilot" button on any outgoing email',           xp: 50,  color: 'blue',   icon: '✉️' },
+  { id: 'teams-recap',   label: 'Summarize a meeting in Teams',             desc: 'After your next call, open the Recap tab and share one key insight',  xp: 75,  color: 'teal',   icon: '📋' },
+  { id: 'word-jd',       label: 'Rewrite a job description with Copilot',  desc: 'Paste a JD into Word and ask Copilot to make it more inclusive',      xp: 100, color: 'purple', icon: '📝' },
+  { id: 'excel-trend',   label: 'Analyze HR data in Excel',                desc: 'Open any spreadsheet and ask Copilot to spot a trend for you',        xp: 100, color: 'orange', icon: '📊' },
+];
+
+// ═══════════════════════════════════════════════════════════════
+//  POWER AUTOMATE FLOW — single endpoint replaces ALL SP calls
+//  Every request POSTs JSON with an "action" field.
+//  The flow's Switch routes to the right SharePoint operation.
+// ═══════════════════════════════════════════════════════════════
+const FLOW_URL = 'https://a477fe69c32a4af79331a1752086c6.34.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9542abbc7db0474683c0e723e5df31ea/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3MHOZz8k1a5m_ADXCd9Ix-lE3vIeqyaxRai7KKGMzss';
+
+async function callFlow(action, data = {}) {
+  const res = await fetch(FLOW_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action, ...data }),
+  });
+  if (!res.ok) throw new Error(`Flow "${action}" → HTTP ${res.status}`);
+  return res.json();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  USER IDENTITY
+//  The old code used SharePoint's /_api/web/currentuser to auto-detect
+//  the logged-in user. Power Automate's HTTP trigger is anonymous (SAS
+//  auth), so we prompt once and cache the name in localStorage.
+// ═══════════════════════════════════════════════════════════════
+function getUser() {
+  let name = localStorage.getItem('copilot-corner-user');
+  if (!name) {
+    name = prompt('Welcome to Copilot Corner! 👋\nEnter your full name (e.g. Stephanie Brower):');
+    if (name && name.trim()) localStorage.setItem('copilot-corner-user', name.trim());
+  }
+  return (name || '').trim() || 'Anonymous';
+}
+const CURRENT_USER = getUser();
+
+// ═══════════════════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════════════════
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmt(d, opts) {
+  try { return new Date(d).toLocaleDateString('en-US', opts); } catch { return d || ''; }
+}
+function getWeekStart() {
+  const now = new Date(), dow = (now.getDay() + 6) % 7;
+  const mon = new Date(now);
+  mon.setDate(now.getDate() - dow);
+  mon.setHours(0, 0, 0, 0);
+  return mon.toISOString();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  APPLY STATIC CONFIG TO DOM
+// ═══════════════════════════════════════════════════════════════
+document.getElementById('next-date').textContent     = CONFIG.nextSessionDate;
+document.getElementById('next-time').textContent     = CONFIG.nextSessionTime;
+document.getElementById('join-btn').href             = CONFIG.teamsJoinLink;
+document.getElementById('stat-sessions').textContent = CONFIG.totalSessions;
+if (CONFIG.calendarLink)  document.getElementById('cal-link').href       = CONFIG.calendarLink;
+if (CONFIG.promptLibLink) document.getElementById('prompt-lib-link').href = CONFIG.promptLibLink;
+
+setTimeout(() => {
+  document.getElementById('adp-fill').style.width = CONFIG.adoptionPct + '%';
+  document.getElementById('adp-pct').textContent  = CONFIG.adoptionPct + '%';
+}, 400);
+
+(function () {
+  const now = new Date(), dow = (now.getDay() + 6) % 7;
+  const mon = new Date(now); mon.setDate(now.getDate() - dow); mon.setHours(0,0,0,0);
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  document.getElementById('xp-week-label').textContent =
+    mon.toLocaleDateString('en-US', { month:'short', day:'numeric' }) + ' – ' +
+    sun.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+})();
+
+// Pre-fill the Q&A name field
+document.getElementById('qa-name').value = CURRENT_USER !== 'Anonymous' ? CURRENT_USER : '';
+
+
+// ══════════════════════════════════════════════════════════════
+//  CASE 1 → "getRecordings"
+//  Sends:   { action: "getRecordings" }
+//  Expects: { value: [{ Title, SessionDate, Duration, TeamsLink }, …] }
+// ══════════════════════════════════════════════════════════════
+async function loadRecordings() {
+  const grid = document.getElementById('recordings-grid');
+  try {
+    const { value } = await callFlow('getRecordings');
+
+    document.getElementById('rec-count').textContent      = value.length + ' available';
+    document.getElementById('stat-recordings').textContent = value.length;
+
+    if (!value.length) {
+      grid.innerHTML = '<div class="empty" style="grid-column:1/-1">No recordings yet — check back after the next session.</div>';
+      return;
+    }
+    grid.innerHTML = value.map(item => `
+      ${esc(item.TeamsLink || '#')}
+        <div class="rec-thumb">
+          <div class="rec-thumb-bg"></div>
+          <div class="play-ring">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
+          </div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-title-t">${esc(item.Title)}</div>
+          <div class="rec-meta">
+            <span class="rec-date-t">${fmt(item.SessionDate, { month:'short', day:'numeric', year:'numeric' })}</span>
+            ${item.Duration ? `<span class="rec-dur-t">${esc(item.Duration)}</span>` : ''}
+          </div>
+        </div>
+      </a>`).join('');
+  } catch (e) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1">Could not load recordings.<br><small style="opacity:0.5">${e.message}</small></div>`;
+  }
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  CASE 2 → "getRecaps"
+//  Sends:   { action: "getRecaps" }
+//  Expects: { value: [{ Title, SessionDate, RecapBody }, …] }
+// ══════════════════════════════════════════════════════════════
+async function loadRecaps() {
+  const list = document.getElementById('recap-list');
+  try {
+    const { value } = await callFlow('getRecaps');
+
+    document.getElementById('recap-count').textContent = value.length + ' recaps';
+    document.getElementById('stat-recaps').textContent = value.length;
+
+    if (!value.length) { list.innerHTML = '<div class="empty">No recaps yet.</div>'; return; }
+
+    list.innerHTML = value.map((item, i) => {
+      const preview = (item.RecapBody || '').replace(/<[^>]+>/g, '').substring(0, 130);
+      return `
+        <div class="recap-row" onclick="toggleRecap(${i})">
+          <div class="recap-pip"></div>
+          <div class="recap-content">
+            <div class="recap-title-t">${esc(item.Title)}</div>
+            <div class="recap-preview-t">${esc(preview)}…</div>
+          </div>
+          <div class="recap-right">
+            <span class="recap-date-t">${fmt(item.SessionDate, { month:'short', day:'numeric' })}</span>
+            <span class="read-tag">Read →</span>
+          </div>
+        </div>
+        <div class="recap-expand" id="recap-x-${i}">${esc(item.RecapBody || 'No body found.')}</div>`;
+    }).join('');
+  } catch (e) {
+    list.innerHTML = `<div class="empty">Could not load recaps.<br><small style="opacity:0.5">${e.message}</small></div>`;
+  }
+}
+function toggleRecap(i) { document.getElementById('recap-x-' + i).classList.toggle('open'); }
+
+
+// ══════════════════════════════════════════════════════════════
+//  CASE 3 → "getQA"
+//  Sends:   { action: "getQA" }
+//  Expects: { value: [{ Title, MessageText, Posted }, …] }
+// ══════════════════════════════════════════════════════════════
+async function loadQA() {
+  try {
+    const { value } = await callFlow('getQA');
+
+    document.getElementById('qa-count').textContent      = value.length + ' messages';
+    document.getElementById('stat-questions').textContent = value.length;
+
+    const msgs    = document.getElementById('qa-messages');
+    const welcome = msgs.querySelector('.qa-msg-item');
+    msgs.innerHTML = '';
+    msgs.appendChild(welcome);
+
+    value.forEach(item => {
+      const t   = item.Posted ? fmt(item.Posted, { month:'short', day:'numeric', hour:'numeric', minute:'2-digit' }) : '';
+      const div = document.createElement('div');
+      div.className = 'qa-msg-item';
+      div.innerHTML = `
+        <span class="qa-author-name user">${esc(item.Title || 'Anonymous')}</span>
+        <span class="qa-bubble-item">${esc(item.MessageText || '')}</span>
+        <span class="qa-ts">${t}</span>`;
+      msgs.appendChild(div);
+    });
+    msgs.scrollTop = msgs.scrollHeight;
+  } catch (e) { /* silent — welcome message stays visible */ }
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  CASE 4 → "postQA"
+//  Sends:   { action: "postQA", name: "…", message: "…" }
+//  Expects: { status: "ok" }
+// ══════════════════════════════════════════════════════════════
+async function postQAMessage() {
+  const nameEl = document.getElementById('qa-name');
+  const msgEl  = document.getElementById('qa-msg-input');
+  const statEl = document.getElementById('qa-status');
+  const btn    = document.getElementById('qa-send');
+  const name   = nameEl.value.trim() || 'Anonymous';
+  const text   = msgEl.value.trim();
+  if (!text) { statEl.textContent = 'Please type a question first.'; return; }
+
+  btn.disabled = true;
+  statEl.textContent = 'Posting…';
+  try {
+    await callFlow('postQA', { name, message: text });
+    msgEl.value = '';
+    statEl.textContent = '✓ Posted!';
+    setTimeout(() => { statEl.textContent = ''; }, 3000);
+    await loadQA();
+  } catch (e) {
+    statEl.textContent = 'Could not post — try again in a moment.';
+  } finally { btn.disabled = false; }
+}
+
+document.getElementById('qa-msg-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); postQAMessage(); }
+});
+
+
+// ══════════════════════════════════════════════════════════════
+//  XP CHALLENGES — render cards (pure DOM, no HTTP)
+// ══════════════════════════════════════════════════════════════
+function renderChallenges() {
+  document.getElementById('challenge-container').innerHTML = CHALLENGES.map(ch => `
+    <div class="challenge-card" data-challenge-id="${ch.id}">
+      <div class="ch-icon-wrap ${ch.color}">${ch.icon}</div>
+      <div class="ch-body">
+        <div class="ch-label">${esc(ch.label)}</div>
+        <div class="ch-desc">${esc(ch.desc)}</div>
+      </div>
+      <div class="ch-right">
+        <span class="xp-badge">+${ch.xp} XP</span>
+        <button class="ch-btn" onclick="markDone('${ch.id}',this)">Mark done</button>
+      </div>
+    </div>`).join('');
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  CASE 5 → "markDone"
+//  Sends:   { action:"markDone", userName, challengeId, xpValue, weekStart }
+//  Expects: { status: "created" }  or  { status: "duplicate" }
+//  The flow handles the duplicate check + create in ONE round-trip.
+// ══════════════════════════════════════════════════════════════
+async function markDone(id, btn) {
+  const ch = CHALLENGES.find(c => c.id === id);
+  if (!ch) return;
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  try {
+    const result = await callFlow('markDone', {
+      userName:    CURRENT_USER,
+      challengeId: id,
+      xpValue:     ch.xp,
+      weekStart:   getWeekStart(),
+    });
+
+    if (result.status === 'duplicate') {
+      toast('Already completed this week! 🎉', 'info');
+      setDone(btn, ch, false);
+    } else {
+      setDone(btn, ch, true);
+      toast(`+${ch.xp} XP earned! "${ch.label}" complete 🎉`, 'success');
+      await loadLeaderboard();
+    }
+  } catch (e) {
+    toast('Could not save — try again in a moment.', 'error');
+    btn.disabled = false;
+    btn.textContent = 'Mark done';
+  }
+}
+
+function setDone(btn, ch, animate) {
+  const card = btn.closest('[data-challenge-id]');
+  if (card) card.classList.add('is-done');
+  btn.textContent = '✓ Done this week';
+  btn.disabled = true;
+  btn.classList.add('done');
+  if (animate && card) {
+    const pop = document.createElement('span');
+    pop.className = 'xp-float-pop';
+    pop.textContent = `+${ch.xp} XP`;
+    card.appendChild(pop);
+    setTimeout(() => pop.remove(), 1800);
+  }
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  CASE 6 → "getProgress"
+//  Sends:   { action:"getProgress", userName, weekStart }
+//  Expects: { value: [{ Challenge: "outlook-draft" }, …] }
+// ══════════════════════════════════════════════════════════════
+async function loadPersonalProgress() {
+  try {
+    const { value } = await callFlow('getProgress', {
+      userName:  CURRENT_USER,
+      weekStart: getWeekStart(),
+    });
+
+    new Set(value.map(v => v.Challenge)).forEach(id => {
+      const btn = document.querySelector(`[data-challenge-id="${id}"] .ch-btn`);
+      const ch  = CHALLENGES.find(c => c.id === id);
+      if (btn && ch) setDone(btn, ch, false);
+    });
+  } catch (e) { /* silent — non-critical */ }
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  CASE 7 → "getLeaderboard"
+//  Sends:   { action:"getLeaderboard", weekStart }
+//  Expects: { value: [{ Title: "Name", XPValue: 100 }, …] }
+// ══════════════════════════════════════════════════════════════
+async function loadLeaderboard() {
+  const el = document.getElementById('xp-leaderboard');
+  try {
+    const { value } = await callFlow('getLeaderboard', { weekStart: getWeekStart() });
+
+    const totalXP = value.reduce((sum, row) => sum + (row.XPValue || 0), 0);
+    document.getElementById('stat-xp').textContent = totalXP.toLocaleString();
+
+    const totals = {};
+    value.forEach(row => { totals[row.Title] = (totals[row.Title] || 0) + (row.XPValue || 0); });
+
+    const ranked = Object.entries(totals).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    const medals = ['🥇','🥈','🥉'];
+    const max    = ranked[0]?.[1] || 1;
+
+    el.innerHTML = ranked.map(([name, xp], i) => {
+      const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      const pct      = Math.round((xp / max) * 100);
+      return `
+        <div class="lb-row">
+          <div class="lb-rank">${medals[i] ?? (i + 1)}</div>
+          <div class="lb-avatar">${esc(initials)}</div>
+          <div class="lb-info">
+            <div class="lb-name">${esc(name)}</div>
+            <div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
+          </div>
+          <div class="lb-xp">${xp.toLocaleString()}</div>
+        </div>`;
+    }).join('') ||
+      '<p style="padding:1rem;font-size:12px;color:var(--t4);text-align:center">No completions yet — be the first! ⚡</p>';
+  } catch (e) {
+    el.innerHTML = '<p style="padding:1rem;font-size:12px;color:var(--t4);text-align:center">Leaderboard unavailable</p>';
+  }
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════════════════════════════
+function toast(msg, type = 'info') {
+  const wrap = document.getElementById('xp-toasts');
+  const t    = document.createElement('div');
+  t.className   = 'xp-toast ' + type;
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(() => t.remove(), 4000);
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════════════
+async function init() {
+  renderChallenges();
+  await Promise.allSettled([
+    loadRecordings(),
+    loadRecaps(),
+    loadQA(),
+    loadLeaderboard(),
+    loadPersonalProgress(),
+  ]);
+}
+init();
+</script>
+</body>
+</html>
