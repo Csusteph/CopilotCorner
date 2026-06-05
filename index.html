@@ -1,1056 +1,1207 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Copilot Corner</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffonts.googleapis.com%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085656200%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=3mp5hiYUhu5Rn95PMrMOdveC74MAHieI3wQjAchpkPY%3D&reserved=0> " />
+<link rel="preconnect" href="https://fonts.gstatic.com <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffonts.gstatic.com%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085702249%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=IPMDc5q8FKqcokxdDVTDTVIZ6fRp9HhZ8rs8V5ja2YM%3D&reserved=0> " crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffonts.googleapis.com%2Fcss2%3Ffamily%3DBricolage%2BGrotesque%3Aopsz%2Cwght%4012..96%2C300..800%26family%3DInstrument%2BSans%3Aital%2Cwght%400%2C400..700%3B1%2C400..700%26family%3DInstrument%2BSerif%3Aital%400%3B1%26family%3DJetBrains%2BMono%3Awght%40400%3B600%26display%3Dswap&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085720907%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=LTsRCrekAS7EIwHsqlYjvY7kgbODfFChUkDFyyXNqdE%3D&reserved=0> " rel="stylesheet" />
 
 <style>
-/* ─── COPILOT DESIGN SYSTEM ─────────────────────────────── */
-:root {
-  --cp-cyan:    #22D4F5;
-  --cp-blue:    #2F7DFF;
-  --cp-violet:  #9B59FF;
-  --cp-pink:    #E040FB;
-  --cp-hot:     #FF3CAC;
-  --cp-orange:  #FF6B35;
-  --cp-amber:   #FFAB40;
+/* ═══ COPILOT CORNER · DESIGN SYSTEM ════════════════════════ */
+:root{
+  --cyan:#25D0F4; --blue:#3076FF; --violet:#9B5CFF; --pink:#E14DF2; --coral:#FF6A3D; --amber:#FFB23E;
+  --grad: linear-gradient(110deg,#25D0F4 0%,#3076FF 24%,#9B5CFF 50%,#E14DF2 74%,#FF6A3D 100%);
+  --grad-cool: linear-gradient(120deg,#25D0F4,#3076FF 55%,#9B5CFF);
+  --grad-warm: linear-gradient(120deg,#9B5CFF,#E14DF2 55%,#FF6A3D);
 
-  --grad:      linear-gradient(135deg, #22D4F5 0%, #2F7DFF 22%, #9B59FF 50%, #E040FB 72%, #FF6B35 100%);
-  --grad-warm: linear-gradient(135deg, #9B59FF 0%, #E040FB 50%, #FF6B35 100%);
-  --grad-cool: linear-gradient(135deg, #22D4F5 0%, #2F7DFF 50%, #9B59FF 100%);
+  --bg:#05060c; --panel:rgba(255,255,255,.028); --panel2:rgba(255,255,255,.055);
+  --ink:#F4F4FB; --ink2:rgba(244,244,251,.62); --ink3:rgba(244,244,251,.34); --ink4:rgba(244,244,251,.16);
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
 
-  --bg:    #07070e;
-  --s1:    #0d0d1a;
-  --s2:    #12122099;
-  --s3:    #1a1a2e;
-  --glass:  rgba(255,255,255,0.03);
-  --glass2: rgba(255,255,255,0.06);
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.6;overflow-x:hidden;min-height:100vh}
+::selection{background:rgba(155,92,255,.4)}
 
-  --b1:   rgba(255,255,255,0.06);
-  --b2:   rgba(255,255,255,0.12);
-  --b-cp: rgba(159,89,255,0.3);
+/* ═══ ATMOSPHERE ════════════════════════════════════════════ */
+.atmo{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.aurora{position:absolute;width:140vw;height:60vh;top:-30vh;left:-20vw;
+  background:
+    radial-gradient(ellipse 38% 55% at 22% 60%, rgba(48,118,255,.16), transparent 70%),
+    radial-gradient(ellipse 34% 50% at 52% 40%, rgba(155,92,255,.13), transparent 70%),
+    radial-gradient(ellipse 30% 45% at 80% 55%, rgba(225,77,242,.10), transparent 70%);
+  filter:blur(40px);
+  animation:aurora-sway 16s ease-in-out infinite alternate}
+@keyframes aurora-sway{from{transform:translateX(-3%) skewX(-2deg)}to{transform:translateX(3%) skewX(2deg)}}
+.atmo-grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(155,92,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(155,92,255,.035) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 90%);
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 90%)}
+.atmo-noise{position:absolute;inset:0;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%253E%253Cfilter&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085799089%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=1S15xYRMUEW78ZKP36qLJR3z9k0NEKctrr3BeRK0as8%3D&reserved=0>  id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.atmo-stars span{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;animation:twinkle 5s linear infinite}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:.7}}
 
-  --t1: #FAFAFF;
-  --t2: rgba(250,250,255,0.6);
-  --t3: rgba(250,250,255,0.3);
-  --t4: rgba(250,250,255,0.15);
+/* sparkle trail (easter egg) */
+.sparkle{position:fixed;z-index:9998;pointer-events:none;font-size:11px;animation:sp-fade 0.9s ease forwards}
+@keyframes sp-fade{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-22px) scale(.4)}}
 
-  --r-sm: 8px;
-  --r-md: 14px;
-  --r-lg: 20px;
-  --r-xl: 28px;
+/* ═══ TICKER ════════════════════════════════════════════════ */
+.ticker{position:relative;z-index:2;border-bottom:1px solid var(--line);background:rgba(5,6,12,.7);backdrop-filter:blur(8px);overflow:hidden;height:46px;display:flex;align-items:center}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:ticker-scroll 48s linear infinite;will-change:transform}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes ticker-scroll{to{transform:translateX(-50%)}}
+.tick-item{display:inline-flex;align-items:center;gap:11px;padding:0 34px;font-family:var(--body);font-size:13.5px;font-weight:500;letter-spacing:.005em;color:var(--ink2)}
+.tick-item b{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+.tick-pill{display:inline-flex;align-items:center;font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:.16em;padding:3px 10px;border-radius:99px;background:var(--grad);color:#fff;flex-shrink:0;box-shadow:0 0 12px rgba(155,92,255,.35)}
 
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-body:    'Space Grotesk', system-ui, sans-serif;
-}
+/* ═══ LAYOUT ════════════════════════════════════════════════ */
+.page{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 1.6rem 6rem}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Freveal.in%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085847160%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=nPHDYTHgeGeyMMmEh9LlZwX%2BjAKJuQn4aBSapDsO1sc%3D&reserved=0> {opacity:1;transform:none}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--t1);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+/* ═══ HERO ══════════════════════════════════════════════════ */
+.hero{padding:4.2rem 0 3rem;display:grid;grid-template-columns:1.4fr .9fr;gap:3rem;align-items:end}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.2rem}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--grad);box-shadow:0 0 10px rgba(37,208,244,.8);animation:pulse 2.4s ease infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.45}}
+h1.title{font-family:var(--display);font-size:clamp(3rem,7.5vw,5.2rem);font-weight:750;line-height:.96;letter-spacing:-.035em;font-variation-settings:'opsz' 96}
+h1 .gw{display:inline-block;background:var(--grad);background-size:220% 220%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-roam 7s ease infinite}
+@keyframes gradient-roam{0%,100%{background-position:0% 40%}50%{background-position:100% 60%}}
+h1 .serif-it{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.hero-sub{margin-top:1.3rem;font-size:15.5px;color:var(--ink2);max-width:430px;font-weight:400;line-height:1.7}
+.hero-sub em{font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.07em}
+.hero-ctas{margin-top:1.8rem;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-primary{position:relative;display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border:none;border-radius:12px;background:var(--grad);background-size:200% 200%;color:#fff;font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.01em;text-decoration:none;cursor:pointer;box-shadow:0 0 30px rgba(155,92,255,.35),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .25s var(--ease),box-shadow .25s;animation:gradient-roam 6s ease infinite}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 6px 44px rgba(155,92,255,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;border:1px solid var(--line2);color:var(--ink2);font-size:13.5px;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s,background .2s;cursor:pointer;background:transparent;font-family:var(--body)}
+.btn-ghost:hover{border-color:rgba(155,92,255,.5);color:var(--ink);background:rgba(155,92,255,.07)}
+svg.ic{width:15px;height:15px;flex-shrink:0}
 
-/* ─── BACKGROUND ─────────────────────────────────────────── */
-.bg-noise {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  opacity: 0.022;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
-.bg-grid {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(159,89,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(159,89,255,0.04) 1px, transparent 1px);
-  background-size: 52px 52px;
-}
-.bg-orb {
-  position: fixed; border-radius: 50%; filter: blur(100px);
-  pointer-events: none; z-index: 0;
-  animation: orb-drift 20s ease-in-out infinite alternate;
-}
-.orb-a { width: 600px; height: 600px; background: radial-gradient(circle, rgba(47,125,255,0.1), rgba(155,89,255,0.07) 60%, transparent); top: -250px; right: -150px; }
-.orb-b { width: 450px; height: 450px; background: radial-gradient(circle, rgba(224,64,251,0.09), rgba(255,107,53,0.06) 60%, transparent); bottom: -100px; left: -120px; animation-delay: -10s; }
-.orb-c { width: 300px; height: 300px; background: radial-gradient(circle, rgba(34,212,245,0.07), transparent); top: 40%; left: 30%; animation-delay: -5s; }
-@keyframes orb-drift { from{transform:translate(0,0) scale(1)} to{transform:translate(40px,50px) scale(1.1)} }
+.session-card{position:relative;border-radius:20px;padding:1px;background:linear-gradient(150deg,rgba(37,208,244,.5),rgba(155,92,255,.4) 50%,rgba(255,106,61,.35));overflow:hidden}
+.session-card::before{content:'';position:absolute;inset:-60%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(255,255,255,.5) 78%,transparent 86%);animation:orbit 5s linear infinite}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.session-inner{position:relative;background:#0a0b16;border-radius:19px;padding:1.6rem 1.7rem;z-index:1}
+.session-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;background:var(--grad-cool);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6rem}
+.session-date{font-family:var(--display);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.session-time{font-size:13px;color:var(--ink2);margin-top:4px}
+.session-count{margin-top:.9rem;display:flex;gap:8px}
+.cd-unit{flex:1;text-align:center;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 4px}
+.cd-n{font-family:var(--mono);font-size:1.15rem;font-weight:600;color:var(--ink)}
+.cd-l{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-top:1px}
 
-/* ─── LINES ───────────────────────────────────────────────── */
-.cp-line { height: 2px; background: var(--grad); border-radius: 2px; }
+/* ═══ STATS ═════════════════════════════════════════════════ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--panel);backdrop-filter:blur(12px);margin:0 0 4rem}
+.stat{padding:1.5rem 1.6rem;border-right:1px solid var(--line);position:relative;overflow:hidden}
+.stat:last-child{border-right:none}
+.stat::after{content:'';position:absolute;left:1.6rem;bottom:1.1rem;width:26px;height:2px;background:var(--grad);border-radius:2px;opacity:.7}
+.stat-n{font-family:var(--display);font-size:2.3rem;font-weight:700;letter-spacing:-.03em;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-l{font-size:11.5px;color:var(--ink3);margin-top:7px;letter-spacing:.05em;padding-bottom:14px}
 
-/* ─── LAYOUT ──────────────────────────────────────────────── */
-.page { position: relative; z-index: 1; max-width: 940px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+/* ═══ SECTION CHROME ════════════════════════════════════════ */
+.section{margin-bottom:4.5rem}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:1.7rem}
+.sec-no{font-family:var(--mono);font-size:11px;color:var(--ink4);letter-spacing:.1em}
+.sec-title{font-family:var(--display);font-size:1.55rem;font-weight:700;letter-spacing:-.025em}
+.sec-title .it{font-family:var(--serif);font-style:italic;font-weight:400}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+.sec-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase}
 
-/* ─── HERO ────────────────────────────────────────────────── */
-.hero-wrap { padding: 3rem 0 2.5rem; margin-bottom: 2.5rem; animation: rise 0.7s cubic-bezier(.16,1,.3,1) both; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--t3); margin-bottom: 1rem;
-}
-.live-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--grad);
-  box-shadow: 0 0 8px rgba(34,212,245,0.7);
-  animation: pulse-glow 2.5s ease infinite;
-  flex-shrink: 0;
-}
-@keyframes pulse-glow { 0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 8px rgba(34,212,245,0.7)} 50%{opacity:0.5;transform:scale(0.7);box-shadow:0 0 4px rgba(34,212,245,0.3)} }
+/* ═══ SPOTLIGHT (guest post) ════════════════════════════════ */
+.spotlight{position:relative;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:linear-gradient(160deg,rgba(155,92,255,.07),rgba(5,6,12,0) 45%),var(--panel)}
+.spotlight::before{content:'“';position:absolute;top:-3.2rem;right:1.5rem;font-family:var(--serif);font-size:17rem;line-height:1;color:rgba(155,92,255,.1);pointer-events:none}
+.spot-grid{display:grid;grid-template-columns:200px 1fr;gap:0}
+.spot-side{padding:2rem 1.7rem;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.spot-badge{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:5px 11px;border-radius:99px;border:1px solid rgba(255,178,62,.35);color:var(--amber);background:rgba(255,178,62,.07)}
+.spot-avatar{width:64px;height:64px;border-radius:18px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:1.4rem;color:#fff;box-shadow:0 8px 28px rgba(155,92,255,.35)}
+.spot-author{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+.spot-mu{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink3);text-transform:uppercase;margin-top:2px}
+.spot-date{font-size:11.5px;color:var(--ink4);margin-top:auto}
+.spot-main{padding:2rem 2.3rem;position:relative;z-index:1}
+.spot-title{font-family:var(--serif);font-style:italic;font-size:1.7rem;line-height:1.25;margin-bottom:.9rem;letter-spacing:-.01em}
+.spot-body{font-size:15px;color:var(--ink2);line-height:1.85;white-space:pre-wrap;max-width:60ch}
+.spot-cta{margin-top:1.5rem;display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--violet);text-decoration:none;font-weight:600;letter-spacing:.02em}
+.spot-cta:hover{text-decoration:underline}
 
-.hero-layout { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; }
-.hero-left { flex: 1; }
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.6rem, 6vw, 4rem);
-  font-weight: 800; line-height: 1.0; letter-spacing: -0.02em; color: var(--t1);
-}
-.hero-title .cp-word {
-  display: inline-block; background: var(--grad);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.hero-sub { font-size: 15px; color: var(--t2); margin-top: 1rem; max-width: 400px; line-height: 1.7; font-weight: 300; }
+/* ═══ MU CUP ════════════════════════════════════════════════ */
+.cup-layout{display:grid;grid-template-columns:340px 1fr;gap:16px}
+.cup-board{border:1px solid var(--line);border-radius:22px;background:var(--panel);backdrop-filter:blur(12px);overflow:hidden;display:flex;flex-direction:column}
+.cup-head{padding:1.2rem 1.4rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.cup-title{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.cup-month{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.cup-body{padding:1rem 1.2rem 1.3rem;flex:1}
+.mu-row{display:flex;align-items:center;gap:12px;padding:9px 4px}
+.mu-rank{font-family:var(--mono);font-size:12px;width:24px;text-align:center;color:var(--ink3);flex-shrink:0}
+.mu-rank.r1{color:var(--amber)}
+.mu-chip{width:38px;height:26px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:.05em;color:#fff}
+.mu-info{flex:1;min-width:0}
+.mu-name{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mu-track{height:5px;background:var(--line);border-radius:3px;margin-top:5px;overflow:hidden}
+.mu-fill{height:100%;border-radius:3px;width:0;transition:width 1.1s var(--ease)}
+.mu-xp{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.cup-foot{padding:.85rem 1.4rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink3);text-transform:uppercase;display:flex;justify-content:space-between}
+.cup-foot b{background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* Copilot logo badge */
-.cp-logo-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  margin-top: 1.25rem;
-  padding: 8px 14px 8px 10px;
-  background: var(--glass2); border: 1px solid var(--b2);
-  border-radius: var(--r-sm);
-  text-decoration: none;
-  transition: border-color 0.2s, background 0.2s;
-}
-.cp-logo-badge:hover { border-color: var(--b-cp); background: rgba(159,89,255,0.08); }
-.cp-logo-icon {
-  width: 26px; height: 26px;
-  background: var(--grad);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; flex-shrink: 0;
-}
-.cp-logo-text { font-size: 12px; font-weight: 600; color: var(--t2); letter-spacing: 0.03em; }
-.cp-logo-text span { display: block; font-size: 10px; font-weight: 400; color: var(--t3); margin-top: 1px; }
+.challenges{display:flex;flex-direction:column;gap:11px}
+.identity-bar{border:1px dashed rgba(155,92,255,.35);border-radius:16px;padding:1rem 1.3rem;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(155,92,255,.04)}
+.identity-bar.joined{border-style:solid;border-color:var(--line)}
+.id-text{font-size:13px;color:var(--ink2);flex:1;min-width:200px}
+.id-text b{color:var(--ink)}
+.id-field{background:rgba(0,0,0,.35);border:1px solid var(--line2);border-radius:10px;padding:9px 13px;color:var(--ink);font-family:var(--body);font-size:13px;outline:none;transition:border-color .2s,box-shadow .2s}
+.id-field:focus{border-color:rgba(155,92,255,.6);box-shadow:0 0 0 3px rgba(155,92,255,.12)}
+select.id-field{appearance:none;cursor:pointer;padding-right:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085870678%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=q0CfsYXZ9ObhT9DCTLCmCwsOJvOukBqNWq1ItsAUHww%3D&reserved=0> ' fill='none' viewBox='0 0 24 24' stroke='%23888' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:13px}
+select.id-field option{background:#10111e;color:var(--ink)}
+.id-join-btn{padding:9px 18px;border-radius:10px;border:none;background:var(--grad);color:#fff;font-family:var(--body);font-size:13px;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .2s}
+.id-join-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(155,92,255,.4)}
+.id-edit{font-size:11.5px;color:var(--ink3);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:var(--body)}
+.id-edit:hover{color:var(--ink2)}
 
-.hero-right { flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-.next-card { border-radius: var(--r-md); padding: 1px; background: var(--grad); }
-.next-card-inner { background: var(--s1); border-radius: calc(var(--r-md) - 1px); padding: 1rem 1.5rem; text-align: right; }
-.next-label {
-  font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-  background: var(--grad-cool); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px;
-}
-.next-date { font-size: 16px; font-weight: 600; color: var(--t1); font-family: var(--font-display); }
-.next-time { font-size: 12px; color: var(--t2); margin-top: 2px; }
-.join-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 20px; border: none; border-radius: var(--r-sm);
-  font-family: var(--font-body); font-size: 13px; font-weight: 600;
-  cursor: pointer; text-decoration: none; overflow: hidden;
-  background: var(--grad); color: #fff; letter-spacing: 0.02em;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 0 24px rgba(159,89,255,0.35);
-}
-.join-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 32px rgba(159,89,255,0.55); }
-.join-btn svg { width: 14px; height: 14px; }
+.ch-card{position:relative;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:1.15rem 1.3rem;display:flex;align-items:center;gap:15px;overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s}
+.ch-card:hover{border-color:rgba(155,92,255,.4);box-shadow:0 6px 28px rgba(155,92,255,.12);transform:translateX(3px)}
+.ch-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:0;transition:opacity .25s}
+.ch-card:hover::before{opacity:1}
+.ch-card.is-done{opacity:.5}
+.ch-card.is-done::before{opacity:1;background:var(--grad-cool)}
+.ch-ic{width:46px;height:46px;border-radius:13px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:21px;border:1px solid var(--line2)}
+.ch-ic.c1{background:rgba(48,118,255,.13)} .ch-ic.c2{background:rgba(37,208,244,.11)}
+.ch-ic.c3{background:rgba(155,92,255,.13)} .ch-ic.c4{background:rgba(255,106,61,.11)}
+.ch-info{flex:1;min-width:0}
+.ch-name{font-size:14px;font-weight:600;letter-spacing:-.005em}
+.ch-desc{font-size:12.5px;color:var(--ink3);margin-top:3px}
+.ch-side{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.ch-xp{font-family:var(--mono);font-size:11.5px;font-weight:600;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ch-btn{font-family:var(--body);font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:6px 14px;border-radius:8px;cursor:pointer;border:1px solid rgba(155,92,255,.35);background:transparent;color:var(--ink2);transition:background .2s,color .2s;white-space:nowrap}
+.ch-btn:hover:not(:disabled){background:rgba(155,92,255,.16);color:var(--ink)}
+.ch-btn:disabled{cursor:default}
+.ch-btn.done{border-color:rgba(37,208,244,.4);color:var(--cyan);background:rgba(37,208,244,.07)}
+.xp-pop{position:absolute;top:50%;right:18px;transform:translateY(-50%);font-family:var(--mono);font-size:12px;font-weight:600;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:float-up 1.8s ease forwards;pointer-events:none}
+@keyframes float-up{from{opacity:1;transform:translateY(-50%)}to{opacity:0;transform:translateY(-150%)}}
 
-/* ─── STATS BAR ────────────────────────────────────────────── */
-.stats-bar {
-  display: flex; gap: 0;
-  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-lg);
-  overflow: hidden; margin-bottom: 3rem;
-  animation: rise 0.7s 0.1s cubic-bezier(.16,1,.3,1) both;
-  backdrop-filter: blur(10px);
-}
-.stat { flex: 1; padding: 1.25rem 1.5rem; border-right: 1px solid var(--b1); }
-.stat:last-child { border-right: none; }
-.stat-n {
-  font-size: 30px; font-weight: 700; font-family: var(--font-display);
-  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.stat-l { font-size: 11px; color: var(--t3); margin-top: 3px; letter-spacing: 0.05em; }
+/* ═══ RECORDINGS ════════════════════════════════════════════ */
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
+.rec-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);overflow:hidden;text-decoration:none;display:block;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.rec-card:hover{transform:translateY(-4px);border-color:rgba(155,92,255,.45);box-shadow:0 14px 40px rgba(155,92,255,.16)}
+.rec-thumb{height:128px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,rgba(48,118,255,.16),rgba(225,77,242,.1) 50%,rgba(255,106,61,.12))}
+.rec-thumb::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 90% at 50% 110%,rgba(5,6,12,.7),transparent)}
+.play{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.07);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1;transition:transform .25s,background .25s}
+.rec-card:hover .play{transform:scale(1.14);background:rgba(155,92,255,.35)}
+.play svg{width:17px;height:17px;fill:#fff;margin-left:2px}
+.rec-body{padding:1rem 1.2rem}
+.rec-t{font-size:14px;font-weight:600;line-height:1.4;letter-spacing:-.005em}
+.rec-m{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.rec-d{font-size:11.5px;color:var(--ink3)}
+.rec-dur{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--ink2);background:rgba(255,255,255,.05);border:1px solid var(--line);padding:2px 9px;border-radius:5px}
 
-/* ─── ADOPTION METER ──────────────────────────────────────── */
-.adoption-wrap {
-  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-lg);
-  padding: 1.4rem 1.6rem; margin-bottom: 3rem;
-  animation: rise 0.7s 0.12s cubic-bezier(.16,1,.3,1) both;
-}
-.adp-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; }
-.adp-title { font-size: 13px; font-weight: 600; color: var(--t2); letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-display); }
-.adp-pct {
-  font-size: 26px; font-weight: 700; font-family: var(--font-display);
-  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.adp-track { height: 8px; background: var(--b1); border-radius: 99px; overflow: hidden; margin-bottom: 1rem; }
-.adp-fill { height: 100%; background: var(--grad); border-radius: 99px; width: 0; transition: width 1.2s cubic-bezier(.16,1,.3,1); }
-.adp-milestones { display: flex; gap: 8px; flex-wrap: wrap; }
-.adp-ms {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px;
-  border: 1px solid var(--b1); color: var(--t3);
-}
-.adp-ms.done { border-color: rgba(34,212,245,0.3); color: var(--cp-cyan); background: rgba(34,212,245,0.07); }
-.adp-ms.next { border-color: var(--b-cp); color: var(--cp-violet); background: rgba(159,89,255,0.08); border-style: dashed; }
+/* ═══ RECAPS ════════════════════════════════════════════════ */
+.recaps{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--panel)}
+.recap-row{padding:1.15rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;cursor:pointer;border-bottom:1px solid var(--line);transition:background .15s}
+.recap-row:hover{background:var(--panel2)}
+.recap-pip{width:8px;height:8px;border-radius:50%;background:var(--grad);flex-shrink:0;margin-top:8px;box-shadow:0 0 9px rgba(155,92,255,.6)}
+.recap-c{flex:1;min-width:0}
+.recap-t{font-size:14px;font-weight:600}
+.recap-p{font-size:13px;color:var(--ink3);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recap-r{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.recap-d{font-size:11.5px;color:var(--ink3)}
+.read-tag{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.recap-x{display:none;padding:0 1.5rem 1.2rem 3rem;font-size:13.5px;color:var(--ink2);line-height:1.85;white-space:pre-wrap;border-bottom:1px solid var(--line)}
+.recap-x.open{display:block}
+.recap-row:last-of-type,.recap-x:last-of-type{border-bottom:none}
 
-/* ─── SECTION ──────────────────────────────────────────────── */
-.section { margin-bottom: 3rem; animation: rise 0.6s 0.15s cubic-bezier(.16,1,.3,1) both; }
-.section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
-.section-icon {
-  width: 34px; height: 34px; border-radius: var(--r-sm);
-  background: var(--glass2); display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; border: 1px solid var(--b2);
-}
-.section-icon svg { width: 16px; height: 16px; }
-.icon-grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.section-title { font-size: 13px; font-weight: 600; color: var(--t2); letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--font-display); }
-.section-count { margin-left: auto; font-size: 11px; color: var(--t4); }
+/* ═══ RESOURCES ═════════════════════════════════════════════ */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:11px}
+.res-tile{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:1.15rem;display:flex;align-items:center;gap:13px;text-decoration:none;transition:border-color .2s,background .2s,transform .2s}
+.res-tile:hover{border-color:rgba(155,92,255,.4);background:var(--panel2);transform:translateY(-2px)}
+.res-ic{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--panel2);border:1px solid var(--line)}
+.res-ic svg{width:18px;height:18px}
+.res-l{font-size:13.5px;font-weight:600;color:var(--ink)}
+.res-s{font-size:11.5px;color:var(--ink3);margin-top:2px}
 
-/* ─── RECORDINGS ───────────────────────────────────────────── */
-.recordings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
-.rec-card {
-  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-md);
-  overflow: hidden; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-  cursor: pointer; text-decoration: none; display: block;
-}
-.rec-card:hover { border-color: rgba(159,89,255,0.5); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(159,89,255,0.2); }
-.rec-thumb {
-  height: 124px; background: var(--s3);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.rec-thumb-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(47,125,255,0.15) 0%, rgba(224,64,251,0.1) 50%, rgba(255,107,53,0.12) 100%); }
-.play-ring {
-  width: 44px; height: 44px; border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; z-index: 1;
-  background: rgba(255,255,255,0.06); backdrop-filter: blur(8px);
-  transition: transform 0.2s, background 0.2s;
-}
-.rec-card:hover .play-ring { transform: scale(1.12); background: rgba(159,89,255,0.3); }
-.play-ring svg { width: 16px; height: 16px; fill: #fff; margin-left: 2px; }
-.rec-body { padding: 0.9rem 1.1rem; }
-.rec-title-t { font-size: 14px; font-weight: 500; color: var(--t1); line-height: 1.35; }
-.rec-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 7px; }
-.rec-date-t { font-size: 11px; color: var(--t3); }
-.rec-dur-t { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; color: var(--t2); background: var(--s3); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--b1); }
+/* ═══ FOOTER / SETUP / TOASTS ═══════════════════════════════ */
+.footer{text-align:center;padding-top:2rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink4)}
+.footer .logo-click{cursor:default;user-select:none}
+.notice{background:rgba(37,208,244,.05);border:1px solid rgba(37,208,244,.2);border-radius:16px;padding:1.05rem 1.3rem;margin:1.6rem 0 2.4rem;font-size:13px;color:rgba(37,208,244,.85);line-height:1.7;display:flex;gap:11px}
+.notice svg{width:16px;height:16px;flex-shrink:0;margin-top:3px}
+.notice code{background:rgba(37,208,244,.12);padding:1px 6px;border-radius:4px;font-family:var(--mono);font-size:10.5px}
+.skeleton{background:rgba(255,255,255,.06);border-radius:8px;animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%,100%{opacity:.4}50%{opacity:.85}}
+.empty{text-align:center;padding:2.5rem;color:var(--ink4);font-size:13px}
+#toasts{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;gap:9px}
+.toast{padding:12px 19px;border-radius:13px;font-size:13.5px;font-weight:500;color:#fff;max-width:320px;box-shadow:0 10px 36px rgba(0,0,0,.45);animation:toast-in .3s var(--ease)}
+.toast.success{background:linear-gradient(130deg,#3076FF,#9B5CFF)}
+.toast.info <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Ftoast.info%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085890280%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=qzzXIwB16TaNJwNLskVtngu6enxzyrR1%2BjhXIq2U%2BpM%3D&reserved=0> {background:linear-gradient(130deg,#25D0F4,#3076FF)}
+.toast.error{background:linear-gradient(130deg,#E14DF2,#FF6A3D)}
+.toast.gold{background:linear-gradient(130deg,#FF6A3D,#FFB23E);color:#1a0e00;font-weight:700}
+@keyframes toast-in{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
 
-/* ─── RECAPS ───────────────────────────────────────────────── */
-.recap-list { border: 1px solid var(--b1); border-radius: var(--r-lg); overflow: hidden; background: var(--glass); }
-.recap-row {
-  background: transparent; padding: 1.1rem 1.4rem;
-  display: flex; align-items: flex-start; gap: 1rem;
-  cursor: pointer; transition: background 0.15s;
-  border-bottom: 1px solid var(--b1);
-}
-.recap-row:last-of-type { border-bottom: none; }
-.recap-row:hover { background: var(--glass2); }
-.recap-pip { width: 8px; height: 8px; border-radius: 50%; background: var(--grad); flex-shrink: 0; margin-top: 7px; box-shadow: 0 0 8px rgba(159,89,255,0.6); }
-.recap-content { flex: 1; min-width: 0; }
-.recap-title-t { font-size: 14px; font-weight: 500; color: var(--t1); }
-.recap-preview-t { font-size: 13px; color: var(--t2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 300; }
-.recap-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
-.recap-date-t { font-size: 11px; color: var(--t3); }
-.read-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.recap-expand {
-  padding: 0 1.4rem 1.1rem; background: var(--glass);
-  font-size: 13px; color: var(--t2); line-height: 1.8; font-weight: 300;
-  display: none; white-space: pre-wrap; border-bottom: 1px solid var(--b1);
-}
-.recap-expand.open { display: block; }
+/* confetti */
+.confetti{position:fixed;top:-12px;z-index:9997;pointer-events:none;border-radius:2px;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
 
-/* ─── XP CHALLENGE TRACKER ─────────────────────────────────── */
-.xp-layout { display: grid; grid-template-columns: 1fr 300px; gap: 14px; }
-@media (max-width: 700px) { .xp-layout { grid-template-columns: 1fr; } }
+/* party mode (easter egg) */
+body.party .aurora{animation-duration:4s;filter:blur(30px) saturate(1.6)}
+body.party h1 .gw{animation-duration:1.6s}
+body.party .live-dot{animation-duration:.5s}
 
-.challenges-list { display: flex; flex-direction: column; gap: 10px; }
+/* 🥤 ICE COLD MODE (easter egg · est. 1886) */
+body.icecold{--grad:linear-gradient(110deg,#FF3B30 0%,#E4002B 40%,#FF6A5E 70%,#FFD7CF 100%);
+  --grad-cool:linear-gradient(120deg,#FF6A5E,#E4002B);--grad-warm:linear-gradient(120deg,#E4002B,#FF3B30)}
+body.icecold .aurora{background:
+  radial-gradient(ellipse 38% 55% at 22% 60%,rgba(228,0,43,.22),transparent 70%),
+  radial-gradient(ellipse 34% 50% at 52% 40%,rgba(255,59,48,.16),transparent 70%),
+  radial-gradient(ellipse 30% 45% at 80% 55%,rgba(255,255,255,.06),transparent 70%)}
+body.icecold .atmo-grid{background-image:linear-gradient(rgba(228,0,43,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(228,0,43,.05) 1px,transparent 1px)}
+body.icecold .live-dot{box-shadow:0 0 10px rgba(228,0,43,.9)}
+body.icecold .btn-primary{box-shadow:0 0 30px rgba(228,0,43,.45),inset 0 1px 0 rgba(255,255,255,.25)}
+.bubble{position:fixed;bottom:-22px;z-index:2;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.85),rgba(255,255,255,.16) 42%,rgba(255,255,255,.04) 70%);
+  border:1px solid rgba(255,255,255,.22);animation:bubble-rise linear forwards}
+@keyframes bubble-rise{
+  0%{transform:translateY(0) translateX(0);opacity:0}
+  8%{opacity:.85}
+  100%{transform:translateY(-108vh) translateX(var(--sway,18px));opacity:0}}
 
-.challenge-card {
-  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-md);
-  padding: 1.1rem 1.2rem; display: flex; align-items: center; gap: 14px;
-  position: relative; overflow: hidden;
-  transition: border-color 0.25s, box-shadow 0.25s;
-}
-.challenge-card::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  background: var(--grad); border-radius: 2px 0 0 2px;
-  opacity: 0; transition: opacity 0.25s;
-}
-.challenge-card:hover { border-color: var(--b-cp); box-shadow: 0 0 20px rgba(159,89,255,0.1); }
-.challenge-card:hover::before { opacity: 1; }
-.challenge-card.is-done { opacity: 0.55; }
-.challenge-card.is-done::before { opacity: 1; background: linear-gradient(135deg, #22D4F5, #2F7DFF); }
+/* footer secrets hint */
+.secrets{margin-top:.8rem;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--ink4);cursor:help;transition:color .3s}
+.secrets .clues{opacity:0;max-height:0;overflow:hidden;transition:opacity .5s,max-height .5s;display:block;margin-top:6px;line-height:2}
+.secrets:hover{color:var(--ink3)}
+.secrets:hover .clues{opacity:1;max-height:80px}
 
-.ch-icon-wrap {
-  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; border: 1px solid var(--b2);
-}
-.ch-icon-wrap.blue   { background: rgba(47,125,255,0.12); }
-.ch-icon-wrap.teal   { background: rgba(34,212,245,0.1); }
-.ch-icon-wrap.purple { background: rgba(155,89,255,0.12); }
-.ch-icon-wrap.orange { background: rgba(255,107,53,0.1); }
+/* ═══ PROMPT VAULT ══════════════════════════════════════════ */
+.pv-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.3rem}
+.pv-chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:99px;border:1px solid var(--line2);color:var(--ink3);background:transparent;cursor:pointer;transition:all .2s;font-weight:600}
+.pv-chip:hover{color:var(--ink);border-color:rgba(155,92,255,.45)}
+.pv-chip.on{color:#fff;background:var(--grad);border-color:transparent;box-shadow:0 0 18px rgba(155,92,255,.3)}
+.pv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.pv-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:1.25rem 1.3rem;display:flex;flex-direction:column;gap:10px;transition:border-color .25s,box-shadow .25s,transform .25s}
+.pv-card:hover{border-color:rgba(155,92,255,.4);box-shadow:0 8px 30px rgba(155,92,255,.12);transform:translateY(-3px)}
+.pv-top{display:flex;align-items:center;gap:8px}
+.pv-role{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:99px;font-weight:600}
+.pv-app{font-family:var(--mono);font-size:9px;color:var(--ink3);margin-left:auto;letter-spacing:.06em}
+.pv-title{font-size:14.5px;font-weight:600;letter-spacing:-.005em;line-height:1.35}
+.pv-prompt{position:relative;background:rgba(0,0,0,.32);border:1px dashed var(--line2);border-radius:12px;padding:.85rem 1rem;font-family:var(--mono);font-size:11.5px;line-height:1.7;color:var(--ink2);flex:1}
+.pv-prompt mark{background:rgba(255,178,62,.16);color:var(--amber);border-radius:3px;padding:0 3px;font-style:normal}
+.pv-why{font-size:12px;color:var(--ink3);line-height:1.6}
+.pv-why b{color:var(--ink2);font-weight:600}
+.pv-foot{display:flex;align-items:center;gap:10px;margin-top:2px}
+.pv-by{font-size:11px;color:var(--ink4);font-style:italic;font-family:var(--serif)}
+.pv-copy{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--body);font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:6px 14px;border-radius:8px;border:1px solid rgba(155,92,255,.35);background:transparent;color:var(--ink2);cursor:pointer;transition:background .2s,color .2s}
+.pv-copy:hover{background:rgba(155,92,255,.16);color:var(--ink)}
+.pv-copy.copied{border-color:rgba(37,208,244,.45);color:var(--cyan);background:rgba(37,208,244,.08)}
+.pv-cta{margin-top:1.2rem;text-align:center;font-size:12.5px;color:var(--ink3)}
+.pv-cta a{color:var(--violet);text-decoration:none;font-weight:600}
+.pv-cta a:hover{text-decoration:underline}
 
-.ch-body { flex: 1; min-width: 0; }
-.ch-label { font-size: 13px; font-weight: 500; color: var(--t1); line-height: 1.3; }
-.ch-desc  { font-size: 12px; color: var(--t3); margin-top: 3px; font-weight: 300; }
+/* defending champions banner */
+.champ-banner{display:flex;align-items:center;gap:12px;border:1px solid rgba(255,178,62,.3);background:linear-gradient(110deg,rgba(255,178,62,.08),rgba(255,106,61,.05));border-radius:16px;padding:.85rem 1.2rem;margin-bottom:1.1rem;animation:champ-glow 3.5s ease infinite}
+@keyframes champ-glow{0%,100%{box-shadow:0 0 0 rgba(255,178,62,0)}50%{box-shadow:0 0 26px rgba(255,178,62,.16)}}
+.champ-trophy{font-size:1.5rem;flex-shrink:0;animation:champ-bob 2.6s ease-in-out infinite}
+@keyframes champ-bob{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.champ-text{font-size:13px;color:var(--ink2)}
+.champ-text b{font-family:var(--display);color:var(--amber);font-weight:700}
 
-.ch-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
-.xp-badge {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  font-family: var(--font-display);
-}
-.ch-btn {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 6px; cursor: pointer;
-  border: 1px solid var(--b-cp); background: transparent; color: var(--t2);
-  font-family: var(--font-body); transition: background 0.2s, color 0.2s;
-  white-space: nowrap;
-}
-.ch-btn:hover:not(:disabled) { background: rgba(159,89,255,0.15); color: var(--t1); }
-.ch-btn:disabled { cursor: default; }
-.ch-btn.done { border-color: rgba(34,212,245,0.4); color: var(--cp-cyan); background: rgba(34,212,245,0.07); }
-
-/* ─── LEADERBOARD ───────────────────────────────────────────── */
-.leaderboard-card {
-  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-lg);
-  overflow: hidden; height: fit-content; position: sticky; top: 1.5rem;
-}
-.lb-header {
-  padding: 1rem 1.2rem; border-bottom: 1px solid var(--b1);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.lb-title { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t2); font-family: var(--font-display); }
-.lb-week { font-size: 10px; color: var(--t4); }
-.lb-body { padding: 0.75rem 1rem; }
-.lb-row { display: flex; align-items: center; gap: 10px; padding: 7px 4px; }
-.lb-rank { font-size: 13px; width: 22px; text-align: center; flex-shrink: 0; }
-.lb-avatar {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  background: var(--grad); display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; color: #fff; font-family: var(--font-display);
-}
-.lb-info { flex: 1; min-width: 0; }
-.lb-name { font-size: 12px; font-weight: 500; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lb-bar-wrap { height: 3px; background: var(--b1); border-radius: 2px; margin-top: 4px; }
-.lb-bar-fill { height: 100%; border-radius: 2px; background: var(--grad); transition: width 0.8s cubic-bezier(.16,1,.3,1); }
-.lb-xp { font-size: 11px; font-weight: 600; color: var(--t3); white-space: nowrap; font-family: var(--font-display); }
-
-/* ─── Q&A ───────────────────────────────────────────────────── */
-.qa-wrap { border: 1px solid var(--b1); border-radius: var(--r-lg); overflow: hidden; background: var(--glass); backdrop-filter: blur(10px); }
-.qa-msgs { padding: 1.4rem; height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
-.qa-msgs::-webkit-scrollbar { width: 3px; }
-.qa-msgs::-webkit-scrollbar-thumb { background: var(--b-cp); border-radius: 4px; }
-.qa-msg-item { display: flex; flex-direction: column; gap: 4px; }
-.qa-author-name { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.qa-author-name.host { color: var(--cp-cyan); }
-.qa-author-name.user { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.qa-bubble-item {
-  display: inline-block; padding: 9px 14px;
-  border-radius: 12px; border-top-left-radius: 2px;
-  background: var(--glass2); border: 1px solid var(--b1);
-  font-size: 13px; color: var(--t1); line-height: 1.55; max-width: 85%; font-weight: 300;
-}
-.qa-ts { font-size: 10px; color: var(--t4); }
-.qa-input-zone { border-top: 1px solid var(--b1); padding: 1rem 1.2rem; background: rgba(0,0,0,0.2); }
-.qa-row { display: flex; gap: 8px; margin-bottom: 8px; }
-.qa-row:last-of-type { margin-bottom: 0; }
-.qa-field {
-  flex: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--b2);
-  border-radius: var(--r-sm); padding: 9px 13px;
-  color: var(--t1); font-family: var(--font-body); font-size: 13px;
-  transition: border-color 0.2s, box-shadow 0.2s; outline: none; font-weight: 300;
-}
-.qa-field:focus { border-color: rgba(159,89,255,0.6); box-shadow: 0 0 0 3px rgba(159,89,255,0.1); }
-.qa-field.name { max-width: 190px; }
-.qa-post-btn {
-  background: var(--grad); color: #fff; border: none;
-  border-radius: var(--r-sm); padding: 9px 18px;
-  font-family: var(--font-body); font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: transform 0.15s, box-shadow 0.2s;
-  display: flex; align-items: center; gap: 6px; flex-shrink: 0; letter-spacing: 0.02em;
-}
-.qa-post-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 18px rgba(159,89,255,0.4); }
-.qa-post-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.qa-post-btn svg { width: 13px; height: 13px; }
-.qa-status-msg { font-size: 11px; color: var(--t3); margin-top: 7px; min-height: 16px; }
-
-/* ─── RESOURCES ─────────────────────────────────────────────── */
-.res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 10px; }
-.res-tile {
-  background: var(--glass); border: 1px solid var(--b1); border-radius: var(--r-md);
-  padding: 1.1rem; display: flex; align-items: center; gap: 12px;
-  text-decoration: none; transition: border-color 0.2s, background 0.2s, transform 0.2s;
-}
-.res-tile:hover { border-color: rgba(159,89,255,0.4); background: var(--glass2); transform: translateY(-2px); }
-.res-tile-icon { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--glass2); border: 1px solid var(--b1); }
-.res-tile-icon svg { width: 18px; height: 18px; }
-.res-tile-label { font-size: 13px; font-weight: 500; color: var(--t1); }
-.res-tile-sub   { font-size: 11px; color: var(--t3); margin-top: 2px; font-weight: 300; }
-
-/* ─── NOTICE ────────────────────────────────────────────────── */
-.notice {
-  background: rgba(34,212,245,0.05); border: 1px solid rgba(34,212,245,0.2);
-  border-radius: var(--r-md); padding: 1rem 1.25rem; margin-bottom: 2rem;
-  font-size: 13px; color: rgba(34,212,245,0.85); line-height: 1.65;
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.notice svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
-.notice code { background: rgba(34,212,245,0.12); padding: 1px 5px; border-radius: 3px; font-size: 11px; letter-spacing: 0.04em; }
-
-/* ─── SKELETON / EMPTY ──────────────────────────────────────── */
-.skeleton { background: var(--s3); border-radius: 6px; animation: shimmer 1.5s infinite; }
-@keyframes shimmer { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
-.empty { text-align: center; padding: 2.5rem; color: var(--t4); font-size: 13px; font-weight: 300; }
-
-/* ─── XP TOASTS + FLOAT POP ─────────────────────────────────── */
-#xp-toasts {
-  position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.xp-toast {
-  padding: 11px 18px; border-radius: 12px; font-size: 13px; font-weight: 500;
-  color: #fff; font-family: var(--font-body); max-width: 300px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  animation: toast-in 0.25s cubic-bezier(.16,1,.3,1);
-}
-.xp-toast.success { background: linear-gradient(135deg, #2F7DFF, #9B59FF); }
-.xp-toast.info    { background: linear-gradient(135deg, #22D4F5, #2F7DFF); }
-.xp-toast.error   { background: linear-gradient(135deg, #FF3CAC, #FF6B35); }
-@keyframes toast-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
-.xp-float-pop {
-  position: absolute; top: 50%; right: 16px; transform: translateY(-50%);
-  font-size: 12px; font-weight: 700;
-  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  animation: float-up 1.8s ease forwards;
-  pointer-events: none; font-family: var(--font-display);
-}
-@keyframes float-up { 0%{opacity:1;transform:translateY(-50%)} 100%{opacity:0;transform:translateY(-130%)} }
-
-/* ─── ANIMATIONS ─────────────────────────────────────────────── */
-@keyframes rise { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
-
-/* ─── RESPONSIVE ─────────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .hero-layout { flex-direction: column; }
-  .hero-right { align-items: flex-start; width: 100%; }
-  .stats-bar { flex-wrap: wrap; }
-  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--b1); }
-  .stat:nth-child(odd) { border-right: 1px solid var(--b1); }
-  .stat:last-child, .stat:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+/* ═══ RESPONSIVE ════════════════════════════════════════════ */
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr;align-items:start}
+  .cup-layout{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .spot-grid{grid-template-columns:1fr}
+  .spot-side{border-right:none;border-bottom:1px solid var(--line);flex-direction:row;align-items:center;flex-wrap:wrap}
+  .spot-date{margin-top:0;margin-left:auto}
 }
 </style>
 </head>
 <body>
 
-<div class="bg-noise"></div>
-<div class="bg-grid"></div>
-<div class="bg-orb orb-a"></div>
-<div class="bg-orb orb-b"></div>
-<div class="bg-orb orb-c"></div>
-<div id="xp-toasts"></div>
+<div class="atmo">
+  <div class="aurora"></div>
+  <div class="atmo-grid"></div>
+  <div class="atmo-noise"></div>
+  <div class="atmo-stars" id="stars"></div>
+</div>
+<div id="toasts"></div>
 
-<div class="cp-line"></div>
+<!-- ── TIP TICKER ── -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker-track"></div>
+</div>
+
 <div class="page">
 
   <!-- ── SETUP NOTICE — delete after configuring ── -->
-  <div class="notice" style="margin-top:1.5rem">
+  <div class="notice">
     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
     <div>
-      <strong>One-time setup:</strong> Set <code>siteUrl</code> in the CONFIG block below, update <code>nextSessionDate</code> and your Teams link. Create four SharePoint lists: <code>Recordings</code>, <code>SessionRecaps</code>, <code>CopilotCornerQA</code>, <code>CopilotXP</code> — column names are in the comments. Then delete this notice.
+      <strong>One-time setup:</strong> Update <code>CONFIG</code> below (session date, Teams link, spotlight fallback). Your Power Automate flow needs actions: <code>getRecordings</code>, <code>getRecaps</code>, <code>getSpotlight</code>, <code>markDone</code>, <code>getProgress</code>, <code>getLeaderboard</code>. The XP list now needs columns: <code>Title</code> (name), <code>MarketUnit</code>, <code>Challenge</code>, <code>XPValue</code>, <code>MonthKey</code> (e.g. "2026-06"). Add a <code>Spotlight</code> list with <code>Title</code>, <code>Author</code>, <code>MarketUnit</code>, <code>Body</code>, <code>PostDate</code>. Then delete this notice.
     </div>
   </div>
 
   <!-- ── HERO ── -->
-  <div class="hero-wrap">
-    <div class="hero-eyebrow"><span class="live-dot"></span>HR · Biweekly Office Hours</div>
-    <div class="hero-layout">
-      <div class="hero-left">
-        <h1 class="hero-title">Copilot<br><span class="cp-word">Corner</span></h1>
-        <p class="hero-sub">Your living hub for Microsoft Copilot — recordings, session recaps, community Q&amp;A, and weekly XP challenges for the HR team.</p>
-        <a class="cp-logo-badge" href="https://m365.cloud.microsoft/chat" target="_blank" rel="noopener" title="Open Microsoft Copilot">
-          <div class="cp-logo-icon">✦</div>
-          <div class="cp-logo-text">
-            Microsoft Copilot
-            <span>Open Copilot →</span>
-          </div>
+  <div class="hero reveal in">
+    <div>
+      <div class="eyebrow"><span class="live-dot"></span>HR · Biweekly Office Hours · Est. 2025</div>
+      <h1 class="title">Copilot<br><span class="gw">Corner</span><span class="serif-it">&nbsp;✦</span></h1>
+      <p class="hero-sub">The HR team's home for everything Microsoft Copilot — session recordings, recaps, the monthly <em>Market Unit Cup</em>, and a rotating guest spotlight from your colleagues.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" id="join-btn" href="#" target="_blank" rel="noopener">
+          <svg class="ic" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0013.5 6.75h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+          Join the next session
         </a>
+        <a class="btn-ghost" href="https://m365.cloud.microsoft/chat <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fm365.cloud.microsoft%2Fchat&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085908818%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=X%2BT1WavUrnFkv%2BKi6jdJc8Zval4VMz61exT08YFPj2Q%3D&reserved=0> " target="_blank" rel="noopener">✦ Open Copilot</a>
       </div>
-      <div class="hero-right">
-        <div class="next-card">
-          <div class="next-card-inner">
-            <div class="next-label">Next session</div>
-            <div class="next-date" id="next-date">—</div>
-            <div class="next-time" id="next-time"></div>
-          </div>
+    </div>
+    <div class="session-card">
+      <div class="session-inner">
+        <div class="session-label">Next session</div>
+        <div class="session-date" id="next-date">—</div>
+        <div class="session-time" id="next-time"></div>
+        <div class="session-count" id="countdown">
+          <div class="cd-unit"><div class="cd-n" id="cd-d">–</div><div class="cd-l">days</div></div>
+          <div class="cd-unit"><div class="cd-n" id="cd-h">–</div><div class="cd-l">hrs</div></div>
+          <div class="cd-unit"><div class="cd-n" id="cd-m">–</div><div class="cd-l">min</div></div>
         </div>
-        <a href="#" class="join-btn" id="join-btn" target="_blank">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0013.5 6.75h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
-          Join in Teams
-        </a>
       </div>
     </div>
   </div>
 
   <!-- ── STATS ── -->
-  <div class="stats-bar">
-    <div class="stat"><div class="stat-n" id="stat-sessions">—</div><div class="stat-l">Sessions hosted</div></div>
-    <div class="stat"><div class="stat-n" id="stat-recordings">—</div><div class="stat-l">Recordings</div></div>
-    <div class="stat"><div class="stat-n" id="stat-recaps">—</div><div class="stat-l">Recaps published</div></div>
-    <div class="stat"><div class="stat-n" id="stat-questions">—</div><div class="stat-l">Questions answered</div></div>
-    <div class="stat"><div class="stat-n" id="stat-xp">—</div><div class="stat-l">XP earned this week</div></div>
+  <div class="stats reveal">
+    <div class="stat"><div class="stat-n" data-count id="stat-sessions">0</div><div class="stat-l">Sessions hosted</div></div>
+    <div class="stat"><div class="stat-n" data-count id="stat-recordings">0</div><div class="stat-l">Recordings</div></div>
+    <div class="stat"><div class="stat-n" data-count id="stat-recaps">0</div><div class="stat-l">Recaps published</div></div>
+    <div class="stat"><div class="stat-n" data-count id="stat-xp">0</div><div class="stat-l">Cup points this month</div></div>
   </div>
 
-  <!-- ── ADOPTION METER ── -->
-  <div class="adoption-wrap">
-    <div class="adp-header">
-      <span class="adp-title">HR team adoption</span>
-      <span class="adp-pct" id="adp-pct">68%</span>
+  <!-- ── 01 · SPOTLIGHT ── -->
+  <div class="section reveal">
+    <div class="sec-head">
+      <span class="sec-no">01</span>
+      <span class="sec-title">This week's <span class="it">spotlight</span></span>
+      <div class="sec-line"></div>
+      <span class="sec-meta">Guest post</span>
     </div>
-    <div class="adp-track"><div class="adp-fill" id="adp-fill"></div></div>
-    <div class="adp-milestones">
-      <span class="adp-ms done">✓ 25% Early adopters</span>
-      <span class="adp-ms done">✓ 50% Majority</span>
-      <span class="adp-ms next">⚡ 75% Next goal</span>
-      <span class="adp-ms">🔒 100% All-in</span>
-    </div>
-  </div>
-
-  <!-- ── RECORDINGS ── -->
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">
-        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0013.5 6.75h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
-      </div>
-      <span class="section-title">Recordings</span>
-      <span class="section-count" id="rec-count"></span>
-    </div>
-    <div class="recordings-grid" id="recordings-grid">
-      <div style="grid-column:1/-1"><div class="skeleton" style="height:160px;border-radius:14px;"></div></div>
-    </div>
-  </div>
-
-  <!-- ── RECAPS ── -->
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">
-        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-      </div>
-      <span class="section-title">Session recaps</span>
-      <span class="section-count" id="recap-count"></span>
-    </div>
-    <div class="recap-list" id="recap-list">
-      <div class="recap-row"><div class="skeleton" style="height:44px;flex:1;border-radius:6px;"></div></div>
-    </div>
-  </div>
-
-  <!-- ── XP CHALLENGE TRACKER ── -->
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">
-        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-      </div>
-      <span class="section-title">Weekly XP Challenges</span>
-      <span class="section-count" id="xp-week-label"></span>
-    </div>
-    <div class="xp-layout">
-      <div class="challenges-list" id="challenge-container">
-        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
-        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
-        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
-        <div class="skeleton" style="height:80px;border-radius:14px;"></div>
-      </div>
-      <div class="leaderboard-card">
-        <div class="lb-header">
-          <span class="lb-title">⚡ Leaderboard</span>
-          <span class="lb-week">This week</span>
+    <div class="spotlight" id="spotlight">
+      <div class="spot-grid">
+        <div class="spot-side">
+          <span class="spot-badge">★ Guest of the week</span>
+          <div class="spot-avatar" id="spot-avatar">·</div>
+          <div>
+            <div class="spot-author" id="spot-author">Loading…</div>
+            <div class="spot-mu" id="spot-mu"></div>
+          </div>
+          <div class="spot-date" id="spot-date"></div>
         </div>
-        <div class="lb-body" id="xp-leaderboard">
-          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
-          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
-          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
-          <div class="skeleton" style="height:28px;margin:6px 0;border-radius:6px;"></div>
+        <div class="spot-main">
+          <div class="spot-title" id="spot-title"></div>
+          <div class="spot-body" id="spot-body"></div>
+          <a class="spot-cta" id="spot-cta" href="mailto:?subject=I%20want%20to%20be%20a%20Copilot%20Corner%20guest%20poster">Want the mic next week? Pitch us your Copilot story →</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── Q&A ── -->
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">
-        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
-      </div>
-      <span class="section-title">Community Q&amp;A</span>
-      <span class="section-count" id="qa-count"></span>
+  <!-- ── 02 · MARKET UNIT CUP ── -->
+  <div class="section reveal">
+    <div class="sec-head">
+      <span class="sec-no">02</span>
+      <span class="sec-title">The Market Unit <span class="it">Cup</span></span>
+      <div class="sec-line"></div>
+      <span class="sec-meta" id="cup-reset"></span>
     </div>
-    <div class="qa-wrap">
-      <div class="qa-msgs" id="qa-messages">
-        <div class="qa-msg-item">
-          <span class="qa-author-name host">Copilot Corner</span>
-          <span class="qa-bubble-item">Welcome! Drop your Copilot questions here — everything stays visible for the whole HR team. 👋</span>
+
+    <div class="champ-banner" id="champ-banner" style="display:none">
+      <span class="champ-trophy">🏆</span>
+      <span class="champ-text" id="champ-text"></span>
+    </div>
+
+    <div class="cup-layout">
+      <div class="cup-board">
+        <div class="cup-head">
+          <span class="cup-title">🏆 Standings</span>
+          <span class="cup-month" id="cup-month"></span>
         </div>
+        <div class="cup-body" id="cup-board">
+          <div class="skeleton" style="height:30px;margin:7px 0"></div>
+          <div class="skeleton" style="height:30px;margin:7px 0"></div>
+          <div class="skeleton" style="height:30px;margin:7px 0"></div>
+          <div class="skeleton" style="height:30px;margin:7px 0"></div>
+          <div class="skeleton" style="height:30px;margin:7px 0"></div>
+          <div class="skeleton" style="height:30px;margin:7px 0"></div>
+        </div>
+        <div class="cup-foot"><span>Resets monthly</span><b id="cup-days-left"></b></div>
       </div>
-      <div class="qa-input-zone">
-        <div class="qa-row">
-          <input class="qa-field name" id="qa-name" type="text" placeholder="Your name" maxlength="60" />
+
+      <div class="challenges">
+        <!-- identity: only asked when participating -->
+        <div class="identity-bar" id="identity-bar">
+          <div class="id-text" id="id-text">Completing challenges earns points for <b>your market unit</b>. Join in — takes five seconds.</div>
+          <input class="id-field" id="id-name" type="text" placeholder="Your name" maxlength="60" style="max-width:170px" />
+          <select class="id-field" id="id-mu"></select>
+          <button class="id-join-btn" onclick="joinCup()">Join the Cup</button>
         </div>
-        <div class="qa-row">
-          <input class="qa-field" id="qa-msg-input" type="text" placeholder="Ask a Copilot question…" maxlength="500" />
-          <button class="qa-post-btn" id="qa-send" onclick="postQAMessage()">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.269 20.876L5.999 12zm0 0h7.5"/></svg>
-            Post
-          </button>
+        <div id="challenge-list">
+          <div class="skeleton" style="height:78px;border-radius:18px;margin-bottom:11px"></div>
+          <div class="skeleton" style="height:78px;border-radius:18px;margin-bottom:11px"></div>
+          <div class="skeleton" style="height:78px;border-radius:18px"></div>
         </div>
-        <div class="qa-status-msg" id="qa-status"></div>
       </div>
     </div>
   </div>
 
-  <!-- ── RESOURCES ── -->
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">
-        <svg class="icon-grad" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
-      </div>
-      <span class="section-title">Quick resources</span>
+  <!-- ── 03 · HR PROMPT VAULT ── -->
+  <div class="section reveal">
+    <div class="sec-head">
+      <span class="sec-no">03</span>
+      <span class="sec-title">The HR Prompt <span class="it">Vault</span></span>
+      <div class="sec-line"></div>
+      <span class="sec-meta">Field-tested by our team</span>
+    </div>
+    <div class="pv-filters" id="pv-filters"></div>
+    <div class="pv-grid" id="pv-grid"></div>
+    <div class="pv-cta">Got a prompt that saves you real time? <a id="pv-submit" href="mailto:?subject=Prompt%20Vault%20submission">Submit it to the Vault →</a> Approved prompts get your name on the card.</div>
+  </div>
+
+  <!-- ── 04 · RECORDINGS ── -->
+  <div class="section reveal">
+    <div class="sec-head">
+      <span class="sec-no">04</span>
+      <span class="sec-title">Session <span class="it">recordings</span></span>
+      <div class="sec-line"></div>
+      <span class="sec-meta" id="rec-count"></span>
+    </div>
+    <div class="rec-grid" id="rec-grid">
+      <div style="grid-column:1/-1"><div class="skeleton" style="height:170px;border-radius:18px"></div></div>
+    </div>
+  </div>
+
+  <!-- ── 04 · RECAPS ── -->
+  <div class="section reveal">
+    <div class="sec-head">
+      <span class="sec-no">05</span>
+      <span class="sec-title">Session <span class="it">recaps</span></span>
+      <div class="sec-line"></div>
+      <span class="sec-meta" id="recap-count"></span>
+    </div>
+    <div class="recaps" id="recap-list">
+      <div class="recap-row"><div class="skeleton" style="height:44px;flex:1"></div></div>
+    </div>
+  </div>
+
+  <!-- ── 05 · RESOURCES ── -->
+  <div class="section reveal">
+    <div class="sec-head">
+      <span class="sec-no">06</span>
+      <span class="sec-title">Quick <span class="it">resources</span></span>
+      <div class="sec-line"></div>
     </div>
     <div class="res-grid">
-      <a class="res-tile" href="https://adoption.microsoft.com/en-us/copilot/" target="_blank">
-        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-blue)"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
-        <div><div class="res-tile-label">Microsoft Adoption</div><div class="res-tile-sub">Official Copilot guides</div></div>
+      <a class="res-tile" href="https://adoption.microsoft.com/en-us/copilot/ <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fadoption.microsoft.com%2Fen-us%2Fcopilot%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085927678%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=db6C5q1x7S10bA9DhdDeArpeGkR7q0o6GHkATL2x0yE%3D&reserved=0> " target="_blank" rel="noopener">
+        <div class="res-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--blue)"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
+        <div><div class="res-l">Microsoft Adoption</div><div class="res-s">Official Copilot guides</div></div>
       </a>
-      <a class="res-tile" href="https://learn.microsoft.com/en-us/copilot/microsoft-365/" target="_blank">
-        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-violet)"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg></div>
-        <div><div class="res-tile-label">Microsoft Learn</div><div class="res-tile-sub">Copilot documentation</div></div>
+      <a class="res-tile" href="https://learn.microsoft.com/en-us/copilot/microsoft-365/ <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fcopilot%2Fmicrosoft-365%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085942768%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=x%2FAnWk039v3mzj0ltwQ5%2BEXZyCrawywivhw%2FRcw9MNA%3D&reserved=0> " target="_blank" rel="noopener">
+        <div class="res-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--violet)"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg></div>
+        <div><div class="res-l">Microsoft Learn</div><div class="res-s">Copilot documentation</div></div>
       </a>
-      <a class="res-tile" href="#" id="cal-link" target="_blank">
-        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-cyan)"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg></div>
-        <div><div class="res-tile-label">Add to calendar</div><div class="res-tile-sub">Never miss a session</div></div>
+      <a class="res-tile" href="#" id="cal-link" target="_blank" rel="noopener">
+        <div class="res-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cyan)"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg></div>
+        <div><div class="res-l">Add to calendar</div><div class="res-s">Never miss a session</div></div>
       </a>
-      <a class="res-tile" href="#" id="prompt-lib-link" target="_blank">
-        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-pink)"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg></div>
-        <div><div class="res-tile-label">HR prompt library</div><div class="res-tile-sub">Curated Copilot prompts</div></div>
+      <a class="res-tile" href="#" id="prompt-lib-link" target="_blank" rel="noopener">
+        <div class="res-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--pink)"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg></div>
+        <div><div class="res-l">HR prompt library</div><div class="res-s">Curated Copilot prompts</div></div>
       </a>
-      <a class="res-tile" href="https://techcommunity.microsoft.com/t5/microsoft-365-copilot/ct-p/Microsoft365Copilot" target="_blank">
-        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-orange)"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg></div>
-        <div><div class="res-tile-label">Tech community</div><div class="res-tile-sub">M365 Copilot forums</div></div>
+      <a class="res-tile" href="https://techcommunity.microsoft.com/t5/microsoft-365-copilot/ct-p/Microsoft365Copilot <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Ftechcommunity.microsoft.com%2Ft5%2Fmicrosoft-365-copilot%2Fct-p%2FMicrosoft365Copilot&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085957954%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=erFDoyIKd8Hcb3YuaOKPxJiQsTfKZJrHQ6RxXWUdrBk%3D&reserved=0> " target="_blank" rel="noopener">
+        <div class="res-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--coral)"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg></div>
+        <div><div class="res-l">Tech community</div><div class="res-s">M365 Copilot forums</div></div>
       </a>
-      <a class="res-tile" href="https://aka.ms/CopilotScenarioLibrary" target="_blank">
-        <div class="res-tile-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--cp-amber)"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div>
-        <div><div class="res-tile-label">Scenario library</div><div class="res-tile-sub">Real-world use cases</div></div>
+      <a class="res-tile" href="https://aka.ms/CopilotScenarioLibrary <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Faka.ms%2FCopilotScenarioLibrary&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857085993319%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=DTMQ7XiiT5dRMhuIkAil6GOVKQO2XxkplrGrSJR6jd4%3D&reserved=0> " target="_blank" rel="noopener">
+        <div class="res-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--amber)"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div>
+        <div><div class="res-l">Scenario library</div><div class="res-s">Real-world use cases</div></div>
       </a>
     </div>
+  </div>
+
+  <div class="footer">
+    <span class="logo-click" id="logo-egg" title="">✦</span>&nbsp; Copilot Corner · HR Enablement · Built with curiosity
+    <span class="secrets">⌕ this page keeps three secrets
+      <span class="clues">
+        ① old-school gamers know the code &nbsp;·&nbsp; ② the star above rewards persistence (×5) &nbsp;·&nbsp; ③ whisper the year it all began — just type it
+      </span>
+    </span>
   </div>
 
 </div><!-- /page -->
-<div class="cp-line"></div>
 
 <script>
-
 // ═══════════════════════════════════════════════════════════════
 //  ✏️  CONFIG
 // ═══════════════════════════════════════════════════════════════
 const CONFIG = {
-  nextSessionDate: 'Thu, Jun 5',
-  nextSessionTime: '12:00 PM – 1:00 PM',
-  teamsJoinLink:   'https://teams.microsoft.com/l/meetup-join/PASTE_LINK',
-  calendarLink:    '',
-  promptLibLink:   '',
-  totalSessions:   24,
-  adoptionPct:     68,
+  // Sessions repeat every 2 weeks. Set ONE anchor session (any past or
+  // future occurrence) and the page computes the next one forever.
+  sessionAnchor:    '2026-06-17T12:00:00',   // Wed Jun 17, 12:00 PM local
+  sessionEveryDays: 14,
+  sessionLengthMin: 60,                       // rolls to the next one after this
+  nextSessionTime:  '12:00 PM – 1:00 PM',
+  teamsJoinLink:    'https://teams.microsoft.com/l/meetup-join/PASTE_LINK <https://nam11.safelinks.protection.outlook.com/ap/t-59584e83/?url=https%3A%2F%2Fteams.microsoft.com%2Fl%2Fmeetup-join%2FPASTE_LINK&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086042034%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=qNpbN%2BHKxz%2BBa2sLa%2Fp%2BfPunsI3RFuylglzZfjwdRbk%3D&reserved=0> ',
+  calendarLink:     '',
+  promptLibLink:    '',
+  spotlightEmail:   '',                       // mailto for "be the next guest"
+  totalSessions:    24,
+
+  // Fallback spotlight shown if the flow has no Spotlight rows yet
+  spotlightFallback: {
+    Title:  'How I cut my interview-notes time in half',
+    Author: 'Stephanie Brower',
+    MarketUnit: 'LAMU',
+    PostDate: '2026-06-01',
+    Body: 'I used to spend 30+ minutes after every interview cleaning up my notes. Now I drop my raw Teams transcript into Copilot and ask it to structure everything for the panel.\n\nThe debriefs go faster, nothing falls through the cracks, and I sound twice as prepared. Try it on your next intake call — you will not go back.',
+  },
 };
 
+// Market units — codes, full names, brand colors for the Cup
+const MARKET_UNITS = [
+  { code:'LAMU',    name:'Los Angeles MU',        color:'#3076FF' },
+  { code:'SDMU',    name:'San Diego MU',          color:'#25D0F4' },
+  { code:'NCMU',    name:'Northern California MU',color:'#9B5CFF' },
+  { code:'CHIMU',   name:'Chicago MU',            color:'#E14DF2' },
+  { code:'TN/KY',   name:'Tennessee / Kentucky MU', color:'#FF6A3D' },
+  { code:'MI/MN',   name:'Michigan / Minnesota MU', color:'#FFB23E' },
+  { code:'CORP',    name:'Corporate',               color:'#5A6CFF' },
+  { code:'SUPPLY',  name:'Supply Chain',            color:'#2EE6A8' },
+  { code:'CUST',    name:'Customer',                color:'#FF4D8D' },
+  { code:'CAP',     name:'Capabilities',            color:'#9FE870' },
+];
+
 const CHALLENGES = [
-  { id: 'outlook-draft', label: 'Draft an email with Copilot in Outlook',  desc: 'Use the "Draft with Copilot" button on any outgoing email',           xp: 50,  color: 'blue',   icon: '✉️' },
-  { id: 'teams-recap',   label: 'Summarize a meeting in Teams',             desc: 'After your next call, open the Recap tab and share one key insight',  xp: 75,  color: 'teal',   icon: '📋' },
-  { id: 'word-jd',       label: 'Rewrite a job description with Copilot',  desc: 'Paste a JD into Word and ask Copilot to make it more inclusive',      xp: 100, color: 'purple', icon: '📝' },
-  { id: 'excel-trend',   label: 'Analyze HR data in Excel',                desc: 'Open any spreadsheet and ask Copilot to spot a trend for you',        xp: 100, color: 'orange', icon: '📊' },
+  { id:'outlook-draft', label:'Draft an email with Copilot in Outlook', desc:'Use "Draft with Copilot" on any outgoing email this month', xp:50,  c:'c1', icon:'✉️' },
+  { id:'teams-recap',   label:'Summarize a meeting in Teams',           desc:'Open the Recap tab after a call and share one key insight', xp:75,  c:'c2', icon:'📋' },
+  { id:'word-jd',       label:'Rewrite a job description in Word',      desc:'Ask Copilot to make a JD clearer and more inclusive',       xp:100, c:'c3', icon:'📝' },
+  { id:'excel-trend',   label:'Analyze HR data in Excel',               desc:'Ask Copilot to surface a trend in any spreadsheet',         xp:100, c:'c4', icon:'📊' },
+  { id:'vault-submit',  label:'Submit a prompt to the Vault',           desc:'Share a Copilot prompt that saves you real time — get your name on the card', xp:150, c:'c3', icon:'⚡' },
 ];
 
 // ═══════════════════════════════════════════════════════════════
-//  POWER AUTOMATE FLOW — single endpoint replaces ALL SP calls
-//  Every request POSTs JSON with an "action" field.
-//  The flow's Switch routes to the right SharePoint operation.
+//  HR PROMPT VAULT
+//  These aren't the generic Prompt Gallery prompts — they're written
+//  for OUR work: frontline bottling recruiting, CDL drivers,
+//  merchandisers, warehouse, HRBP work in a union environment.
+//  [BRACKETED] parts are fill-in-the-blank.
+//  Roles: ta = Talent Acquisition · hrbp = HRBP & ER · tr = Total
+//  Rewards & LOA · ld = Learning & Dev · ops = HR Ops & Admin
 // ═══════════════════════════════════════════════════════════════
-const FLOW_URL = 'https://a477fe69c32a4af79331a1752086c6.34.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9542abbc7db0474683c0e723e5df31ea/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3MHOZz8k1a5m_ADXCd9Ix-lE3vIeqyaxRai7KKGMzss';
+const PV_ROLES = {
+  ta:  { label:'Talent Acquisition', color:'#3076FF' },
+  hrbp:{ label:'HRBP & ER',          color:'#9B5CFF' },
+  tr:  { label:'Rewards & LOA',      color:'#FF6A3D' },
+  ld:  { label:'Learning & Dev',     color:'#25D0F4' },
+  ops: { label:'HR Ops',             color:'#E14DF2' },
+};
+
+const PROMPTS = [
+  { role:'ta', app:'Copilot Chat', title:'Frontline JD that actually attracts drivers',
+    text:'Rewrite this CDL Class A Driver job description for [LOCATION]. Lead with what drivers care about most: home daily, schedule, pay range, and physical demands stated honestly. Cut corporate jargon. Keep it under 350 words and write at an 8th-grade reading level. [PASTE JD]',
+    why:'Generic JD rewrites bury the route/schedule info drivers screen for first. Naming the audience changes everything.' },
+  { role:'ta', app:'Teams', title:'Interview debrief in 60 seconds',
+    text:'From this interview transcript, build a panel debrief: candidate strengths with supporting quotes, concerns or gaps, and 4 follow-up questions for the next round. Flag anything related to [KEY REQUIREMENT] specifically.',
+    why:'Pulling direct quotes keeps the debrief evidence-based instead of vibes-based.' },
+  { role:'ta', app:'Outlook', title:'Decline email that protects the brand',
+    text:'Draft a warm rejection email to a candidate for our [ROLE] position who reached the final round. Thank them for their time at [SPECIFIC STAGE], leave the door open for future merchandiser or warehouse openings, and invite them to our talent community. Keep it under 120 words and human.',
+    why:'Every candidate is also a consumer of our products. Final-round declines deserve more than a template.' },
+  { role:'hrbp', app:'Copilot Chat', title:'Prep for a tough coaching conversation',
+    text:'I need to coach a supervisor whose team has [ISSUE, e.g. rising attendance points]. Build me a conversation plan: opening framing that avoids blame, 3 questions to understand root cause before advising, and language for setting a clear expectation with a follow-up date. The audience is a frontline warehouse supervisor.',
+    why:'Asking for questions-before-advice forces the conversation structure good HRBPs use anyway — now it takes 2 minutes to prep.' },
+  { role:'hrbp', app:'Word', title:'Turn messy ER notes into a clean timeline',
+    text:'Convert these investigation notes into a chronological timeline table: date, event, source (who reported it), and corroborating evidence or open question. Flag any gaps where dates conflict or a claim has no source. Do not add interpretation. [PASTE NOTES]',
+    why:'"Do not add interpretation" is the key line — it keeps Copilot from editorializing in a document that may be discoverable.' },
+  { role:'hrbp', app:'Teams', title:'What did I miss in that grievance meeting?',
+    text:'From this meeting recap, list: every commitment made and who owns it, every deadline mentioned, and any statement where management and the union rep characterized the same event differently. Quote those directly.',
+    why:'The side-by-side characterization catch is something the recap tab won\'t do on its own — you have to ask.' },
+  { role:'tr', app:'Outlook', title:'Explain a leave decision in plain English',
+    text:'Rewrite this leave-of-absence explanation for an hourly employee. Keep every fact accurate but write it at an 8th-grade level, lead with what the employee needs to DO and by WHEN, and put dates in bold. No legal jargon without a plain-language gloss in parentheses. [PASTE DRAFT]',
+    why:'LOA letters fail when employees can\'t find the action item. This restructures around the deadline.' },
+  { role:'tr', app:'Excel', title:'Spot the outlier before the audit does',
+    text:'Analyze this [overtime / PTO balance / pay change] data. Identify outliers by department and flag any individual more than 2 standard deviations from their group average. Summarize the top 5 things a comp analyst should investigate first.',
+    why:'Asking for "what to investigate first" turns a data dump into a worklist.' },
+  { role:'ld', app:'PowerPoint', title:'Safety talk that frontline teams will sit through',
+    text:'Create a 6-slide toolbox talk on [SAFETY TOPIC] for warehouse and delivery teams. One idea per slide, max 15 words per slide, each with a speaker note containing one real-world scenario question to ask the group. End with a single commitment slide.',
+    why:'The 15-word ceiling is what keeps Copilot from generating wall-of-text slides nobody reads at 5 AM.' },
+  { role:'ld', app:'Copilot Chat', title:'Turn an SOP into a quiz',
+    text:'Read this SOP and generate a 5-question knowledge check: 3 multiple choice, 2 scenario-based ("what would you do if…"). Include an answer key with the SOP section each answer comes from. [PASTE SOP]',
+    why:'Citing the SOP section in the answer key makes the quiz defensible and self-correcting.' },
+  { role:'ops', app:'Outlook', title:'Inbox triage on Monday morning',
+    text:'Summarize my unread emails from the last 3 days. Group them: (1) needs my action this week with the deadline, (2) FYI only, (3) waiting on someone else. For group 1, draft a one-line reply I can edit for each.',
+    why:'The three-bucket sort plus pre-drafted replies is the difference between triage and actually clearing the inbox.' },
+  { role:'ops', app:'Word', title:'Policy update, redlined and readable',
+    text:'Compare these two versions of our [POLICY NAME] policy. Produce a summary table of every change: section, old language, new language, and a one-line plain-English explanation of what changed for employees. [PASTE BOTH VERSIONS]',
+    why:'The "what changed for employees" column is what your comms summary needs anyway — now it writes itself.' },
+];
+
+const TIPS = [
+  'Press <b>Alt + I</b> in Word to summon Copilot anywhere in your doc',
+  'Ask Copilot in Teams <b>"What did I miss?"</b> when you join a meeting late',
+  'In Outlook, <b>"Coaching by Copilot"</b> reviews your tone before you hit send',
+  'Reference files with <b>/</b> in Copilot chat to ground answers in your docs',
+  'Ask Excel Copilot to <b>"highlight outliers"</b> before your next data review',
+  'End prompts with <b>"format as a table"</b> for instantly scannable output',
+];
+
+// ═══════════════════════════════════════════════════════════════
+//  POWER AUTOMATE FLOW — one endpoint, action-routed
+//  Actions used by this page:
+//    getRecordings        → { value:[{ Title, SessionDate, Duration, TeamsLink }] }
+//    getRecaps            → { value:[{ Title, SessionDate, RecapBody }] }
+//    getSpotlight         → { value:[{ Title, Author, MarketUnit, Body, PostDate }] } (newest first)
+//    markDone             ← { userName, marketUnit, challengeId, xpValue, monthKey }
+//                         → { status:"created" } | { status:"duplicate" }
+//    getProgress          ← { userName, monthKey }       → { value:[{ Challenge }] }
+//    getLeaderboard       ← { monthKey }                 → { value:[{ MarketUnit, XPValue }] }
+// ═══════════════════════════════════════════════════════════════
+const FLOW_URL = 'https://a477fe69c32a4af79331a1752086c6.34.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9542abbc7db0474683c0e723e5df31ea/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3MHOZz8k1a5m_ADXCd9Ix-lE3vIeqyaxRai7KKGMzss <https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fa477fe69c32a4af79331a1752086c6.34.environment.api.powerplatform.com%2Fpowerautomate%2Fautomations%2Fdirect%2Fworkflows%2F9542abbc7db0474683c0e723e5df31ea%2Ftriggers%2Fmanual%2Fpaths%2Finvoke%3Fapi-version%3D1%26sp%3D%252Ftriggers%252Fmanual%252Frun%26sv%3D1.0%26sig%3D3MHOZz8k1a5m_ADXCd9Ix-lE3vIeqyaxRai7KKGMzss&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086064685%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=F5e0%2FYKaJW3uSGsRbhr7m%2F3nibagw0rskj473Kv%2Fa%2BU%3D&reserved=0> ';
 
 async function callFlow(action, data = {}) {
-  const res = await fetch(FLOW_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action, ...data }),
-  });
+  let res;
+  try {
+    res = await fetch(FLOW_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, ...data }),
+    });
+  } catch (e) {
+    // "Failed to fetch" = browser blocked it before it left (almost always CORS).
+    throw new Error('Blocked by browser (CORS) — the flow must answer OPTIONS preflight and return Access-Control-Allow-Origin headers');
+  }
   if (!res.ok) throw new Error(`Flow "${action}" → HTTP ${res.status}`);
   return res.json();
 }
 
 // ═══════════════════════════════════════════════════════════════
-//  USER IDENTITY
-//  The old code used SharePoint's /_api/web/currentuser to auto-detect
-//  the logged-in user. Power Automate's HTTP trigger is anonymous (SAS
-//  auth), so we prompt once and cache the name in localStorage.
-// ═══════════════════════════════════════════════════════════════
-function getUser() {
-  let name = localStorage.getItem('copilot-corner-user');
-  if (!name) {
-    name = prompt('Welcome to Copilot Corner! 👋\nEnter your full name (e.g. Stephanie Brower):');
-    if (name && name.trim()) localStorage.setItem('copilot-corner-user', name.trim());
-  }
-  return (name || '').trim() || 'Anonymous';
-}
-const CURRENT_USER = getUser();
-
-// ═══════════════════════════════════════════════════════════════
 //  HELPERS
 // ═══════════════════════════════════════════════════════════════
-function esc(s) {
-  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const $ = id => document.getElementById(id);
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function fmt(d,o){try{return new Date(d).toLocaleDateString('en-US',o)}catch{return d||''}}
+function monthKey(){return new Date().toISOString().slice(0,7)}           // "2026-06" — Cup resets automatically each month
+function daysLeftInMonth(){const n=new Date();return new Date(n.getFullYear(),n.getMonth()+1,0).getDate()-n.getDate()}
+function toast(msg,type='info'){const t=document.createElement('div');t.className='toast '+type;t.textContent=msg;$('toasts').appendChild(t);setTimeout(()=>t.remove(),4200)}
+
+// ═══════════════════════════════════════════════════════════════
+//  IDENTITY — only collected when someone opts into the Cup.
+//  No prompt() on page load; cached after the first join.
+// ═══════════════════════════════════════════════════════════════
+function getIdentity(){try{return JSON.parse(localStorage.getItem('cc-identity'))||null}catch{return null}}
+function saveIdentity(id){localStorage.setItem('cc-identity',JSON.stringify(id))}
+function clearIdentity(){localStorage.removeItem('cc-identity');renderIdentityBar()}
+
+function renderIdentityBar(){
+  const bar=$('identity-bar'), me=getIdentity();
+  if(me){
+    bar.classList.add('joined');
+    bar.innerHTML=`
+      <div class="id-text">Scoring for <b>${esc(me.name <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fme.name%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086086115%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=6tt1plpHaaHZqKO9dfnmHsjSYt170AmuzpwOtPVhgjQ%3D&reserved=0> )}</b> · <b>${esc(me.mu <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fme.mu%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086109158%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=xTGcoOLIGA6o8Ynuyxnbb9j3vN8YPW3j4DaPS3Bd1EQ%3D&reserved=0> )}</b> — every challenge you finish adds to your unit's total.</div>
+      <button class="id-edit" onclick="clearIdentity()">change</button>`;
+  }else{
+    bar.classList.remove('joined');
+    bar.innerHTML=`
+      <div class="id-text" >Completing challenges earns points for <b>your market unit</b>. Join in — takes five seconds.</div>
+      <input class="id-field" id="id-name" type="text" placeholder="Your name" maxlength="60" style="max-width:170px" />
+      <select class="id-field" id="id-mu"></select>
+      <button class="id-join-btn" onclick="joinCup()">Join the Cup</button>`;
+    const sel=$('id-mu');
+    sel.innerHTML='<option value="" disabled selected>Market unit</option>'+
+      MARKET_UNITS.map(m=>`<option value="${esc(m.code)}">${esc(m.code)} — ${esc(m.name <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fm.name%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086157158%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=GUOiJIl3xR%2FbhzgqG1onr5BknDlwLrtqmvoGu78utlA%3D&reserved=0> )}</option>`).join('');
+  }
 }
-function fmt(d, opts) {
-  try { return new Date(d).toLocaleDateString('en-US', opts); } catch { return d || ''; }
-}
-function getWeekStart() {
-  const now = new Date(), dow = (now.getDay() + 6) % 7;
-  const mon = new Date(now);
-  mon.setDate(now.getDate() - dow);
-  mon.setHours(0, 0, 0, 0);
-  return mon.toISOString();
+
+function joinCup(){
+  const name=($('id-name').value||'').trim();
+  const mu=$('id-mu').value;
+  if(!name){toast('Add your name first','error');return}
+  if(!mu){toast('Pick your market unit','error');return}
+  saveIdentity({name,mu});
+  renderIdentityBar();
+  toast(`Welcome aboard, ${name.split(' ')[0]}! Scoring for ${mu} ⚡`,'success');
+  loadProgress();
 }
 
 // ═══════════════════════════════════════════════════════════════
-//  APPLY STATIC CONFIG TO DOM
+//  STATIC DOM SETUP
 // ═══════════════════════════════════════════════════════════════
-document.getElementById('next-date').textContent     = CONFIG.nextSessionDate;
-document.getElementById('next-time').textContent     = CONFIG.nextSessionTime;
-document.getElementById('join-btn').href             = CONFIG.teamsJoinLink;
-document.getElementById('stat-sessions').textContent = CONFIG.totalSessions;
-if (CONFIG.calendarLink)  document.getElementById('cal-link').href       = CONFIG.calendarLink;
-if (CONFIG.promptLibLink) document.getElementById('prompt-lib-link').href = CONFIG.promptLibLink;
+// ── recurring session: next biweekly occurrence from the anchor ──
+function nextSession(){
+  const every=CONFIG.sessionEveryDays*864e5;
+  const anchor=new Date(CONFIG.sessionAnchor).getTime();
+  const rollAt=Date.now()-CONFIG.sessionLengthMin*6e4;  // show current session until it ends
+  let t=anchor;
+  if(rollAt>anchor) t=anchor+Math.ceil((rollAt-anchor)/every)*every;
+  return new Date(t);
+}
+const NEXT_SESSION=nextSession();
+$('next-date').textContent=NEXT_SESSION.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+$('next-time').textContent=CONFIG.nextSessionTime;
+$('join-btn').href=CONFIG.teamsJoinLink;
+if(CONFIG.calendarLink) $('cal-link').href=CONFIG.calendarLink;
+if(CONFIG.promptLibLink) $('prompt-lib-link').href=CONFIG.promptLibLink;
+if(CONFIG.spotlightEmail) $('spot-cta').href=`mailto:${CONFIG.spotlightEmail}?subject=I%20want%20to%20be%20a%20Copilot%20Corner%20guest%20poster`;
 
-setTimeout(() => {
-  document.getElementById('adp-fill').style.width = CONFIG.adoptionPct + '%';
-  document.getElementById('adp-pct').textContent  = CONFIG.adoptionPct + '%';
-}, 400);
-
-(function () {
-  const now = new Date(), dow = (now.getDay() + 6) % 7;
-  const mon = new Date(now); mon.setDate(now.getDate() - dow); mon.setHours(0,0,0,0);
-  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
-  document.getElementById('xp-week-label').textContent =
-    mon.toLocaleDateString('en-US', { month:'short', day:'numeric' }) + ' – ' +
-    sun.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+// countdown to next session (recomputes, so it rolls over on its own)
+(function tick(){
+  const target=nextSession();
+  $('next-date').textContent=target.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+  const diff=target-new Date();
+  if(diff>0){
+    $('cd-d').textContent=Math.floor(diff/864e5);
+    $('cd-h').textContent=Math.floor(diff/36e5)%24;
+    $('cd-m').textContent=Math.floor(diff/6e4)%60;
+  }else{$('cd-d').textContent='live';$('cd-h').textContent='✦';$('cd-m').textContent='✦'}
+  setTimeout(tick,30000);
 })();
 
-// Pre-fill the Q&A name field
-document.getElementById('qa-name').value = CURRENT_USER !== 'Anonymous' ? CURRENT_USER : '';
+// month labels
+$('cup-month').textContent=new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'});
+$('cup-days-left').textContent=daysLeftInMonth()+' days left';
+$('cup-reset').textContent='Monthly · all units reset on the 1st';
 
+// ticker (duplicated for seamless loop)
+(function(){
+  const seq=TIPS.map(t=>`<span class="tick-item"><span class="tick-pill">✦ TIP</span>${t}</span>`).join('');
+  $('ticker-track').innerHTML=seq+seq;
+})();
 
-// ══════════════════════════════════════════════════════════════
-//  CASE 1 → "getRecordings"
-//  Sends:   { action: "getRecordings" }
-//  Expects: { value: [{ Title, SessionDate, Duration, TeamsLink }, …] }
-// ══════════════════════════════════════════════════════════════
-async function loadRecordings() {
-  const grid = document.getElementById('recordings-grid');
-  try {
-    const { value } = await callFlow('getRecordings');
+// stars
+(function(){
+  const wrap=$('stars');
+  for(let i=0;i<26;i++){
+    const s=document.createElement('span');
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.animationDelay=(Math.random()*5)+'s';
+    s.style.animationDuration=(3+Math.random()*5)+'s';
+    wrap.appendChild(s);
+  }
+})();
 
-    document.getElementById('rec-count').textContent      = value.length + ' available';
-    document.getElementById('stat-recordings').textContent = value.length;
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    if (!value.length) {
-      grid.innerHTML = '<div class="empty" style="grid-column:1/-1">No recordings yet — check back after the next session.</div>';
-      return;
+// animated count-up
+function countUp(el,target,ms=1200){
+  const t0=performance.now();
+  (function step(now){
+    const p=Math.min((now-t0)/ms,1), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e).toLocaleString();
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+countUp($('stat-sessions'),CONFIG.totalSessions);
+
+// ═══════════════════════════════════════════════════════════════
+//  SPOTLIGHT — flow action "getSpotlight", falls back to CONFIG
+// ═══════════════════════════════════════════════════════════════
+function renderSpotlight(p){
+  const initials=(p.Author||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  $('spot-avatar').textContent=initials;
+  $('spot-author').textContent=p.Author||'Guest';
+  $('spot-mu').textContent=p.MarketUnit?('Market unit · '+p.MarketUnit):'';
+  $('spot-date').textContent=p.PostDate?('Posted '+fmt(p.PostDate,{month:'long',day:'numeric'})):'';
+  $('spot-title').textContent=p.Title||'';
+  $('spot-body').textContent=p.Body||'';
+}
+async function loadSpotlight(){
+  try{
+    const {value}=await callFlow('getSpotlight');
+    renderSpotlight(value&&value.length?value[0]:CONFIG.spotlightFallback);
+  }catch(e){renderSpotlight(CONFIG.spotlightFallback)}
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  PROMPT VAULT — filterable, copy-ready, community-credited.
+//  Optional flow action "getPrompts" lets the team grow the Vault
+//  from a SharePoint list (Title, Role, App, PromptText, Why, By)
+//  without touching this file; rows merge on top of the seed set.
+// ═══════════════════════════════════════════════════════════════
+let pvFilter='all', pvData=PROMPTS.slice();
+
+function copyPrompt(text,btn){
+  const clean=text.replace(/\[([^\]]+)\]/g,'[$1]');
+  (navigator.clipboard?.writeText(clean)||Promise.reject()).then(()=>{
+    btn.textContent='✓ Copied'; btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2200);
+    toast('Prompt copied — paste it into Copilot ⚡','info');
+  }).catch(()=>{
+    // fallback for older webviews
+    const ta=document.createElement('textarea'); ta.value=clean;
+    document.body.appendChild(ta); ta.select();
+    try{document.execCommand('copy');toast('Prompt copied ⚡','info')}catch{}
+    ta.remove();
+  });
+}
+
+function renderVaultFilters(){
+  const counts={all:pvData.length};
+  pvData.forEach(p=>counts[p.role]=(counts[p.role]||0)+1);
+  $('pv-filters').innerHTML=
+    `<button class="pv-chip ${pvFilter==='all'?'on':''}" onclick="setPvFilter('all')">All (${counts.all})</button>`+
+    Object.entries(PV_ROLES).map(([k,r])=>
+      `<button class="pv-chip ${pvFilter===k?'on':''}" onclick="setPvFilter('${k}')">${r.label} (${counts[k]||0})</button>`).join('');
+}
+function setPvFilter(f){pvFilter=f;renderVaultFilters();renderVault()}
+
+function renderVault(){
+  const items=pvData.filter(p=>pvFilter==='all'||p.role===pvFilter);
+  $('pv-grid').innerHTML=items.map((p,i)=>{
+    const r=PV_ROLES[p.role]||{label:p.role,color:'#9B5CFF'};
+    const body=esc(p.text).replace(/\[([^\]]+)\]/g,'<mark>[$1]</mark>');
+    return`
+      <div class="pv-card">
+        <div class="pv-top">
+          <span class="pv-role" style="color:${r.color};border:1px solid ${r.color}55;background:${r.color}14">${esc(r.label)}</span>
+          <span class="pv-app">${esc(p.app <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fp.app%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086209109%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=xV5ZPlzgYCYUaIAbfBHLV8kOHZNRqQ%2BrsfqjbefJtN0%3D&reserved=0> )}</span>
+        </div>
+        <div class="pv-title">${esc(p.title)}</div>
+        <div class="pv-prompt">${body}</div>
+        <div class="pv-why"><b>Why it works:</b> ${esc(p.why)}</div>
+        <div class="pv-foot">
+          ${p.by?` <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fp.by%2F%3F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086229680%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=CidKqsbN0WkMefPhUTQuGEMm%2BkBuPRwCqGwixxshS2E%3D&reserved=0> <span class="pv-by">— ${esc(p.by <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fp.by%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086250778%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=6g4F2OSc1iYVt%2BYnPhBieQ02ZbtUozE5och9LMSOc64%3D&reserved=0> )}</span>`:''}
+          <button class="pv-copy" onclick='copyPrompt(${JSON.stringify(p.text)},this)'>Copy</button>
+        </div>
+      </div>`;
+  }).join('')||'<div class="empty" style="grid-column:1/-1">No prompts in this category yet — submit the first one!</div>';
+}
+
+async function loadVault(){
+  renderVaultFilters(); renderVault();
+  try{
+    const {value}=await callFlow('getPrompts');
+    if(value&&value.length){
+      const extra=value.map(v=>({role:(v.Role||'ops').toLowerCase(),app:v.App||'Copilot Chat',title:v.Title||'',text:v.PromptText||'',why:v.Why||'',by:v.By||''})).filter(v=>v.text);
+      pvData=extra.concat(PROMPTS);
+      renderVaultFilters(); renderVault();
     }
-    grid.innerHTML = value.map(item => `
-      ${esc(item.TeamsLink || '#')}
+  }catch(e){/* seed prompts already rendered */}
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  DEFENDING CHAMPIONS — queries LAST month's leaderboard and
+//  crowns the winner at the top of the Cup. Hidden if no data.
+// ═══════════════════════════════════════════════════════════════
+function lastMonthKey(){
+  const d=new Date(); d.setMonth(d.getMonth()-1);
+  return d.toISOString().slice(0,7);
+}
+async function loadChampion(){
+  try{
+    const {value}=await callFlow('getLeaderboard',{monthKey:lastMonthKey()});
+    if(!value||!value.length)return;
+    const totals={};
+    value.forEach(r=>{totals[r.MarketUnit]=(totals[r.MarketUnit]||0)+(r.XPValue||0)});
+    const [code,xp]=Object.entries(totals).sort((a,b)=>b[1]-a[1])[0]||[];
+    if(!code||!xp)return;
+    const mu=MARKET_UNITS.find(m=>m.code===code)||{name:code};
+    const monthName=new Date(new Date().setMonth(new Date().getMonth()-1)).toLocaleDateString('en-US',{month:'long'});
+    $('champ-text').innerHTML=`Defending champions: <b>${esc(mu.name <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fmu.name%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086275579%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=I29iuXqLWFUUZHWfuJms9Nm%2B%2FKAel0tlIbaiu4nf2aI%3D&reserved=0> )}</b> took ${esc(monthName)} with ${xp.toLocaleString()} points. Dethrone them.`;
+    $('champ-banner').style.display='flex';
+  }catch(e){/* banner stays hidden */}
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  RECORDINGS
+// ═══════════════════════════════════════════════════════════════
+async function loadRecordings(){
+  const grid=$('rec-grid');
+  try{
+    const {value}=await callFlow('getRecordings');
+    $('rec-count').textContent=value.length+' available';
+    countUp($('stat-recordings'),value.length);
+    if(!value.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1">No recordings yet — check back after the next session.</div>';return}
+    grid.innerHTML=value.map(it=>`
+      <a class="rec-card" href="${esc(it.TeamsLink||'#')}" target="_blank" rel="noopener">
         <div class="rec-thumb">
-          <div class="rec-thumb-bg"></div>
-          <div class="play-ring">
-            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>
-          </div>
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg></div>
         </div>
         <div class="rec-body">
-          <div class="rec-title-t">${esc(item.Title)}</div>
-          <div class="rec-meta">
-            <span class="rec-date-t">${fmt(item.SessionDate, { month:'short', day:'numeric', year:'numeric' })}</span>
-            ${item.Duration ? `<span class="rec-dur-t">${esc(item.Duration)}</span>` : ''}
+          <div class="rec-t">${esc(it.Title)}</div>
+          <div class="rec-m">
+            <span class="rec-d">${fmt(it.SessionDate,{month:'short',day:'numeric',year:'numeric'})}</span>
+            ${it.Duration?`<span class="rec-dur">${esc(it.Duration)}</span>`:''}
           </div>
         </div>
       </a>`).join('');
-  } catch (e) {
-    grid.innerHTML = `<div class="empty" style="grid-column:1/-1">Could not load recordings.<br><small style="opacity:0.5">${e.message}</small></div>`;
-  }
+  }catch(e){grid.innerHTML=`<div class="empty" style="grid-column:1/-1">Could not load recordings.<br><small style="opacity:.5">${esc(e.message)}</small></div>`}
 }
 
-
-// ══════════════════════════════════════════════════════════════
-//  CASE 2 → "getRecaps"
-//  Sends:   { action: "getRecaps" }
-//  Expects: { value: [{ Title, SessionDate, RecapBody }, …] }
-// ══════════════════════════════════════════════════════════════
-async function loadRecaps() {
-  const list = document.getElementById('recap-list');
-  try {
-    const { value } = await callFlow('getRecaps');
-
-    document.getElementById('recap-count').textContent = value.length + ' recaps';
-    document.getElementById('stat-recaps').textContent = value.length;
-
-    if (!value.length) { list.innerHTML = '<div class="empty">No recaps yet.</div>'; return; }
-
-    list.innerHTML = value.map((item, i) => {
-      const preview = (item.RecapBody || '').replace(/<[^>]+>/g, '').substring(0, 130);
-      return `
+// ═══════════════════════════════════════════════════════════════
+//  RECAPS
+// ═══════════════════════════════════════════════════════════════
+async function loadRecaps(){
+  const list=$('recap-list');
+  try{
+    const {value}=await callFlow('getRecaps');
+    $('recap-count').textContent=value.length+' recaps';
+    countUp($('stat-recaps'),value.length);
+    if(!value.length){list.innerHTML='<div class="empty">No recaps yet.</div>';return}
+    list.innerHTML=value.map((it,i)=>{
+      const preview=(it.RecapBody||'').replace(/<[^>]+>/g,'').substring(0,130);
+      return`
         <div class="recap-row" onclick="toggleRecap(${i})">
           <div class="recap-pip"></div>
-          <div class="recap-content">
-            <div class="recap-title-t">${esc(item.Title)}</div>
-            <div class="recap-preview-t">${esc(preview)}…</div>
+          <div class="recap-c">
+            <div class="recap-t">${esc(it.Title)}</div>
+            <div class="recap-p">${esc(preview)}…</div>
           </div>
-          <div class="recap-right">
-            <span class="recap-date-t">${fmt(item.SessionDate, { month:'short', day:'numeric' })}</span>
+          <div class="recap-r">
+            <span class="recap-d">${fmt(it.SessionDate,{month:'short',day:'numeric'})}</span>
             <span class="read-tag">Read →</span>
           </div>
         </div>
-        <div class="recap-expand" id="recap-x-${i}">${esc(item.RecapBody || 'No body found.')}</div>`;
+        <div class="recap-x" id="recap-x-${i}">${esc((it.RecapBody||'').replace(/<[^>]+>/g,''))}</div>`;
     }).join('');
-  } catch (e) {
-    list.innerHTML = `<div class="empty">Could not load recaps.<br><small style="opacity:0.5">${e.message}</small></div>`;
-  }
+  }catch(e){list.innerHTML=`<div class="empty">Could not load recaps.<br><small style="opacity:.5">${esc(e.message)}</small></div>`}
 }
-function toggleRecap(i) { document.getElementById('recap-x-' + i).classList.toggle('open'); }
+function toggleRecap(i){$('recap-x-'+i).classList.toggle('open')}
 
-
-// ══════════════════════════════════════════════════════════════
-//  CASE 3 → "getQA"
-//  Sends:   { action: "getQA" }
-//  Expects: { value: [{ Title, MessageText, Posted }, …] }
-// ══════════════════════════════════════════════════════════════
-async function loadQA() {
-  try {
-    const { value } = await callFlow('getQA');
-
-    document.getElementById('qa-count').textContent      = value.length + ' messages';
-    document.getElementById('stat-questions').textContent = value.length;
-
-    const msgs    = document.getElementById('qa-messages');
-    const welcome = msgs.querySelector('.qa-msg-item');
-    msgs.innerHTML = '';
-    msgs.appendChild(welcome);
-
-    value.forEach(item => {
-      const t   = item.Posted ? fmt(item.Posted, { month:'short', day:'numeric', hour:'numeric', minute:'2-digit' }) : '';
-      const div = document.createElement('div');
-      div.className = 'qa-msg-item';
-      div.innerHTML = `
-        <span class="qa-author-name user">${esc(item.Title || 'Anonymous')}</span>
-        <span class="qa-bubble-item">${esc(item.MessageText || '')}</span>
-        <span class="qa-ts">${t}</span>`;
-      msgs.appendChild(div);
-    });
-    msgs.scrollTop = msgs.scrollHeight;
-  } catch (e) { /* silent — welcome message stays visible */ }
-}
-
-
-// ══════════════════════════════════════════════════════════════
-//  CASE 4 → "postQA"
-//  Sends:   { action: "postQA", name: "…", message: "…" }
-//  Expects: { status: "ok" }
-// ══════════════════════════════════════════════════════════════
-async function postQAMessage() {
-  const nameEl = document.getElementById('qa-name');
-  const msgEl  = document.getElementById('qa-msg-input');
-  const statEl = document.getElementById('qa-status');
-  const btn    = document.getElementById('qa-send');
-  const name   = nameEl.value.trim() || 'Anonymous';
-  const text   = msgEl.value.trim();
-  if (!text) { statEl.textContent = 'Please type a question first.'; return; }
-
-  btn.disabled = true;
-  statEl.textContent = 'Posting…';
-  try {
-    await callFlow('postQA', { name, message: text });
-    msgEl.value = '';
-    statEl.textContent = '✓ Posted!';
-    setTimeout(() => { statEl.textContent = ''; }, 3000);
-    await loadQA();
-  } catch (e) {
-    statEl.textContent = 'Could not post — try again in a moment.';
-  } finally { btn.disabled = false; }
-}
-
-document.getElementById('qa-msg-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); postQAMessage(); }
-});
-
-
-// ══════════════════════════════════════════════════════════════
-//  XP CHALLENGES — render cards (pure DOM, no HTTP)
-// ══════════════════════════════════════════════════════════════
-function renderChallenges() {
-  document.getElementById('challenge-container').innerHTML = CHALLENGES.map(ch => `
-    <div class="challenge-card" data-challenge-id="${ch.id}">
-      <div class="ch-icon-wrap ${ch.color}">${ch.icon}</div>
-      <div class="ch-body">
-        <div class="ch-label">${esc(ch.label)}</div>
+// ═══════════════════════════════════════════════════════════════
+//  CHALLENGES + CUP
+//  Score model: monthly. Every completion writes a row keyed with
+//  MonthKey ("2026-06"); the leaderboard only queries the current
+//  month, so standings reset automatically on the 1st — no cleanup
+//  flow needed. Duplicate guard = same user + challenge + month.
+// ═══════════════════════════════════════════════════════════════
+function renderChallenges(){
+  $('challenge-list').innerHTML=CHALLENGES.map(ch=>`
+    <div class="ch-card" data-ch="${ch.id <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fch.id%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086300511%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=eKkIARmmeyszOV73C1DdEWMkdrDtdt7uyMCNp7UAZM4%3D&reserved=0> }" style="margin-bottom:11px">
+      <div class="ch-ic ${ch.c}">${ch.icon}</div>
+      <div class="ch-info">
+        <div class="ch-name">${esc(ch.label)}</div>
         <div class="ch-desc">${esc(ch.desc)}</div>
       </div>
-      <div class="ch-right">
-        <span class="xp-badge">+${ch.xp} XP</span>
-        <button class="ch-btn" onclick="markDone('${ch.id}',this)">Mark done</button>
+      <div class="ch-side">
+        <span class="ch-xp">+${ch.xp} pts</span>
+        <button class="ch-btn" onclick="markDone('${ch.id <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fch.id%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086322930%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=kCbJqLMoc56PpM%2FZS54sOXgyW1A0AcwBmU7COSJVhxs%3D&reserved=0> }',this)">Mark done</button>
       </div>
     </div>`).join('');
 }
 
-
-// ══════════════════════════════════════════════════════════════
-//  CASE 5 → "markDone"
-//  Sends:   { action:"markDone", userName, challengeId, xpValue, weekStart }
-//  Expects: { status: "created" }  or  { status: "duplicate" }
-//  The flow handles the duplicate check + create in ONE round-trip.
-// ══════════════════════════════════════════════════════════════
-async function markDone(id, btn) {
-  const ch = CHALLENGES.find(c => c.id === id);
-  if (!ch) return;
-  btn.disabled = true;
-  btn.textContent = 'Saving…';
-
-  try {
-    const result = await callFlow('markDone', {
-      userName:    CURRENT_USER,
-      challengeId: id,
-      xpValue:     ch.xp,
-      weekStart:   getWeekStart(),
+async function markDone(id,btn){
+  const me=getIdentity();
+  if(!me){
+    toast('Join the Cup first — add your name and market unit above ☝️','info');
+    $('identity-bar').scrollIntoView({behavior:'smooth',block:'center'});
+    const nf=$('id-name'); if(nf) nf.focus();
+    return;
+  }
+  const ch=CHALLENGES.find(c=>c.id <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fc.id%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086343208%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=6GVlGsGe42NGM%2FPL3NDdFbiUlkv5R%2BfrQoG82TpfjTM%3D&reserved=0> ===id); if(!ch)return;
+  btn.disabled=true; btn.textContent='Saving…';
+  try{
+    const r=await callFlow('markDone',{
+      userName:me.name <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fme.name%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086408382%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=rRFJ5CXXiqJRMLg7l8XeR6SWfw1aw%2BK%2FJUX21UjelvY%3D&reserved=0> , marketUnit:me.mu <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fme.mu%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086443741%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=8ImKbMZmhRQ2Yw%2FY3KPAo9oXx5BtL54Pw2rgwsMV5rk%3D&reserved=0> ,
+      challengeId:id, xpValue:ch.xp, monthKey:monthKey(),
     });
-
-    if (result.status === 'duplicate') {
-      toast('Already completed this week! 🎉', 'info');
-      setDone(btn, ch, false);
-    } else {
-      setDone(btn, ch, true);
-      toast(`+${ch.xp} XP earned! "${ch.label}" complete 🎉`, 'success');
+    if(r.status==='duplicate'){
+      toast('Already logged this month — nice consistency 🎯','info');
+      setDone(btn,ch,false);
+    }else{
+      setDone(btn,ch,true);
+      toast(`+${ch.xp} pts for ${me.mu <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fme.mu%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086497678%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=FIu7na5e6TeJEuJ66tMSsSq75ZV%2FrGOh9OTukPS1Xqo%3D&reserved=0> }! "${ch.label}" complete`,'success');
+      confettiBurst(40);
       await loadLeaderboard();
     }
-  } catch (e) {
-    toast('Could not save — try again in a moment.', 'error');
-    btn.disabled = false;
-    btn.textContent = 'Mark done';
+  }catch(e){
+    console.error('markDone failed:',e);
+    toast('Could not save — '+e.message,'error');
+    btn.disabled=false; btn.textContent='Mark done';
   }
 }
 
-function setDone(btn, ch, animate) {
-  const card = btn.closest('[data-challenge-id]');
-  if (card) card.classList.add('is-done');
-  btn.textContent = '✓ Done this week';
-  btn.disabled = true;
-  btn.classList.add('done');
-  if (animate && card) {
-    const pop = document.createElement('span');
-    pop.className = 'xp-float-pop';
-    pop.textContent = `+${ch.xp} XP`;
-    card.appendChild(pop);
-    setTimeout(() => pop.remove(), 1800);
+function setDone(btn,ch,animate){
+  const card=btn.closest('[data-ch]');
+  if(card)card.classList.add('is-done');
+  btn.textContent='✓ Done this month'; btn.disabled=true; btn.classList.add('done');
+  if(animate&&card){
+    const pop=document.createElement('span');
+    pop.className='xp-pop'; pop.textContent=`+${ch.xp}`;
+    card.appendChild(pop); setTimeout(()=>pop.remove(),1800);
   }
 }
 
-
-// ══════════════════════════════════════════════════════════════
-//  CASE 6 → "getProgress"
-//  Sends:   { action:"getProgress", userName, weekStart }
-//  Expects: { value: [{ Challenge: "outlook-draft" }, …] }
-// ══════════════════════════════════════════════════════════════
-async function loadPersonalProgress() {
-  try {
-    const { value } = await callFlow('getProgress', {
-      userName:  CURRENT_USER,
-      weekStart: getWeekStart(),
+async function loadProgress(){
+  const me=getIdentity(); if(!me)return;
+  try{
+    const {value}=await callFlow('getProgress',{userName:me.name <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fme.name%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086516612%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=uVH%2FJdmviUn1QapilNiSvUUdeNuabzwkKfFg010QMEI%3D&reserved=0> ,monthKey:monthKey()});
+    new Set(value.map(v=>v.Challenge)).forEach(id=>{
+      const btn=document.querySelector(`[data-ch="${id}"] .ch-btn`);
+      const ch=CHALLENGES.find(c=>c.id <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fc.id%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086534243%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=vKNCyvoUmzeD8yEzY6E2KDRoanKlO2qQvih3ME4canc%3D&reserved=0> ===id);
+      if(btn&&ch)setDone(btn,ch,false);
     });
-
-    new Set(value.map(v => v.Challenge)).forEach(id => {
-      const btn = document.querySelector(`[data-challenge-id="${id}"] .ch-btn`);
-      const ch  = CHALLENGES.find(c => c.id === id);
-      if (btn && ch) setDone(btn, ch, false);
-    });
-  } catch (e) { /* silent — non-critical */ }
+  }catch(e){/* non-critical */}
 }
 
-
-// ══════════════════════════════════════════════════════════════
-//  CASE 7 → "getLeaderboard"
-//  Sends:   { action:"getLeaderboard", weekStart }
-//  Expects: { value: [{ Title: "Name", XPValue: 100 }, …] }
-// ══════════════════════════════════════════════════════════════
-async function loadLeaderboard() {
-  const el = document.getElementById('xp-leaderboard');
-  try {
-    const { value } = await callFlow('getLeaderboard', { weekStart: getWeekStart() });
-
-    const totalXP = value.reduce((sum, row) => sum + (row.XPValue || 0), 0);
-    document.getElementById('stat-xp').textContent = totalXP.toLocaleString();
-
-    const totals = {};
-    value.forEach(row => { totals[row.Title] = (totals[row.Title] || 0) + (row.XPValue || 0); });
-
-    const ranked = Object.entries(totals).sort((a, b) => b[1] - a[1]).slice(0, 10);
-    const medals = ['🥇','🥈','🥉'];
-    const max    = ranked[0]?.[1] || 1;
-
-    el.innerHTML = ranked.map(([name, xp], i) => {
-      const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-      const pct      = Math.round((xp / max) * 100);
-      return `
-        <div class="lb-row">
-          <div class="lb-rank">${medals[i] ?? (i + 1)}</div>
-          <div class="lb-avatar">${esc(initials)}</div>
-          <div class="lb-info">
-            <div class="lb-name">${esc(name)}</div>
-            <div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:${pct}%"></div></div>
+async function loadLeaderboard(){
+  const el=$('cup-board');
+  try{
+    const {value}=await callFlow('getLeaderboard',{monthKey:monthKey()});
+    const totals={}; MARKET_UNITS.forEach(m=>totals[m.code]=0);
+    let total=0;
+    value.forEach(r=>{
+      const mu=r.MarketUnit; const xp=r.XPValue||0; total+=xp;
+      if(mu in totals)totals[mu]+=xp; else totals[mu]=(totals[mu]||0)+xp;
+    });
+    countUp($('stat-xp'),total);
+    const ranked=Object.entries(totals).sort((a,b)=>b[1]-a[1]);
+    const max=Math.max(ranked[0]?.[1]||0,1);
+    const medals=['🥇','🥈','🥉'];
+    el.innerHTML=ranked.map(([code,xp],i)=>{
+      const mu=MARKET_UNITS.find(m=>m.code===code)||{name:code,color:'#9B5CFF'};
+      const pct=Math.round((xp/max)*100);
+      return`
+        <div class="mu-row">
+          <div class="mu-rank ${i===0?'r1':''}">${medals[i]??(i+1)}</div>
+          <div class="mu-chip" style="background:${mu.color}">${esc(code)}</div>
+          <div class="mu-info">
+            <div class="mu-name">${esc(mu.name <https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fmu.name%2F&data=05%7C02%7Cstephanie.brower%40reyesccb.com%7C88ed6176231a4165283f08dec33b1992%7Cff1b190bedf8459d82370545497adf7a%7C0%7C0%7C639162857086551163%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C40000%7C%7C%7C&sdata=qTRVDj35Idv9rqBEsEOx0fN90oT5FpuqlbD5V34bqPE%3D&reserved=0> )}</div>
+            <div class="mu-track"><div class="mu-fill" data-w="${pct}" style="background:linear-gradient(90deg,${mu.color},${mu.color}aa)"></div></div>
           </div>
-          <div class="lb-xp">${xp.toLocaleString()}</div>
+          <div class="mu-xp">${xp.toLocaleString()}</div>
         </div>`;
-    }).join('') ||
-      '<p style="padding:1rem;font-size:12px;color:var(--t4);text-align:center">No completions yet — be the first! ⚡</p>';
-  } catch (e) {
-    el.innerHTML = '<p style="padding:1rem;font-size:12px;color:var(--t4);text-align:center">Leaderboard unavailable</p>';
+    }).join('');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      el.querySelectorAll('.mu-fill').forEach(f=>f.style.width=f.dataset.w+'%');
+    }));
+  }catch(e){
+    el.innerHTML='<p style="padding:1rem;font-size:12px;color:var(--ink4);text-align:center">Standings unavailable</p>';
   }
 }
 
-
-// ══════════════════════════════════════════════════════════════
-//  TOAST
-// ══════════════════════════════════════════════════════════════
-function toast(msg, type = 'info') {
-  const wrap = document.getElementById('xp-toasts');
-  const t    = document.createElement('div');
-  t.className   = 'xp-toast ' + type;
-  t.textContent = msg;
-  wrap.appendChild(t);
-  setTimeout(() => t.remove(), 4000);
+// ═══════════════════════════════════════════════════════════════
+//  CONFETTI
+// ═══════════════════════════════════════════════════════════════
+const CONFETTI_COLORS=['#25D0F4','#3076FF','#9B5CFF','#E14DF2','#FF6A3D','#FFB23E'];
+function confettiBurst(n=60){
+  for(let i=0;i<n;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.width=c.style.height=(5+Math.random()*6)+'px';
+    c.style.background=CONFETTI_COLORS[i%CONFETTI_COLORS.length];
+    c.style.animationDuration=(2+Math.random()*2.2)+'s';
+    c.style.animationDelay=(Math.random()*0.5)+'s';
+    if(Math.random()>.5)c.style.borderRadius='50%';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
 }
 
+// ═══════════════════════════════════════════════════════════════
+//  🥚 EASTER EGGS — hinted cryptically in the footer
+//  1) Konami code (↑↑↓↓←→←→BA) → confetti storm + party mode
+//  2) Click the ✦ in the footer 5× → sparkle cursor trail toggle
+//  3) Type "1886" anywhere → Ice Cold Mode (Coke red + carbonation)
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let pos=0;
+  window.addEventListener('keydown',e=>{
+    const k=e.key;
+    if(typeof k!=='string'||/^(INPUT|SELECT|TEXTAREA)$/.test(e.target?.tagName||''))return;
+    pos=(k===seq[pos]||k.toLowerCase()===seq[pos])?pos+1:0;
+    if(pos===seq.length){
+      pos=0;
+      document.body.classList.toggle('party');
+      confettiBurst(140);
+      toast(document.body.classList.contains('party')
+        ?'🏆 POWER USER MODE UNLOCKED — you found the Konami code'
+        :'Power user mode off. Until next time… ✦','gold');
+    }
+  });
+})();
 
-// ══════════════════════════════════════════════════════════════
+(function(){
+  let clicks=0, trailing=false, timer;
+  $('logo-egg').addEventListener('click',()=>{
+    clicks++; clearTimeout(timer); timer=setTimeout(()=>clicks=0,1600);
+    if(clicks>=5){
+      clicks=0; trailing=!trailing;
+      toast(trailing?'✨ Sparkle trail engaged':'Sparkle trail off','info');
+    }
+  });
+  document.addEventListener('mousemove',e=>{
+    if(!trailing||Math.random()>.35)return;
+    const s=document.createElement('span');
+    s.className='sparkle'; s.textContent='✦';
+    s.style.left=(e.clientX+(Math.random()*16-8))+'px';
+    s.style.top=(e.clientY+(Math.random()*16-8))+'px';
+    s.style.color=CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+    document.body.appendChild(s); setTimeout(()=>s.remove(),900);
+  });
+})();
+
+//  3) Type "1886" (the year it all began) → ICE COLD MODE 🥤
+//     Coke-red theme + carbonation bubbles rising off the page.
+(function(){
+  let buf='', fizzTimer=null;
+  function bubbleUp(){
+    const b=document.createElement('div');
+    b.className='bubble';
+    const size=4+Math.random()*12;
+    b.style.width=b.style.height=size+'px';
+    b.style.left=Math.random()*100+'vw';
+    b.style.setProperty('--sway',(Math.random()*60-30)+'px');
+    b.style.animationDuration=(4+Math.random()*5)+'s';
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),9500);
+  }
+  function setIceCold(on){
+    document.body.classList.toggle('icecold',on);
+    clearInterval(fizzTimer); fizzTimer=null;
+    if(on){
+      for(let i=0;i<24;i++)setTimeout(bubbleUp,i*90);   // opening pour
+      fizzTimer=setInterval(bubbleUp,420);               // steady carbonation
+      toast('🥤 ICE COLD MODE — est. 1886. Stay refreshed.','gold');
+    }else{
+      toast('Back to room temperature. ✦','info');
+    }
+  }
+  window.addEventListener('keydown',e=>{
+    if(typeof e.key!=='string'||e.key.length!==1)return;
+    if(/^(INPUT|SELECT|TEXTAREA)$/.test(e.target?.tagName||''))return;
+    buf=(buf+e.key).slice(-4);
+    if(buf==='1886'){buf='';setIceCold(!document.body.classList.contains('icecold'))}
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════
 //  INIT
-// ══════════════════════════════════════════════════════════════
-async function init() {
+// ═══════════════════════════════════════════════════════════════
+async function init(){
+  renderIdentityBar();
   renderChallenges();
+  if(CONFIG.spotlightEmail)$('pv-submit').href=`mailto:${CONFIG.spotlightEmail}?subject=Prompt%20Vault%20submission&body=Title%3A%0APrompt%3A%0AWhich%20app%3A%0AWhy%20it%20works%3A`;
   await Promise.allSettled([
+    loadSpotlight(),
+    loadVault(),
     loadRecordings(),
     loadRecaps(),
-    loadQA(),
     loadLeaderboard(),
-    loadPersonalProgress(),
+    loadChampion(),
+    loadProgress(),
   ]);
 }
 init();
