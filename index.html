@@ -717,7 +717,7 @@ const CONFIG = {
   calendarLink:     '',
   promptLibLink:    '',
   spotlightEmail:   '',                       // mailto for "be the next guest"
-  totalSessions:    '2026-04-08T12:00:00',
+  sessionStart:     '2026-04-08T12:00:00',
 
   // Admin panel password (soft gate — visible in page source, so this only
   // keeps casual users out; it is NOT real security). Set to your name.
@@ -860,7 +860,7 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 function fmt(d,o){try{return new Date(d).toLocaleDateString('en-US',o)}catch{return d||''}}
 function monthKey(){return new Date().toISOString().slice(0,7)}           // "2026-06" — Cup resets automatically each month
 function daysLeftInMonth(){const n=new Date();return new Date(n.getFullYear(),n.getMonth()+1,0).getDate()-n.getDate()} 
- function sessionsHosted(){const s=new Date(CONFIG.sessionStart).getTime();const n=Date.now();if(n<s)return 0;return Math.floor((n-s)/(CONFIG.sessionEveryDays*864e5))+1}
+function sessionsHosted(){const s=new Date(CONFIG.sessionStart).getTime();const n=Date.now();if(n<s)return 0;return Math.floor((n-s)/(CONFIG.sessionEveryDays*864e5))+1}
 function toast(msg,type='info'){
   const t=document.createElement('div');
   t.className='toast '+type;
