@@ -1058,12 +1058,20 @@ function spotlightEnabled(row){
 }
 
 function spotVal(row, key){
-  // SharePoint may rename columns — handle Author→Author0, MarketUnit→MartUnit
-  if(key==='Author') return row.Author||row.Author0||'';
-  if(key==='MarketUnit') return row.MarketUnit||row.MartUnit||'';
+  if(key==='Author'){
+    const v=row.Author||row.Author0||'';
+    if(typeof v==='object'&&v!==null) return v.Title||v.DisplayName||v.Name||'';
+    return String(v);
+  }
+  if(key==='MarketUnit'){
+    const v=row.MarketUnit||row.MartUnit||'';
+    if(typeof v==='object'&&v!==null) return v.Title||v.Value||'';
+    return String(v);
+  }
   if(key==='Id') return row.ID||row.Id||row.id||null;
   return row[key]||'';
 }
+
 
 function renderSpotlight(p){
   const author=spotVal(p,'Author');
