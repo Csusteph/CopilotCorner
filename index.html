@@ -55,7 +55,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.
 /* ═══ SPOTLIGHT TOGGLE ANIMATION ════════════════════════════ */
 #spotlight-section{transition:opacity .45s var(--ease),transform .45s var(--ease)}
 #spotlight-section.spot-out{opacity:0;transform:translateY(-12px);pointer-events:none}
-</style>
+
 
   
 /* ═══ ATMOSPHERE ════════════════════════════════════════════ */
@@ -1082,14 +1082,6 @@ async function loadSpotlight(){
 }
 
 
-  // ── FIX: local admin toggle always wins until SharePoint is wired ──
-  let localVis;
-  try{ localVis=JSON.parse(localStorage.getItem('cc-spotlight-visible')); }catch{}
-  const on = typeof localVis === 'boolean' ? localVis : spotlightEnabled(rows[0]);
-
-  showSpotlight(on);
-  if(on){ renderSpotlight(rows[0]); renderPastPosts(rows); }
-}
 
 
 // ═══════════════════════════════════════════════════════════════
