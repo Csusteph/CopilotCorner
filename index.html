@@ -52,6 +52,12 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.
 .vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
+/* ═══ SPOTLIGHT TOGGLE ANIMATION ════════════════════════════ */
+#spotlight-section{transition:opacity .45s var(--ease),transform .45s var(--ease)}
+#spotlight-section.spot-out{opacity:0;transform:translateY(-12px);pointer-events:none}
+</style>
+
+  
 /* ═══ ATMOSPHERE ════════════════════════════════════════════ */
 .atmo{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .aurora{position:absolute;width:140vw;height:60vh;top:-30vh;left:-20vw;
@@ -498,7 +504,7 @@ body.icecold .btn-primary{box-shadow:0 0 30px rgba(228,0,43,.45),inset 0 1px 0 r
   </div>
 
   <!-- ── 01 · SPOTLIGHT ── -->
-  <section class="section reveal" id="spotlight-section" aria-labelledby="sec-spotlight">
+ <section class="section reveal" id="spotlight-section" aria-labelledby="sec-spotlight" style="display:none">
     <div class="sec-head">
       <span class="sec-no" aria-hidden="true">01</span>
       <h2 class="sec-title" id="sec-spotlight">This week's <span class="it">spotlight</span></h2>
@@ -861,15 +867,27 @@ function fmt(d,o){try{return new Date(d).toLocaleDateString('en-US',o)}catch{ret
 function monthKey(){return new Date().toISOString().slice(0,7)}           // "2026-06" — Cup resets automatically each month
 function daysLeftInMonth(){const n=new Date();return new Date(n.getFullYear(),n.getMonth()+1,0).getDate()-n.getDate()} 
 function sessionsHosted(){const s=new Date(CONFIG.sessionStart).getTime();const n=Date.now();if(n<s)return 0;return Math.floor((n-s)/(CONFIG.sessionEveryDays*864e5))+1}
+
 function toast(msg,type='info'){
   const t=document.createElement('div');
   t.className='toast '+type;
-  // errors interrupt; everything else announces politely via the live region
   t.setAttribute('role', type==='error' ? 'alert' : 'status');
   t.textContent=msg;
   $('toasts').appendChild(t);
   setTimeout(()=>t.remove(),4200);
 }
+
+function showSpotlight(on){
+  const el=$('spotlight-section');
+  if(on){
+    el.style.display='';
+    el.classList.remove('spot-out');
+  }else{
+    el.classList.add('spot-out');
+    setTimeout(()=>{ el.style.display='none'; },460);
+  }
+}
+
 
 // ═══════════════════════════════════════════════════════════════
 //  IDENTITY — only collected when someone opts into the Cup.
@@ -1038,12 +1056,13 @@ function togglePast(btn){
 }
 
 
+
 async function loadSpotlight(){
   let rows=[];
   try{
     const {value}=await callFlow('getSpotlight');
     if(value&&value.length) rows=value;
-  }catch(e){/* fall through to local / fallback */}
+  }catch(e){}
 
   if(!rows.length){
     let draft=null; try{draft=JSON.parse(localStorage.getItem('cc-spotlight-draft'))}catch{}
@@ -1052,13 +1071,23 @@ async function loadSpotlight(){
   if(!rows.length) rows=[CONFIG.spotlightFallback];
 
   SPOTLIGHT_ROWS=rows; SPOTLIGHT_CURRENT=rows[0];
+  console.log('Spotlight row[0]:', JSON.stringify(rows[0]?.Enabled), typeof rows[0]?.Enabled);  // ← temporary debug line
+
+  let localVis;
+  try{ localVis=JSON.parse(localStorage.getItem('cc-spotlight-visible')); }catch{}
+  const on = typeof localVis === 'boolean' ? localVis : spotlightEnabled(rows[0]);
+
+  showSpotlight(on);
+  if(on){ renderSpotlight(rows[0]); renderPastPosts(rows); }
+}
+
 
   // ── FIX: local admin toggle always wins until SharePoint is wired ──
   let localVis;
   try{ localVis=JSON.parse(localStorage.getItem('cc-spotlight-visible')); }catch{}
   const on = typeof localVis === 'boolean' ? localVis : spotlightEnabled(rows[0]);
 
-  $('spotlight-section').style.display=on?'':'none';
+  showSpotlight(on);
   if(on){ renderSpotlight(rows[0]); renderPastPosts(rows); }
 }
 
@@ -1119,7 +1148,7 @@ async function adminSave(){
   toast(remote?'Spotlight saved for everyone ✦':'Saved locally (flow not wired yet)', remote?'success':'info');
 
   SPOTLIGHT_CURRENT=payload; SPOTLIGHT_ROWS=[payload,...SPOTLIGHT_ROWS.filter(r=>r!==SPOTLIGHT_CURRENT)];
-  $('spotlight-section').style.display=on?'':'none';
+  showSpotlight(on);
   if(on){ renderSpotlight(payload); renderPastPosts(SPOTLIGHT_ROWS); }
 
   // Only re-fetch when the flow actually saved — otherwise the
