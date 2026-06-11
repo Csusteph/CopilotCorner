@@ -1044,12 +1044,15 @@ countUp($('stat-sessions'),sessionsHosted());
 // ═══════════════════════════════════════════════════════════════
 let SPOTLIGHT_ROWS = [];
 
+
 function spotlightEnabled(row){
   if(!row) return false;
-  const v=row.Enabled;
+  let v=row.Enabled;
+  if(typeof v==='object'&&v!==null) v=v.Value;
   if(v===undefined||v===null||v==='') return true;
   return !(v===false||v===0||/^(no|false|0|off)$/i.test(String(v)));
 }
+
 
 function spotVal(row, key){
   if(key==='Author'){
@@ -1113,11 +1116,14 @@ function refreshSpotlightSection(){
 
 async function loadSpotlight(){
   let rows=[];
+  let flowOk=false;
   try{
     const {value}=await callFlow('getSpotlight');
+    flowOk=true;
     if(value&&value.length) rows=value;
   }catch(e){}
-  if(!rows.length) rows=[CONFIG.spotlightFallback];
+  // Only use fallback if the flow isn't wired yet
+  if(!rows.length && !flowOk) rows=[CONFIG.spotlightFallback];
   SPOTLIGHT_ROWS=rows;
   refreshSpotlightSection();
 }
