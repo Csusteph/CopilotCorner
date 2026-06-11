@@ -352,6 +352,30 @@ body.icecold .btn-primary{box-shadow:0 0 30px rgba(228,0,43,.45),inset 0 1px 0 r
 .past-title{font-family:var(--serif);font-style:italic;font-size:1.1rem;margin-bottom:.5rem}
 .past-body{font-size:13.5px;color:var(--ink2);line-height:1.8;white-space:pre-wrap}
 
+/* ═══ ADMIN POST MANAGER ═══════════════════════════════════ */
+.adm-posts{max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
+  margin-bottom:1.2rem;padding-right:4px}
+.adm-posts::-webkit-scrollbar{width:4px}
+.adm-posts::-webkit-scrollbar-thumb{background:var(--line2);border-radius:4px}
+.adm-post-row{display:flex;align-items:center;gap:12px;padding:.75rem 1rem;
+  border:1px solid var(--line);border-radius:13px;background:var(--panel);
+  transition:border-color .25s,background .25s,opacity .25s}
+.adm-post-row.is-on{border-color:rgba(155,92,255,.25);background:rgba(155,92,255,.04)}
+.adm-post-row.adm-saving{opacity:.45;pointer-events:none}
+.adm-post-info{flex:1;min-width:0}
+.adm-post-title{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adm-post-meta{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:.06em;margin-top:2px}
+.adm-post-status{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  flex-shrink:0;width:32px;text-align:center}
+.adm-post-status.live{color:var(--cyan)}
+.adm-post-status.off{color:var(--ink4)}
+.adm-post-row .switch{flex-shrink:0}
+.adm-new-toggle{display:flex;align-items:center;gap:8px;margin-bottom:1rem;cursor:pointer;
+  font-size:13px;color:var(--violet);font-weight:600;background:none;border:none;font-family:var(--body)}
+.adm-new-toggle:hover{color:var(--ink)}
+.adm-new-form{display:none}
+.adm-new-form.open{display:block}
+  
 /* ═══ ADMIN PANEL ═══════════════════════════════════════════ */
 .admin-link{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4);background:none;border:none;cursor:pointer;margin-top:1rem;transition:color .25s;display:inline-flex;align-items:center;gap:6px}
 .admin-link:hover{color:var(--ink2)}
@@ -682,27 +706,34 @@ body.icecold .btn-primary{box-shadow:0 0 30px rgba(228,0,43,.45),inset 0 1px 0 r
         <button class="id-join-btn admin-btn" id="admin-enter" type="button">Unlock</button>
       </div>
 
-      <div id="admin-panel" hidden>
-        <h2 class="admin-h">Guest spotlight</h2>
-        <p class="admin-sub">Edit the post, or switch the whole section off when there's no guest this week.</p>
-        <div class="admin-toggle-row">
-          <label class="switch"><input type="checkbox" id="adm-enabled" /><span class="slider"></span></label>
-          <span id="adm-enabled-label">Spotlight is shown on the page</span>
-        </div>
-        <div class="admin-grid">
-          <div><label class="admin-lbl" for="adm-title">Post title</label><input class="id-field" id="adm-title" type="text" maxlength="120" /></div>
-          <div><label class="admin-lbl" for="adm-author">Author</label><input class="id-field" id="adm-author" type="text" maxlength="60" autocomplete="name" /></div>
-          <div><label class="admin-lbl" for="adm-mu">Market unit</label><input class="id-field" id="adm-mu" type="text" maxlength="40" placeholder="e.g. LAMU" /></div>
-          <div><label class="admin-lbl" for="adm-date">Post date</label><input class="id-field" id="adm-date" type="date" /></div>
-        </div>
-        <label class="admin-lbl" for="adm-body">Post body</label>
-        <textarea class="id-field admin-area" id="adm-body" rows="7" maxlength="2000" placeholder="Paste the guest's story here…"></textarea>
-        <div class="admin-actions">
-          <button class="id-join-btn" id="adm-save" type="button">Save spotlight</button>
-          <button class="btn-ghost admin-ghost" id="adm-logout" type="button">Lock</button>
-        </div>
-        <p class="admin-note" id="adm-note" role="status" aria-live="polite"></p>
-      </div>
+ <div id="admin-panel" hidden>
+  <h2 class="admin-h">Spotlight manager</h2>
+  <p class="admin-sub">Toggle posts on or off — visitors see all enabled posts. When none are on, the section hides completely.</p>
+
+  <div class="adm-posts" id="adm-posts">
+    <div class="skeleton" style="height:52px;border-radius:13px"></div>
+    <div class="skeleton" style="height:52px;border-radius:13px"></div>
+  </div>
+
+  <button class="adm-new-toggle" id="adm-new-toggle" type="button">+ New guest post</button>
+
+  <div class="adm-new-form" id="adm-new-form">
+    <div class="admin-grid">
+      <div><label class="admin-lbl" for="adm-title">Post title</label><input class="id-field" id="adm-title" type="text" maxlength="120" /></div>
+      <div><label class="admin-lbl" for="adm-author">Author</label><input class="id-field" id="adm-author" type="text" maxlength="60" autocomplete="name" /></div>
+      <div><label class="admin-lbl" for="adm-mu">Market unit</label><input class="id-field" id="adm-mu" type="text" maxlength="40" placeholder="e.g. LAMU" /></div>
+      <div><label class="admin-lbl" for="adm-date">Post date</label><input class="id-field" id="adm-date" type="date" /></div>
+    </div>
+    <label class="admin-lbl" for="adm-body">Post body</label>
+    <textarea class="id-field admin-area" id="adm-body" rows="7" maxlength="2000" placeholder="Paste the guest's story here…"></textarea>
+    <button class="id-join-btn" id="adm-create" type="button">Create post</button>
+  </div>
+
+  <div class="admin-actions" style="margin-top:1rem">
+    <button class="btn-ghost admin-ghost" id="adm-logout" type="button">Lock</button>
+  </div>
+  <p class="admin-note" id="adm-note" role="status" aria-live="polite"></p>
+</div>
     </div>
   </div>
 
@@ -1015,47 +1046,68 @@ function countUp(el,target,ms=1200){
 countUp($('stat-sessions'),sessionsHosted());
 
 // ═══════════════════════════════════════════════════════════════
-//  SPOTLIGHT — flow action "getSpotlight", falls back to CONFIG
+//  SPOTLIGHT — multi-post, SharePoint-driven
 // ═══════════════════════════════════════════════════════════════
-function renderSpotlight(p){
-  const initials=(p.Author||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-  $('spot-avatar').textContent=initials;
-  $('spot-author').textContent=p.Author||'Guest';
-  $('spot-mu').textContent=p.MarketUnit?('Market unit · '+p.MarketUnit):'';
-  $('spot-date').textContent=p.PostDate?('Posted '+fmt(p.PostDate,{month:'long',day:'numeric'})):'';
-  $('spot-title').textContent=p.Title||'';
-  $('spot-body').textContent=p.Body||'';
-}
-// rows held newest-first; SPOTLIGHT_CURRENT prefills the admin form
-let SPOTLIGHT_ROWS=[], SPOTLIGHT_CURRENT=null;
+let SPOTLIGHT_ROWS = [];
 
-// Enabled may arrive as bool, "Yes"/"No", 1/0, or be absent (→ treat as on)
 function spotlightEnabled(row){
-  if(!row) return true;
+  if(!row) return false;
   const v=row.Enabled;
   if(v===undefined||v===null||v==='') return true;
   return !(v===false||v===0||/^(no|false|0|off)$/i.test(String(v)));
 }
 
-function renderPastPosts(rows){
+function spotVal(row, key){
+  // SharePoint may rename columns — handle Author→Author0, MarketUnit→MartUnit
+  if(key==='Author') return row.Author||row.Author0||'';
+  if(key==='MarketUnit') return row.MarketUnit||row.MartUnit||'';
+  if(key==='Id') return row.ID||row.Id||row.id||null;
+  return row[key]||'';
+}
+
+function renderSpotlight(p){
+  const author=spotVal(p,'Author');
+  const initials=(author||'?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  $('spot-avatar').textContent=initials;
+  $('spot-author').textContent=author||'Guest';
+  const mu=spotVal(p,'MarketUnit');
+  $('spot-mu').textContent=mu?('Market unit · '+mu):'';
+  $('spot-date').textContent=p.PostDate?('Posted '+fmt(p.PostDate,{month:'long',day:'numeric'})):'';
+  $('spot-title').textContent=p.Title||'';
+  $('spot-body').textContent=p.Body||'';
+}
+
+function renderPastPosts(enabledRows){
   const wrap=$('spot-past-list'), btn=$('spot-past-btn');
-  const past=rows.slice(1).filter(r=>r&&r.Title);
+  const past=enabledRows.slice(1).filter(r=>r&&r.Title);
   if(!past.length){btn.style.display='none';wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');return}
   btn.style.display='inline-flex';
-  btn.textContent=`View ${past.length} past guest post${past.length>1?'s':''}`;
-  wrap.innerHTML=past.map(r=>`
+  btn.textContent=`View ${past.length} more guest post${past.length>1?'s':''}`;
+  wrap.innerHTML=past.map(r=>{
+    const author=spotVal(r,'Author'), mu=spotVal(r,'MarketUnit');
+    return`
     <div class="past-item">
-      <div class="past-meta">${esc(r.Author||'Guest')}${r.MarketUnit?(' · '+esc(r.MarketUnit)):''}${r.PostDate?(' · '+esc(fmt(r.PostDate,{month:'short',day:'numeric',year:'numeric'}))):''}</div>
+      <div class="past-meta">${esc(author||'Guest')}${mu?(' · '+esc(mu)):''}${r.PostDate?(' · '+esc(fmt(r.PostDate,{month:'short',day:'numeric',year:'numeric'}))):''}</div>
       <div class="past-title">${esc(r.Title)}</div>
       <div class="past-body">${esc(r.Body||'')}</div>
-    </div>`).join('');
+    </div>`}).join('');
 }
+
 function togglePast(btn){
   const l=$('spot-past-list'), open=l.classList.toggle('open');
   btn.setAttribute('aria-expanded',open?'true':'false');
 }
 
-
+function refreshSpotlightSection(){
+  const enabled=SPOTLIGHT_ROWS.filter(r=>spotlightEnabled(r));
+  if(enabled.length){
+    renderSpotlight(enabled[0]);
+    renderPastPosts(enabled);
+    showSpotlight(true);
+  }else{
+    showSpotlight(false);
+  }
+}
 
 async function loadSpotlight(){
   let rows=[];
@@ -1063,32 +1115,13 @@ async function loadSpotlight(){
     const {value}=await callFlow('getSpotlight');
     if(value&&value.length) rows=value;
   }catch(e){}
-
-  if(!rows.length){
-    let draft=null; try{draft=JSON.parse(localStorage.getItem('cc-spotlight-draft'))}catch{}
-    if(draft) rows=[draft];
-  }
   if(!rows.length) rows=[CONFIG.spotlightFallback];
-
-  SPOTLIGHT_ROWS=rows; SPOTLIGHT_CURRENT=rows[0];
-  console.log('Spotlight row[0]:', JSON.stringify(rows[0]?.Enabled), typeof rows[0]?.Enabled);  // ← temporary debug line
-
-  let localVis;
-  try{ localVis=JSON.parse(localStorage.getItem('cc-spotlight-visible')); }catch{}
-  const on = typeof localVis === 'boolean' ? localVis : spotlightEnabled(rows[0]);
-
-  showSpotlight(on);
-  if(on){ renderSpotlight(rows[0]); renderPastPosts(rows); }
+  SPOTLIGHT_ROWS=rows;
+  refreshSpotlightSection();
 }
 
-
-
-
 // ═══════════════════════════════════════════════════════════════
-//  ADMIN PANEL — soft-gated editor for the weekly guest spotlight.
-//  Saves a new row to the SharePoint Spotlight list via "setSpotlight";
-//  if that flow action isn't built yet it falls back to this browser so
-//  you can preview, and tells you so.
+//  ADMIN PANEL — post manager with per-post toggles
 // ═══════════════════════════════════════════════════════════════
 function adminOpen(){
   const o=$('admin-overlay');
@@ -1096,58 +1129,85 @@ function adminOpen(){
   $('admin-pass').value=''; setTimeout(()=>$('admin-pass').focus(),40);
 }
 function adminClose(){ $('admin-overlay').hidden=true; $('admin-pass').value=''; }
-function admEnabledLabel(on){ $('adm-enabled-label').textContent=on?'Spotlight is shown on the page':'Spotlight is hidden from the page'; }
-function admDate(d){ try{const x=new Date(d); return isNaN(x)?'':x.toISOString().slice(0,10)}catch{return ''} }
 
 function adminUnlock(){
   if($('admin-pass').value!==CONFIG.adminPassword){ toast('Incorrect password','error'); return; }
   $('admin-login').hidden=true; $('admin-panel').hidden=false;
-  const c=SPOTLIGHT_CURRENT||CONFIG.spotlightFallback;
-  $('adm-title').value=c.Title||''; $('adm-author').value=c.Author||'';
-  $('adm-mu').value=c.MarketUnit||''; $('adm-body').value=c.Body||'';
-  $('adm-date').value=admDate(c.PostDate);
-  const on=spotlightEnabled(c); $('adm-enabled').checked=on; admEnabledLabel(on);
+  renderAdminPosts();
   $('adm-note').textContent='';
+  $('adm-new-form').classList.remove('open');
 }
 
+function renderAdminPosts(){
+  const el=$('adm-posts');
+  const rows=SPOTLIGHT_ROWS.filter(r=>spotVal(r,'Id')); // only SP rows with IDs
+  if(!rows.length){
+    el.innerHTML='<div class="empty" style="padding:1rem">No guest posts yet — create the first one below.</div>';
+    return;
+  }
+  el.innerHTML=rows.map((r,i)=>{
+    const on=spotlightEnabled(r);
+    const author=spotVal(r,'Author'), mu=spotVal(r,'MarketUnit');
+    const date=r.PostDate?fmt(r.PostDate,{month:'short',day:'numeric'}):'';
+    return`
+      <div class="adm-post-row ${on?'is-on':''}" data-idx="${i}">
+        <div class="adm-post-info">
+          <div class="adm-post-title">${esc(r.Title||'Untitled')}</div>
+          <div class="adm-post-meta">${esc(author||'Guest')}${mu?' · '+esc(mu):''}${date?' · '+date:''}</div>
+        </div>
+        <span class="adm-post-status ${on?'live':'off'}">${on?'Live':'Off'}</span>
+        <label class="switch">
+          <input type="checkbox" ${on?'checked':''} onchange="adminTogglePost(${i},this.checked)" />
+          <span class="slider"></span>
+        </label>
+      </div>`;
+  }).join('');
+}
 
-async function adminSave(){
-  const on=$('adm-enabled').checked;
+async function adminTogglePost(idx, enabled){
+  const spRows=SPOTLIGHT_ROWS.filter(r=>spotVal(r,'Id'));
+  const row=spRows[idx];
+  if(!row)return;
+  const id=spotVal(row,'Id');
+  if(!id){ toast('Cannot update — post has no ID','error'); return; }
+
+  const rowEl=document.querySelector(`.adm-post-row[data-idx="${idx}"]`);
+  if(rowEl) rowEl.classList.add('adm-saving');
+
+  try{
+    await callFlow('toggleSpotlight',{ Id:id, Title:row.Title, Enabled:enabled });
+    row.Enabled=enabled;
+    renderAdminPosts();
+    refreshSpotlightSection();
+    toast(enabled?'Post is now live ✦':'Post hidden', enabled?'success':'info');
+  }catch(e){
+    toast('Could not update — '+e.message,'error');
+    renderAdminPosts(); // revert checkbox
+  }
+}
+
+async function adminCreatePost(){
   const payload={
     Title:$('adm-title').value.trim(), Author:$('adm-author').value.trim(),
     MarketUnit:$('adm-mu').value.trim(), Body:$('adm-body').value.trim(),
-    PostDate:$('adm-date').value||new Date().toISOString().slice(0,10), Enabled:on,
+    PostDate:$('adm-date').value||new Date().toISOString().slice(0,10), Enabled:true,
   };
-  if(on && !payload.Body){ toast('Add the post text first (or switch the spotlight off)','error'); $('adm-body').focus(); return; }
-  const btn=$('adm-save'), label=btn.textContent; btn.disabled=true; btn.textContent='Saving…';
-  let remote=false;
-  try{ await callFlow('setSpotlight',payload); remote=true; }catch(e){}
+  if(!payload.Title){ toast('Add a title','error'); $('adm-title').focus(); return; }
+  if(!payload.Body){ toast('Add the post body','error'); $('adm-body').focus(); return; }
 
+  const btn=$('adm-create'), label=btn.textContent;
+  btn.disabled=true; btn.textContent='Creating…';
   try{
-    if(remote){
-      localStorage.removeItem('cc-spotlight-draft');
-      localStorage.removeItem('cc-spotlight-visible');   // flow is source of truth now
-    } else {
-      localStorage.setItem('cc-spotlight-draft',JSON.stringify(payload));
-      localStorage.setItem('cc-spotlight-visible',JSON.stringify(on));  // ← NEW separate key
-    }
-  }catch{}
-
+    await callFlow('setSpotlight',payload);
+    toast('New post created ✦','success');
+    $('adm-title').value=''; $('adm-author').value=''; $('adm-mu').value='';
+    $('adm-body').value=''; $('adm-date').value='';
+    $('adm-new-form').classList.remove('open');
+    await loadSpotlight();
+    renderAdminPosts();
+  }catch(e){ toast('Could not create — '+e.message,'error'); }
   btn.disabled=false; btn.textContent=label;
-  $('adm-note').textContent = remote
-    ? '✓ Saved to SharePoint — everyone will see this.'
-    : '✓ Saved on this browser only. Add a "setSpotlight" action to your flow to share it with everyone.';
-  toast(remote?'Spotlight saved for everyone ✦':'Saved locally (flow not wired yet)', remote?'success':'info');
-
-  SPOTLIGHT_CURRENT=payload; SPOTLIGHT_ROWS=[payload,...SPOTLIGHT_ROWS.filter(r=>r!==SPOTLIGHT_CURRENT)];
-  showSpotlight(on);
-  if(on){ renderSpotlight(payload); renderPastPosts(SPOTLIGHT_ROWS); }
-
-  // Only re-fetch when the flow actually saved — otherwise the
-  // optimistic update + localStorage are already correct.
-  if(remote) await loadSpotlight();
 }
-
 
 (function(){
   const on=(id,ev,fn)=>{const el=$(id);if(el)el.addEventListener(ev,fn)};
@@ -1155,9 +1215,9 @@ async function adminSave(){
   on('admin-close','click',adminClose);
   on('admin-enter','click',adminUnlock);
   on('admin-pass','keydown',e=>{if(e.key==='Enter')adminUnlock()});
-  on('adm-save','click',adminSave);
+  on('adm-create','click',adminCreatePost);
   on('adm-logout','click',adminClose);
-  on('adm-enabled','change',e=>admEnabledLabel(e.target.checked));
+  on('adm-new-toggle','click',()=>$('adm-new-form').classList.toggle('open'));
   const ov=$('admin-overlay');
   if(ov) ov.addEventListener('click',e=>{if(e.target===ov)adminClose()});
   window.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov&&!ov.hidden)adminClose()});
