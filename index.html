@@ -1037,26 +1037,31 @@ function togglePast(btn){
   btn.setAttribute('aria-expanded',open?'true':'false');
 }
 
+
 async function loadSpotlight(){
   let rows=[];
   try{
     const {value}=await callFlow('getSpotlight');
     if(value&&value.length) rows=value;
   }catch(e){/* fall through to local / fallback */}
-  // The flow (SharePoint) is the shared source of truth and always wins when
-  // it returns data. The local draft is only a fallback for when the
-  // "setSpotlight" flow action isn't built yet, so a single admin can still
-  // preview edits on their own browser.
+
   if(!rows.length){
     let draft=null; try{draft=JSON.parse(localStorage.getItem('cc-spotlight-draft'))}catch{}
     if(draft) rows=[draft];
   }
   if(!rows.length) rows=[CONFIG.spotlightFallback];
+
   SPOTLIGHT_ROWS=rows; SPOTLIGHT_CURRENT=rows[0];
-  const on=spotlightEnabled(rows[0]);
+
+  // ── FIX: local admin toggle always wins until SharePoint is wired ──
+  let localVis;
+  try{ localVis=JSON.parse(localStorage.getItem('cc-spotlight-visible')); }catch{}
+  const on = typeof localVis === 'boolean' ? localVis : spotlightEnabled(rows[0]);
+
   $('spotlight-section').style.display=on?'':'none';
   if(on){ renderSpotlight(rows[0]); renderPastPosts(rows); }
 }
+
 
 // ═══════════════════════════════════════════════════════════════
 //  ADMIN PANEL — soft-gated editor for the weekly guest spotlight.
@@ -1084,6 +1089,7 @@ function adminUnlock(){
   $('adm-note').textContent='';
 }
 
+
 async function adminSave(){
   const on=$('adm-enabled').checked;
   const payload={
@@ -1094,24 +1100,33 @@ async function adminSave(){
   if(on && !payload.Body){ toast('Add the post text first (or switch the spotlight off)','error'); $('adm-body').focus(); return; }
   const btn=$('adm-save'), label=btn.textContent; btn.disabled=true; btn.textContent='Saving…';
   let remote=false;
-  try{ await callFlow('setSpotlight',payload); remote=true; }catch(e){/* action not wired yet */}
-  // When the flow saved it, that list is the source of truth — drop the local
-  // copy so everyone (incl. you) reads the canonical version. Otherwise keep
-  // the local draft so you still see your change on this browser.
-  try{ remote ? localStorage.removeItem('cc-spotlight-draft')
-              : localStorage.setItem('cc-spotlight-draft',JSON.stringify(payload)); }catch{}
+  try{ await callFlow('setSpotlight',payload); remote=true; }catch(e){}
+
+  try{
+    if(remote){
+      localStorage.removeItem('cc-spotlight-draft');
+      localStorage.removeItem('cc-spotlight-visible');   // flow is source of truth now
+    } else {
+      localStorage.setItem('cc-spotlight-draft',JSON.stringify(payload));
+      localStorage.setItem('cc-spotlight-visible',JSON.stringify(on));  // ← NEW separate key
+    }
+  }catch{}
+
   btn.disabled=false; btn.textContent=label;
   $('adm-note').textContent = remote
     ? '✓ Saved to SharePoint — everyone will see this.'
-    : '✓ Saved on this browser only. Add a “setSpotlight” action to your flow to share it with everyone.';
+    : '✓ Saved on this browser only. Add a "setSpotlight" action to your flow to share it with everyone.';
   toast(remote?'Spotlight saved for everyone ✦':'Saved locally (flow not wired yet)', remote?'success':'info');
-  // Optimistically reflect the change right away (covers SharePoint
-  // read-after-write lag), then reconcile against the flow.
+
   SPOTLIGHT_CURRENT=payload; SPOTLIGHT_ROWS=[payload,...SPOTLIGHT_ROWS.filter(r=>r!==SPOTLIGHT_CURRENT)];
   $('spotlight-section').style.display=on?'':'none';
   if(on){ renderSpotlight(payload); renderPastPosts(SPOTLIGHT_ROWS); }
-  await loadSpotlight();
+
+  // Only re-fetch when the flow actually saved — otherwise the
+  // optimistic update + localStorage are already correct.
+  if(remote) await loadSpotlight();
 }
+
 
 (function(){
   const on=(id,ev,fn)=>{const el=$(id);if(el)el.addEventListener(ev,fn)};
