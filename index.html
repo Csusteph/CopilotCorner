@@ -588,8 +588,8 @@ body.icecold .btn-primary{box-shadow:0 0 30px rgba(228,0,43,.45),inset 0 1px 0 r
         <!-- identity: only asked when participating -->
         <div class="identity-bar" id="identity-bar">
           <div class="id-text" id="id-text">Completing challenges earns points for <b>your market unit</b>. Join in — takes five seconds.</div>
-          <label class="vh" for="id-name">Your name: First, Last</label>
-          <input class="id-field" id="id-name" type="text" placeholder="Your name: First, Last" maxlength="60" style="max-width:170px" autocomplete="name" />
+          <label class="vh" for="id-name">Your name First, Last</label>
+          <input class="id-field" id="id-name" type="text" placeholder="Your name First, Last" maxlength="60" style="max-width:170px" autocomplete="name" />
           <label class="vh" for="id-mu">Your market unit</label>
           <select class="id-field" id="id-mu" aria-label="Your market unit"></select>
           <button class="id-join-btn" type="button" onclick="joinCup()">Join the Cup</button>
@@ -934,8 +934,8 @@ function renderIdentityBar(){
     bar.classList.remove('joined');
     bar.innerHTML=`
       <div class="id-text">Completing challenges earns points for <b>your market unit</b>. Join in — takes five seconds.</div>
-      <label class="vh" for="id-name">Your name</label>
-      <input class="id-field" id="id-name" type="text" placeholder="Your name" maxlength="60" style="max-width:170px" autocomplete="name" />
+      <label class="vh" for="id-name">Your name: First, Last</label>
+      <input class="id-field" id="id-name" type="text" placeholder="Your name: First, Last" maxlength="60" style="max-width:170px" autocomplete="name" />
       <label class="vh" for="id-mu">Your market unit</label>
       <select class="id-field" id="id-mu" aria-label="Your market unit"></select>
       <button class="id-join-btn" type="button" onclick="joinCup()">Join the Cup</button>`;
