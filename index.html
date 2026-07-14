@@ -458,6 +458,62 @@ body.icecold .btn-primary{box-shadow:0 0 30px rgba(228,0,43,.45),inset 0 1px 0 r
 .pv-card::after{content:'';position:absolute;left:14px;right:14px;top:0;height:2px;border-radius:2px;
   background:var(--grad);opacity:0;transform:scaleX(.4);transition:opacity .3s,transform .35s var(--ease)}
 .pv-card:hover::after{opacity:.9;transform:scaleX(1)}
+
+/* ═══ ADOPTION PULSE ════════════════════════════════════════ */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{position:relative;border:1px solid var(--line);border-radius:18px;padding:1.35rem 1.4rem;overflow:hidden;
+  background:linear-gradient(160deg,rgba(37,208,244,.06),rgba(5,6,12,0) 55%),var(--panel);backdrop-filter:blur(12px)}
+.kpi::before{content:'';position:absolute;left:16px;right:16px;top:0;height:2px;border-radius:2px;background:var(--grad-cool);opacity:.55}
+.kpi-l{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);display:flex;align-items:center;gap:7px}
+.kpi-ic{font-size:13px}
+.kpi-n{font-family:var(--display);font-size:2.35rem;font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-top:12px;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.kpi-n .u{font-size:1.15rem;-webkit-text-fill-color:var(--ink3);color:var(--ink3);margin-left:2px}
+.kpi-sub{font-size:11.5px;color:var(--ink4);margin-top:7px;min-height:1em}
+.kpi-delta{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:11px;letter-spacing:.02em;
+  padding:4px 9px;border-radius:99px;margin-top:12px}
+.kpi-delta .kpi-delta-l{color:var(--ink4);letter-spacing:.04em}
+.kpi-delta.up{color:#2EE6A8;background:rgba(46,230,168,.11)}
+.kpi-delta.down{color:#FF6A3D;background:rgba(255,106,61,.12)}
+.kpi-delta.flat{color:var(--ink3);background:rgba(255,255,255,.05)}
+
+.adopt-chart-card{margin-top:14px;border:1px solid var(--line);border-radius:20px;background:var(--panel);backdrop-filter:blur(12px);padding:1.5rem 1.6rem 1.3rem}
+.adopt-chart-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:1.6rem}
+.adopt-chart-title{font-family:var(--display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em}
+.adopt-chart-title span{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--cyan)}
+.adopt-toggle{display:inline-flex;border:1px solid var(--line2);border-radius:99px;overflow:hidden}
+.adopt-toggle button{background:transparent;border:0;color:var(--ink3);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;padding:7px 15px;cursor:pointer;transition:color .2s}
+.adopt-toggle button.on{background:var(--grad-cool);color:#fff}
+.adopt-toggle button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.bars{display:flex;align-items:flex-end;gap:10px;height:210px;padding-top:24px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:9px;height:100%;position:relative;min-width:0}
+.bar{width:100%;max-width:38px;height:0;border-radius:7px 7px 3px 3px;background:var(--grad-cool);
+  transition:height .9s var(--ease);position:relative;box-shadow:0 0 0 0 rgba(37,208,244,0)}
+.bar-col:last-child .bar{background:var(--grad-warm)}
+.bar-col:hover .bar,.bar-col:focus-within .bar{box-shadow:0 0 18px 0 rgba(37,208,244,.45)}
+.bar-val{font-family:var(--mono);font-size:10px;color:var(--ink2);white-space:nowrap}
+.bar-x{font-family:var(--mono);font-size:9.5px;color:var(--ink4);white-space:nowrap}
+.bar-tip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);
+  background:#0b0d18;border:1px solid var(--line2);border-radius:12px;padding:10px 12px;width:max-content;max-width:200px;
+  font-size:11px;line-height:1.5;color:var(--ink2);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:5;
+  box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.bar-tip b{color:var(--ink);font-family:var(--display)}
+.bar-tip .tip-row{display:flex;justify-content:space-between;gap:14px}
+.bar-tip .tip-row span:first-child{color:var(--ink4)}
+.bar-col:hover .bar-tip,.bar-col:focus-within .bar-tip{opacity:1;transform:translateX(-50%) translateY(0)}
+.adopt-empty{border:1px dashed var(--line2);border-radius:20px;padding:2.4rem 1.5rem;text-align:center;color:var(--ink3);font-size:13px;line-height:1.7}
+.adopt-empty b{color:var(--ink2)}
+
+@media (max-width:880px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .bars{gap:6px;height:180px}
+  .bar-val{font-size:9px}
+}
+@media (max-width:480px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .kpi-n{font-size:2rem}
+}
 </style>
 </head>
 <body>
@@ -603,10 +659,39 @@ body.icecold .btn-primary{box-shadow:0 0 30px rgba(228,0,43,.45),inset 0 1px 0 r
     </div>
   </section>
 
-  <!-- ── 03 · HR PROMPT VAULT ── -->
-  <section class="section reveal" aria-labelledby="sec-vault">
+  <!-- ── 03 · ADOPTION PULSE ── -->
+  <section class="section reveal" id="adoption-section" aria-labelledby="sec-adopt">
     <div class="sec-head">
       <span class="sec-no" aria-hidden="true">03</span>
+      <h2 class="sec-title" id="sec-adopt">HR Copilot <span class="it">adoption</span></h2>
+      <div class="sec-line" aria-hidden="true"></div>
+      <span class="sec-meta" id="adopt-updated"></span>
+    </div>
+
+    <div class="kpi-grid" id="kpi-grid">
+      <div class="skeleton" style="height:150px;border-radius:18px"></div>
+      <div class="skeleton" style="height:150px;border-radius:18px"></div>
+      <div class="skeleton" style="height:150px;border-radius:18px"></div>
+      <div class="skeleton" style="height:150px;border-radius:18px"></div>
+    </div>
+
+    <div class="adopt-chart-card" id="adopt-chart-card" style="display:none">
+      <div class="adopt-chart-head">
+        <div class="adopt-chart-title">Weekly <span>trend</span> · last 12 weeks</div>
+        <div class="adopt-toggle" id="adopt-toggle" role="group" aria-label="Choose trend metric">
+          <button type="button" data-metric="prompts" class="on" onclick="setAdoptMetric('prompts',this)">Prompts</button>
+          <button type="button" data-metric="adoption" onclick="setAdoptMetric('adoption',this)">Adoption %</button>
+          <button type="button" data-metric="users" onclick="setAdoptMetric('users',this)">Active users</button>
+        </div>
+      </div>
+      <div class="bars" id="adopt-chart" role="img" aria-label="Weekly Copilot adoption trend"></div>
+    </div>
+  </section>
+
+  <!-- ── 04 · HR PROMPT VAULT ── -->
+  <section class="section reveal" aria-labelledby="sec-vault">
+    <div class="sec-head">
+      <span class="sec-no" aria-hidden="true">04</span>
       <h2 class="sec-title" id="sec-vault">The HR Prompt <span class="it">Vault</span></h2>
       <div class="sec-line" aria-hidden="true"></div>
       <span class="sec-meta">Field-tested by our team</span>
@@ -865,6 +950,10 @@ const TIPS = [
 //                         → { status:"created" } | { status:"duplicate" }
 //    getProgress          ← { userName, monthKey }       → { value:[{ Challenge }] }
 //    getLeaderboard       ← { monthKey }                 → { value:[{ MarketUnit, XPValue }] }
+//    getAdoption          → { value:[{ WeekStart, ActiveUsers, TotalHrEmployees, AdoptionPct, TotalPrompts }] }
+//                           Rows are one-per-week (any order). Populated by a DAILY scheduled flow that
+//                           runs the Snowflake adoption query (~71s) and upserts the results into a
+//                           SharePoint list — the page just reads that cache, so it loads instantly.
 // ═══════════════════════════════════════════════════════════════
 const FLOW_URL = 'https://a477fe69c32a4af79331a1752086c6.34.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9542abbc7db0474683c0e723e5df31ea/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3MHOZz8k1a5m_ADXCd9Ix-lE3vIeqyaxRai7KKGMzss';
 
@@ -1498,6 +1587,141 @@ async function loadLeaderboard(){
 }
 
 // ═══════════════════════════════════════════════════════════════
+//  ADOPTION PULSE — reads the daily-cached Snowflake results from a
+//  SharePoint list (getAdoption) and renders KPI cards + a weekly
+//  trend chart. All week-over-week / month-to-date math is done here
+//  on the client so the flow only has to hand back the raw weeks.
+// ═══════════════════════════════════════════════════════════════
+let ADOPT_ROWS = [];   // ascending by week, normalized
+
+// Field names differ between Snowflake (WEEK_START) and SharePoint
+// (WeekStart) — accept either so the flow author can't trip on casing.
+function pickNum(o, keys){ for(const k of keys){ if(o[k]!=null && o[k]!=='' && !isNaN(Number(o[k]))) return Number(o[k]); } return null; }
+function pickAny(o, keys){ for(const k of keys){ if(o[k]!=null && o[k]!=='') return o[k]; } return null; }
+
+// Parse a week value. A bare "YYYY-MM-DD" is parsed as LOCAL midnight so the
+// week label doesn't slip a day in western time zones (JS treats date-only
+// strings as UTC otherwise).
+function parseWeek(v){
+  if(typeof v==='string' && /^\d{4}-\d{2}-\d{2}$/.test(v)){
+    const [y,m,d]=v.split('-').map(Number); return new Date(y,m-1,d).getTime();
+  }
+  return new Date(v).getTime();
+}
+
+function normalizeAdopt(rows){
+  return rows.map(r=>{
+    const week = pickAny(r,['WeekStart','WEEK_START','Week_Start','weekStart','Title']);
+    const users = pickNum(r,['ActiveUsers','ACTIVE_USERS','Active_Users','activeUsers']);
+    const hr    = pickNum(r,['TotalHrEmployees','TOTAL_HR_EMPLOYEES','Total_HR_Employees','totalHrEmployees']);
+    const prompts = pickNum(r,['TotalPrompts','TOTAL_PROMPTS','Total_Prompts','totalPrompts']);
+    let pct = pickNum(r,['AdoptionPct','ADOPTION_PCT','Adoption_Pct','adoptionPct']);
+    if(pct==null && users!=null && hr) pct = Math.round(users/hr*1000)/10;
+    return { week, ts:parseWeek(week), users, hr, prompts, pct };
+  })
+  .filter(r=>r.week && !isNaN(r.ts))
+  .sort((a,b)=>a.ts-b.ts);
+}
+
+function deltaBadge(cur, prev, opts={}){
+  if(cur==null || prev==null || isNaN(prev)) return '';
+  const diff = cur-prev;
+  const cls = diff>0?'up':diff<0?'down':'flat';
+  const arrow = diff>0?'▲':diff<0?'▼':'●';
+  let txt;
+  if(opts.points){
+    txt = (Math.round(Math.abs(diff)*10)/10)+' pts';
+  }else{
+    const p = prev ? Math.round(Math.abs(diff)/prev*100) : 0;
+    txt = Math.abs(diff).toLocaleString() + (p ? ` · ${p}%` : '');
+  }
+  return `<span class="kpi-delta ${cls}">${arrow} ${txt} <span class="kpi-delta-l">vs last wk</span></span>`;
+}
+
+function kpiCard(icon,label,value,unit,sub,delta){
+  return `<div class="kpi">
+    <div class="kpi-l"><span class="kpi-ic" aria-hidden="true">${icon}</span>${label}</div>
+    <div class="kpi-n">${value}${unit?`<span class="u">${unit}</span>`:''}</div>
+    <div class="kpi-sub">${sub||''}</div>
+    ${delta||''}
+  </div>`;
+}
+
+function weekLabel(ts){ return new Date(ts).toLocaleDateString('en-US',{month:'numeric',day:'numeric'}); }
+
+async function loadAdoption(){
+  const grid=$('kpi-grid'), card=$('adopt-chart-card');
+  try{
+    const {value}=await callFlow('getAdoption');
+    ADOPT_ROWS = normalizeAdopt(value||[]);
+    if(!ADOPT_ROWS.length){
+      grid.innerHTML=`<div class="adopt-empty" style="grid-column:1/-1">No adoption data yet. Once the daily <b>getAdoption</b> flow writes its first week to SharePoint, this section lights up automatically.</div>`;
+      return;
+    }
+    const tw = ADOPT_ROWS[ADOPT_ROWS.length-1];             // this (latest) week
+    const lw = ADOPT_ROWS[ADOPT_ROWS.length-2] || null;     // prior week
+
+    // Month-to-date: sum prompts across every week sharing the latest week's month
+    const d=new Date(tw.ts), mY=d.getFullYear(), mM=d.getMonth();
+    const monthRows = ADOPT_ROWS.filter(r=>{const x=new Date(r.ts);return x.getFullYear()===mY&&x.getMonth()===mM});
+    const mtdPrompts = monthRows.reduce((s,r)=>s+(r.prompts||0),0);
+    const monthName = d.toLocaleDateString('en-US',{month:'long'});
+
+    grid.innerHTML =
+      kpiCard('👥','Active users this week',(tw.users??0).toLocaleString(),'',
+        tw.hr?`of ${tw.hr.toLocaleString()} HR employees`:'', deltaBadge(tw.users,lw&&lw.users)) +
+      kpiCard('📈','Adoption rate',(tw.pct??0).toLocaleString(),'%',
+        'share of HR actively using Copilot', deltaBadge(tw.pct,lw&&lw.pct,{points:true})) +
+      kpiCard('⚡','Prompts this week',(tw.prompts??0).toLocaleString(),'',
+        'total prompts submitted', deltaBadge(tw.prompts,lw&&lw.prompts)) +
+      kpiCard('🗓️',`Prompts in ${monthName}`,mtdPrompts.toLocaleString(),'',
+        `${monthRows.length} week${monthRows.length===1?'':'s'} · month to date`, '');
+
+    $('adopt-updated').textContent = 'Week of '+new Date(tw.ts).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    card.style.display='block';
+    setAdoptMetric('prompts');
+  }catch(e){
+    grid.innerHTML=`<div class="adopt-empty" style="grid-column:1/-1">Could not load adoption metrics.<br><small style="opacity:.6">${esc(e.message)}</small></div>`;
+  }
+}
+
+let ADOPT_METRIC='prompts';
+function setAdoptMetric(metric, btn){
+  ADOPT_METRIC=metric;
+  if(btn) $('adopt-toggle').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===btn));
+  renderAdoptChart();
+}
+
+function renderAdoptChart(){
+  const el=$('adopt-chart'); if(!el) return;
+  const rows = ADOPT_ROWS.slice(-12);
+  const cfg = {
+    prompts:  {get:r=>r.prompts??0, fmt:v=>v.toLocaleString(),        noun:'prompts'},
+    adoption: {get:r=>r.pct??0,     fmt:v=>v+'%',                     noun:'adoption'},
+    users:    {get:r=>r.users??0,   fmt:v=>v.toLocaleString(),        noun:'active users'},
+  }[ADOPT_METRIC];
+  const max = Math.max(...rows.map(cfg.get), 1);
+  el.innerHTML = rows.map(r=>{
+    const v=cfg.get(r);
+    const h=Math.max(Math.round(v/max*100), v>0?4:0);
+    const tip=`<div class="bar-tip"><b>Week of ${esc(weekLabel(r.ts))}</b>
+      <div class="tip-row"><span>Active users</span><span>${(r.users??0).toLocaleString()}</span></div>
+      <div class="tip-row"><span>Adoption</span><span>${(r.pct??0)}%</span></div>
+      <div class="tip-row"><span>Prompts</span><span>${(r.prompts??0).toLocaleString()}</span></div></div>`;
+    return `<div class="bar-col" tabindex="0" aria-label="Week of ${esc(weekLabel(r.ts))}: ${esc(cfg.fmt(v))} ${cfg.noun}">
+      <div class="bar-val">${esc(cfg.fmt(v))}</div>
+      <div class="bar" data-h="${h}"></div>
+      ${tip}
+      <div class="bar-x">${esc(weekLabel(r.ts))}</div>
+    </div>`;
+  }).join('');
+  // animate bars in on next frame (matches the Cup fill pattern)
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    el.querySelectorAll('.bar').forEach(b=>b.style.height=b.dataset.h+'%');
+  }));
+}
+
+// ═══════════════════════════════════════════════════════════════
 //  CONFETTI
 // ═══════════════════════════════════════════════════════════════
 const CONFETTI_COLORS=['#25D0F4','#3076FF','#9B5CFF','#E14DF2','#FF6A3D','#FFB23E'];
@@ -1609,6 +1833,7 @@ async function init(){
     loadLeaderboard(),
     loadChampion(),
     loadProgress(),
+    loadAdoption(),
   ]);
 }
 init();
